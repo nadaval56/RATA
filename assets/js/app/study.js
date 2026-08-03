@@ -85,9 +85,9 @@ function drawCard(){
       </button>
     </div>
     <div class="fc-browse">
-      <button class="fc-page" onclick="browseCard(-1)" ${deck.pos===0?'disabled':''} aria-label="כרטיסייה קודמת">› הקודמת</button>
+      <button class="fc-page" onclick="browseCard(-1)" ${deck.pos===0?'disabled':''} aria-label="הכרטיסייה הקודמת">‹ הקודם</button>
       <span class="fc-count mono">${deck.pos+1} / ${deck.q.length}</span>
-      <button class="fc-page" onclick="browseCard(1)" ${deck.pos===deck.q.length-1?'disabled':''} aria-label="כרטיסייה הבאה">הבאה ‹</button>
+      <button class="fc-page" onclick="browseCard(1)" ${deck.pos===deck.q.length-1?'disabled':''} aria-label="הכרטיסייה הבאה">הבא ›</button>
     </div>
     <div id="fc-actions"></div>`;
   window.scrollTo(0,0);
