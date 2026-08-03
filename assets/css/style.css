@@ -1,0 +1,453 @@
+/* ================= פונטים מקומיים (עבודה אופליין) ================= */
+/* Heebo · 300 · hebrew */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(../fonts/heebo-300-hebrew.woff2) format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* Heebo · 300 · latin-ext */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(../fonts/heebo-300-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Heebo · 300 · latin */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(../fonts/heebo-300-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Heebo · 400 · hebrew */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/heebo-300-hebrew.woff2) format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* Heebo · 400 · latin-ext */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/heebo-300-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Heebo · 400 · latin */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/heebo-300-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Heebo · 500 · hebrew */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/heebo-300-hebrew.woff2) format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* Heebo · 500 · latin-ext */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/heebo-300-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Heebo · 500 · latin */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/heebo-300-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Heebo · 700 · hebrew */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/heebo-300-hebrew.woff2) format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* Heebo · 700 · latin-ext */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/heebo-300-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Heebo · 700 · latin */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/heebo-300-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Heebo · 900 · hebrew */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(../fonts/heebo-300-hebrew.woff2) format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* Heebo · 900 · latin-ext */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(../fonts/heebo-300-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Heebo · 900 · latin */
+@font-face {
+  font-family: 'Heebo';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(../fonts/heebo-300-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* IBM Plex Mono · 400 · latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/ibmplexmono-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* IBM Plex Mono · 400 · latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/ibmplexmono-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* IBM Plex Mono · 600 · latin-ext */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../fonts/ibmplexmono-600-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* IBM Plex Mono · 600 · latin */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../fonts/ibmplexmono-600-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Suez One · 400 · hebrew */
+@font-face {
+  font-family: 'Suez One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/suezone-400-hebrew.woff2) format('woff2');
+  unicode-range: U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F;
+}
+/* Suez One · 400 · latin-ext */
+@font-face {
+  font-family: 'Suez One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/suezone-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Suez One · 400 · latin */
+@font-face {
+  font-family: 'Suez One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/suezone-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ================= עיצוב האפליקציה ================= */
+:root{
+  --paper:#E4E6DE;
+  --surface:#F8F8F4;
+  --surface-2:#EEEFE8;
+  --ink:#14202B;
+  --ink-2:#4A5561;
+  --ink-3:#7C8792;
+  --magenta:#B4326D;
+  --blue:#22608F;
+  --amber:#A2601A;
+  --green:#2C6B4E;
+  --red:#A32B2B;
+  --hair:#C3C8BE;
+  --hair-2:#D6DAD1;
+  --r:3px;
+  --shadow:0 1px 0 rgba(20,32,43,.06), 0 2px 8px rgba(20,32,43,.05);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Heebo',system-ui,sans-serif;
+  font-size:16px;line-height:1.6;
+  padding-bottom:78px;
+  padding-bottom:calc(78px + env(safe-area-inset-bottom));
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:'Suez One',Georgia,serif;font-weight:400;line-height:1.25;margin:0}
+.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--magenta);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---- shell ---- */
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header.band{
+  background:var(--ink);color:var(--surface);
+  padding:11px 0;border-bottom:3px solid var(--magenta);
+}
+.band .wrap{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.band .cs{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#9FB0BE;text-transform:uppercase}
+.band .ttl{font-family:'Suez One',serif;font-size:17px}
+
+.view{display:none;padding-top:20px}
+.view.on{display:block}
+
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;
+  color:var(--ink-3);text-transform:uppercase;margin-bottom:6px;
+}
+
+/* ---- altimeter signature ---- */
+.gauge-row{display:flex;gap:18px;align-items:center;margin-bottom:26px}
+.gauge{flex:0 0 132px;width:132px;height:132px;position:relative}
+.gauge svg{display:block;width:100%;height:100%}
+.gauge .rdg{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;pointer-events:none;
+}
+.gauge .rdg b{font-family:'IBM Plex Mono',monospace;font-size:25px;font-weight:600;letter-spacing:-.02em;line-height:1}
+.gauge .rdg span{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.13em;color:var(--ink-3);margin-top:3px}
+.gauge-txt h2{font-size:20px;margin-bottom:5px}
+.gauge-txt p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.5}
+@media(max-width:430px){
+  .gauge-row{gap:14px}
+  .gauge{flex-basis:112px;width:112px;height:112px}
+  .gauge .rdg b{font-size:22px}
+  .gauge-txt h2{font-size:17px}
+  .gauge-txt p{font-size:12.5px}
+}
+
+/* ---- subject strips ---- */
+.strip{
+  display:block;width:100%;text-align:right;background:var(--surface);
+  border:1px solid var(--hair);border-radius:var(--r);
+  padding:12px 14px;margin-bottom:8px;box-shadow:var(--shadow);
+}
+.strip:active{background:var(--surface-2)}
+.strip .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.strip .nm{font-weight:700;font-size:15px}
+.strip .pc{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-2);font-weight:600}
+.strip .bar{height:3px;background:var(--hair-2);margin-top:9px;border-radius:2px;overflow:hidden}
+.strip .bar i{display:block;height:100%;background:var(--blue);border-radius:2px;transition:width .5s ease}
+.strip .sub{font-size:11.5px;color:var(--ink-3);margin-top:5px;font-family:'IBM Plex Mono',monospace}
+
+/* ---- generic card ---- */
+.card{
+  background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);
+  padding:16px;margin-bottom:12px;box-shadow:var(--shadow);
+}
+.card h3{font-size:16px;margin-bottom:8px}
+
+/* ---- flag / notice ---- */
+.notice{
+  border-inline-start:3px solid var(--amber);background:#FAF4EA;
+  padding:11px 13px;border-radius:var(--r);font-size:13px;color:#5C4520;margin:12px 0;
+}
+.notice.mag{border-color:var(--magenta);background:#FAEEF3;color:#6B2242}
+.notice b{font-weight:700}
+
+/* ---- buttons ---- */
+.btn{
+  display:inline-block;background:var(--ink);color:var(--surface);border:none;
+  border-radius:var(--r);padding:12px 20px;font-weight:700;font-size:15px;
+}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn.mag{background:var(--magenta)}
+.btn:disabled{opacity:.4}
+.btn-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+
+/* ---- quiz ---- */
+.qmeta{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-3);letter-spacing:.06em}
+.qtag{background:var(--surface-2);border:1px solid var(--hair);padding:2px 8px;border-radius:2px;color:var(--ink-2)}
+.qtext{font-size:17px;font-weight:500;line-height:1.5;margin-bottom:15px}
+.opt{
+  display:block;width:100%;text-align:right;background:var(--surface);
+  border:1px solid var(--hair);border-radius:var(--r);padding:12px 14px;
+  margin-bottom:8px;font-size:14.5px;line-height:1.45;position:relative;
+  transition:border-color .12s, background .12s;
+}
+.opt:active{background:var(--surface-2)}
+.opt .lt{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--ink-3);margin-inline-end:8px}
+.opt.correct{border-color:var(--green);border-width:2px;background:#EDF5F0}
+.opt.correct .lt{color:var(--green)}
+.opt.wrong{border-color:var(--red);border-width:2px;background:#F8EDED}
+.opt.wrong .lt{color:var(--red)}
+.opt[disabled]{cursor:default}
+.expl{
+  border-inline-start:3px solid var(--blue);background:#EDF2F7;padding:12px 14px;
+  border-radius:var(--r);margin-top:12px;font-size:13.5px;line-height:1.6;color:#1E3A4F;
+}
+.expl .hd{font-weight:700;display:block;margin-bottom:4px;font-size:12px;
+  font-family:'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+.expl.bad{border-color:var(--red);background:#F8EDED;color:#5C2020}
+.src{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-3);margin-top:9px;line-height:1.5}
+
+/* ---- study ---- */
+.topic{border-bottom:1px solid var(--hair-2);padding:13px 0}
+.topic:last-child{border-bottom:none}
+.topic h3{font-size:15px;color:var(--magenta);margin-bottom:7px}
+.topic ul{margin:0;padding-inline-start:18px}
+.topic li{font-size:14px;line-height:1.65;margin-bottom:5px}
+.topic li b{font-weight:700}
+.kv{font-family:'IBM Plex Mono',monospace;background:var(--surface-2);
+  padding:1px 5px;border-radius:2px;font-size:12.5px;border:1px solid var(--hair-2)}
+
+/* ---- result ---- */
+.score{text-align:center;padding:22px 0 6px}
+.score .big{font-family:'IBM Plex Mono',monospace;font-size:52px;font-weight:600;line-height:1}
+.score .lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.15em;
+  color:var(--ink-3);text-transform:uppercase;margin-top:6px}
+.score.pass .big{color:var(--green)}
+.score.fail .big{color:var(--red)}
+.brk{border-top:1px solid var(--hair);margin-top:16px;padding-top:12px}
+.brk-row{display:flex;justify-content:space-between;padding:7px 0;font-size:14px;
+  border-bottom:1px solid var(--hair-2)}
+.brk-row:last-child{border-bottom:none}
+.brk-row span:last-child{font-family:'IBM Plex Mono',monospace;font-weight:600}
+
+/* ---- nav ---- */
+nav{
+  position:fixed;bottom:0;inset-inline:0;background:var(--surface);
+  border-top:1px solid var(--hair);display:flex;z-index:50;
+  padding-bottom:env(safe-area-inset-bottom);
+  box-shadow:0 -2px 12px rgba(20,32,43,.07);
+}
+nav button{
+  flex:1;background:none;border:none;padding:9px 2px 10px;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-size:11px;color:var(--ink-3);font-weight:500;border-top:2.5px solid transparent;
+  margin-top:-1px;
+}
+nav button.on{color:var(--magenta);border-top-color:var(--magenta);font-weight:700}
+nav button svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round}
+nav .badge{
+  position:absolute;top:5px;transform:translateX(13px);
+  background:var(--magenta);color:#fff;font-family:'IBM Plex Mono',monospace;
+  font-size:9px;font-weight:600;min-width:15px;height:15px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;padding:0 4px;
+}
+nav button{position:relative}
+
+/* ---- flashcards ---- */
+.subj-pick{display:flex;gap:6px;margin-bottom:14px}
+.subj-pick button{
+  flex:1;background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);
+  padding:9px 4px 8px;font-size:11.5px;font-weight:700;line-height:1.25;color:var(--ink-2);
+  border-top:3px solid var(--sc,var(--hair));
+}
+.subj-pick button.on{background:var(--sc);color:#fff;border-color:var(--sc)}
+
+.deckbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;
+  font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--ink-3)}
+.deckbar .prog{flex:1;height:3px;background:var(--hair-2);margin:0 12px;border-radius:2px;overflow:hidden}
+.deckbar .prog i{display:block;height:100%;background:var(--sc);transition:width .35s ease}
+
+.deck{perspective:1400px;margin-bottom:14px}
+.fcard{
+  width:100%;height:clamp(300px,50vh,380px);position:relative;
+  background:none;border:none;padding:0;display:block;
+}
+.fc-in{position:relative;width:100%;height:100%;transform-style:preserve-3d;
+  transition:transform .55s cubic-bezier(.36,.12,.2,1)}
+.fcard.flip .fc-in{transform:rotateY(180deg)}
+.fc-f{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  background:var(--surface);border:1px solid var(--hair);border-radius:6px;
+  border-top:5px solid var(--sc);box-shadow:0 3px 18px rgba(20,32,43,.10);
+  display:flex;flex-direction:column;padding:20px 22px;overflow:hidden;text-align:center;
+}
+.fc-b{transform:rotateY(180deg);background:var(--surface-2);text-align:right}
+.fc-top{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.16em;
+  color:var(--sc);text-transform:uppercase;font-weight:600;flex:0 0 auto;text-align:right}
+.fc-mid{flex:1;display:flex;align-items:center;justify-content:center;overflow-y:auto;padding:8px 0}
+.fc-term{font-family:'Suez One',serif;font-size:clamp(26px,7vw,38px);line-height:1.2;color:var(--ink)}
+.fc-def{font-size:clamp(14px,3.7vw,16px);line-height:1.65;color:var(--ink);text-align:right;width:100%}
+.fc-def b{font-weight:700;color:var(--sc)}
+.fc-hint{flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  letter-spacing:.12em;color:var(--ink-3);text-transform:uppercase}
+.fc-b .fc-top{opacity:.75}
+
+.fc-nav{display:flex;gap:8px}
+.fc-nav button{flex:1;border-radius:var(--r);padding:13px 8px;font-weight:700;font-size:14px;border:1.5px solid}
+.fc-again{background:transparent;border-color:var(--amber);color:var(--amber)}
+.fc-got{background:var(--sc);border-color:var(--sc);color:#fff}
+.fc-skip{background:transparent;border-color:var(--hair);color:var(--ink-3);flex:0 0 auto;padding:13px 16px}
+
+.empty{text-align:center;padding:44px 20px;color:var(--ink-3)}
+
+.empty p{font-size:14px;margin:8px 0 0}
+.tiny{font-size:11.5px;color:var(--ink-3);line-height:1.6}
+hr.rule{border:none;border-top:1px solid var(--hair);margin:20px 0}
+
+/* ---- footer ---- */
+.site-foot{
+  border-top:1px solid var(--hair);
+  margin-top:28px;padding:18px 0 10px;
+}
+.site-foot .wrap{max-width:760px}
+.site-foot p{
+  font-size:11.5px;line-height:1.7;color:var(--ink-3);
+  margin:0 0 9px;
+}
+.site-foot p:last-child{margin-bottom:0}
+.site-foot a{color:var(--ink-2);text-decoration:underline;text-underline-offset:2px}
+.site-foot .tlh{
+  font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;
+  color:var(--ink-3);margin-top:12px;
+}

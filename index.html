@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מד גובה · הכנה למבחן מטיס כטב"ם קטן</title>
+<meta name="description" content="לימוד ותרגול לקראת הבחינה העיונית של רת&quot;א לרישיון מטיס כטב&quot;ם קטן (מתחת 25 ק&quot;ג, קשר עין).">
+<meta name="theme-color" content="#B4326D">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="מד גובה">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="band">
+  <div class="wrap">
+    <span class="ttl">מד גובה</span>
+    <span class="cs">CAAI · כטב"ם קטן &lt; 25kg · VLOS</span>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ DASHBOARD ============ -->
+<section id="v-home" class="view on">
+  <div class="gauge-row">
+    <div class="gauge" id="gauge"></div>
+    <div class="gauge-txt">
+      <h2>מד כשירות</h2>
+      <p id="gauge-note">עדיין לא התחלת. המחוג עולה לפי אחוז השאלות שענית עליהן נכון בניסיון האחרון בכל נושא.</p>
+    </div>
+  </div>
+
+  <div class="eyebrow">נושאי הבחינה</div>
+  <div id="subjects"></div>
+
+  <div class="btn-row">
+    <button class="btn mag" onclick="startExam()">סימולציית מבחן מלאה</button>
+    <button class="btn alt" onclick="go('study')">לימוד</button>
+  </div>
+
+  <hr class="rule">
+  <div class="eyebrow">נתונים</div>
+  <div class="card">
+    <p class="tiny" style="margin:0 0 10px">ההתקדמות נשמרת בדפדפן. אם אתה פותח את הקובץ ממחשב אחר או מוריד אותו — ייצא את הנתונים ושמור אותם.</p>
+    <div class="btn-row" style="margin:0">
+      <button class="btn alt" onclick="exportData()">ייצוא התקדמות</button>
+      <button class="btn alt" onclick="document.getElementById('imp').click()">ייבוא</button>
+      <button class="btn alt" onclick="resetAll()">איפוס</button>
+    </div>
+    <input type="file" id="imp" accept=".json" style="display:none" onchange="importData(event)">
+  </div>
+</section>
+
+<!-- ============ STUDY ============ -->
+<section id="v-study" class="view">
+  <div class="eyebrow">לימוד לפי נושא</div>
+  <div id="study-nav"></div>
+  <div id="study-body"></div>
+</section>
+
+<!-- ============ DRILL ============ -->
+<section id="v-drill" class="view">
+  <div id="drill-body"></div>
+</section>
+
+<!-- ============ WEAK ============ -->
+<section id="v-weak" class="view">
+  <div id="weak-body"></div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>האתר נבנה על ידי Claude (Anthropic) כעזרה אישית לנדב, לקראת הבחינה העיונית
+    לרישיון מטיס כטב"ם קטן של רשות התעופה האזרחית.</p>
+
+    <p>התוכן מבוסס על החומר העיוני הרשמי של רת"א, תקנות הטיס (הפעלת מערכת כטב"ם קטן)
+    התשפ"ד-2024, פמ"ת פרק ב-09 וחוק הטיס התשע"א-2011 — אך אינו מסמך רשמי,
+    אינו מחליף אותם, ואינו מהווה ייעוץ מקצועי או משפטי.</p>
+
+    <p>ייתכנו טעויות. לפני כל הסתמכות — אמת מול המקור הרשמי ב<a href="https://www.gov.il/he/pages/knowledge-exam-uav" target="_blank" rel="noopener">אתר רת"א</a>.</p>
+
+    <p class="tlh">ט.ל.ח</p>
+  </div>
+</footer>
+
+<nav>
+  <button id="n-home" class="on" onclick="go('home')">
+    <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="7"/><path d="M12 12l3.5-3.5"/></svg>
+    מצב
+  </button>
+  <button id="n-study" onclick="go('study')">
+    <svg viewBox="0 0 24 24"><path d="M4 4h7a2 2 0 012 2v14a2 2 0 00-2-2H4z"/><path d="M20 4h-7a2 2 0 00-2 2v14a2 2 0 012-2h7z"/></svg>
+    לימוד
+  </button>
+  <button id="n-drill" onclick="go('drill')">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg>
+    תרגול
+  </button>
+  <button id="n-weak" onclick="go('weak')">
+    <svg viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 9v5M12 17v.5"/></svg>
+    חולשות<span class="badge" id="weak-badge" style="display:none">0</span>
+  </button>
+</nav>
+
+<!-- טעינה בסדר קבוע עם תגיות script רגילות (לא ES modules) — עובד גם ב-file:// ללא שרת -->
+<script src="assets/js/data/subjects.js"></script>
+<script src="assets/js/data/questions.js"></script>
+<script src="assets/js/data/cards.js"></script>
+<script src="assets/js/data/study.js"></script>
+<script src="assets/js/app/storage.js"></script>
+<script src="assets/js/app/gauge.js"></script>
+<script src="assets/js/app/study.js"></script>
+<script src="assets/js/app/quiz.js"></script>
+<script src="assets/js/app/main.js"></script>
+</body>
+</html>
