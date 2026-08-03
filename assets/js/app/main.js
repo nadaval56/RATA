@@ -16,9 +16,22 @@ function go(v){
 /* ================= אתחול ================= */
 load();
 
-/* רישום Service Worker לעבודה אופליין. נכשל בשקט על file:// — האפליקציה עובדת בלעדיו. */
+/* רישום Service Worker לעבודה אופליין. נכשל בשקט על file:// — האפליקציה עובדת בלעדיו.
+   עדכון אוטומטי: כשגרסה חדשה נפרסת ל-Pages, ה-SW החדש תופס פיקוד (skipWaiting+claim),
+   אירוע controllerchange נורה, והדף מתרענן פעם אחת לבד — בלי התעסקות ידנית.
+   hadController מונע רענון מיותר בהתקנה הראשונה, ו-refreshing מונע לולאת רענון. */
 if('serviceWorker' in navigator && location.protocol.startsWith('http')){
+  let refreshing=false;
+  const hadController=!!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{
+    if(refreshing || !hadController) return;
+    refreshing=true;
+    window.location.reload();
+  });
   window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('sw.js').catch(()=>{});
+    navigator.serviceWorker.register('sw.js').then(reg=>{
+      // בדיקת עדכון יזומה בכל פתיחה, כדי לתפוס גרסה חדשה מוקדם ככל האפשר.
+      reg.update().catch(()=>{});
+    }).catch(()=>{});
   });
 }
