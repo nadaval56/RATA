@@ -27,10 +27,12 @@ function renderSummary(){
     `<div class="btn-row"><button class="btn" style="background:${subjColor(studySub)}" onclick="startDrill('${studySub}')">תרגול בנושא זה</button></div>`;
 }
 
-/* ---- חפיסת כרטיסיות ---- */
+/* ---- חפיסת כרטיסיות ----
+   pos = מצביע דפדוף לכרטיסייה הנוכחית בתוך deck.q. אפשר לדפדף הקודם/הבא
+   בלי לסמן; סימון "ידעתי"/"עוד פעם" פועל על הכרטיסייה שבמצביע. */
 function buildDeck(){
   const pool=CARDS.filter(c=>c.s===studySub);
-  deck={q:pool.slice(),i:0,total:pool.length,done:0,again:[],flip:false,round:1};
+  deck={q:pool.slice(),pos:0,total:pool.length,done:0,again:[],flip:false,round:1};
   drawCard();
 }
 
@@ -39,7 +41,7 @@ function drawCard(){
   const c=subjColor(studySub);
   if(!deck.q.length){
     if(deck.again.length){
-      deck.q=shuffle(deck.again);deck.again=[];deck.round++;
+      deck.q=shuffle(deck.again);deck.again=[];deck.pos=0;deck.round++;
       el.innerHTML=`<div class="card" style="text-align:center;padding:30px 20px">
         <h3 style="color:${c};margin-bottom:8px">סבב ${deck.round}</h3>
         <p class="tiny" style="margin:0 0 16px">${deck.q.length} כרטיסיות שסימנת "עוד פעם" חוזרות עכשיו.</p>
@@ -56,7 +58,9 @@ function drawCard(){
       </div></div>`;
     return;
   }
-  const card=deck.q[0];
+  if(deck.pos>=deck.q.length)deck.pos=deck.q.length-1;
+  if(deck.pos<0)deck.pos=0;
+  const card=deck.q[deck.pos];
   const pct=deck.total?Math.round(deck.done/deck.total*100):0;
   el.innerHTML=`
     <div class="deckbar" style="--sc:${c}">
@@ -80,8 +84,21 @@ function drawCard(){
         </div>
       </button>
     </div>
+    <div class="fc-browse">
+      <button class="fc-page" onclick="browseCard(-1)" ${deck.pos===0?'disabled':''} aria-label="כרטיסייה קודמת">› הקודמת</button>
+      <span class="fc-count mono">${deck.pos+1} / ${deck.q.length}</span>
+      <button class="fc-page" onclick="browseCard(1)" ${deck.pos===deck.q.length-1?'disabled':''} aria-label="כרטיסייה הבאה">הבאה ‹</button>
+    </div>
     <div id="fc-actions"></div>`;
   window.scrollTo(0,0);
+}
+
+/* דפדוף בלי סימון — מזיז את המצביע ומחזיר את הכרטיסייה לצד הקדמי. */
+function browseCard(d){
+  if(!deck||!deck.q.length)return;
+  deck.pos=Math.min(deck.q.length-1,Math.max(0,deck.pos+d));
+  deck.flip=false;
+  drawCard();
 }
 
 function flipCard(){
@@ -99,9 +116,11 @@ function flipCard(){
 }
 
 function markCard(known){
-  const card=deck.q.shift();
+  const card=deck.q.splice(deck.pos,1)[0];
+  if(!card){deck.flip=false;drawCard();return;}
   if(known)deck.done++;
   else deck.again.push(card);
   deck.flip=false;
+  if(deck.pos>=deck.q.length)deck.pos=Math.max(0,deck.q.length-1);
   drawCard();
 }
