@@ -421,6 +421,8 @@ nav button{position:relative}
 .fc-def b{font-weight:700;color:var(--sc)}
 .fc-hint{flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:10px;
   letter-spacing:.12em;color:var(--ink-3);text-transform:uppercase}
+.fc-ref{flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:10px;
+  color:var(--ink-3);text-align:right}
 .fc-b .fc-top{opacity:.75}
 
 .fc-nav{display:flex;gap:8px}

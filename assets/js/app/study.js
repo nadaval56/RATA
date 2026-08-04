@@ -31,12 +31,17 @@ function renderStudy(){
   if(studyMode==='list' && !summary) studyMode='cards';
   if(studyMode==='cards' && !cards) studyMode='list';
 
+  // הכרטיסיות עודכנו לגרסה 2.0; רק תצוגת הסיכום (STUDY) עדיין ישנה — לכן האזהרה
+  // מופיעה רק במצב "סיכום".
+  const staleNote = studyMode==='list'
+    ? `<div class="notice" style="margin:0 0 12px">תצוגת הסיכום עדיין לא עודכנה לגרסה 2.0 של השאלות — ייתכנו בה אי-דיוקים שכבר תוקנו בכרטיסיות, בשאלות ובהסברים. בכל סתירה, סמוך עליהם.</div>`
+    : '';
   nav.innerHTML=picker+
     `<div class="btn-row" style="margin:0 0 12px">
        ${cards?`<button class="btn ${studyMode==='cards'?'':'alt'}" style="padding:7px 15px;font-size:13px;${studyMode==='cards'?'background:'+c:''}" onclick="studyMode='cards';renderStudy()">כרטיסיות</button>`:''}
        ${summary?`<button class="btn ${studyMode==='list'?'':'alt'}" style="padding:7px 15px;font-size:13px;${studyMode==='list'?'background:'+c:''}" onclick="studyMode='list';renderStudy()">סיכום</button>`:''}
      </div>
-     <div class="notice" style="margin:0 0 12px">חומרי הלימוד (כרטיסיות וסיכומים) עדיין לא עודכנו לגרסה 2.0 של השאלות — ייתכנו בהם אי-דיוקים שכבר תוקנו בשאלות ובהסברים. בכל סתירה, סמוך על השאלות ועל התרגול.</div>`;
+     ${staleNote}`;
 
   if(studyMode==='list') renderSummary();
   else buildDeck();
@@ -103,7 +108,7 @@ function drawCard(){
           <div class="fc-f fc-b">
             <div class="fc-top">${card.f.replace(/<br>[\s\S]*/,'').replace(/<[^>]+>/g,'')}</div>
             <div class="fc-mid"><div class="fc-def">${card.b}</div></div>
-            <div class="fc-hint">&nbsp;</div>
+            <div class="fc-ref">${card.ref?'מקור: '+card.ref:'&nbsp;'}</div>
           </div>
         </div>
       </button>
