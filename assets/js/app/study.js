@@ -31,17 +31,11 @@ function renderStudy(){
   if(studyMode==='list' && !summary) studyMode='cards';
   if(studyMode==='cards' && !cards) studyMode='list';
 
-  // הכרטיסיות עודכנו לגרסה 2.0; רק תצוגת הסיכום (STUDY) עדיין ישנה — לכן האזהרה
-  // מופיעה רק במצב "סיכום".
-  const staleNote = studyMode==='list'
-    ? `<div class="notice" style="margin:0 0 12px">תצוגת הסיכום עדיין לא עודכנה לגרסה 2.0 של השאלות — ייתכנו בה אי-דיוקים שכבר תוקנו בכרטיסיות, בשאלות ובהסברים. בכל סתירה, סמוך עליהם.</div>`
-    : '';
   nav.innerHTML=picker+
     `<div class="btn-row" style="margin:0 0 12px">
        ${cards?`<button class="btn ${studyMode==='cards'?'':'alt'}" style="padding:7px 15px;font-size:13px;${studyMode==='cards'?'background:'+c:''}" onclick="studyMode='cards';renderStudy()">כרטיסיות</button>`:''}
        ${summary?`<button class="btn ${studyMode==='list'?'':'alt'}" style="padding:7px 15px;font-size:13px;${studyMode==='list'?'background:'+c:''}" onclick="studyMode='list';renderStudy()">סיכום</button>`:''}
-     </div>
-     ${staleNote}`;
+     </div>`;
 
   if(studyMode==='list') renderSummary();
   else buildDeck();
