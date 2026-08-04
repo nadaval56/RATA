@@ -27,7 +27,7 @@ function startDrill(id){
   go('drill');drawQ();
 }
 function startExam(){
-  const per={LAW:13,CALC:5,TECH:7,MET:5};
+  const per={LAW:12,CALC:8,TECH:6,MET:4};
   let qs=[];
   SUBJ.forEach(s=>{qs=qs.concat(shuffle(Q.filter(q=>q.s===s.id)).slice(0,per[s.id]));});
   sess={mode:'exam',qs:shuffle(qs).map(prep),i:0,c:0,ans:[]};
