@@ -385,11 +385,11 @@ nav .badge{
 nav button{position:relative}
 
 /* ---- flashcards ---- */
-.subj-pick{display:flex;gap:6px;margin-bottom:14px}
+.subj-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
 .subj-pick button{
-  flex:1;background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);
+  background:var(--surface);border:1px solid var(--hair);border-radius:var(--r);
   padding:9px 4px 8px;font-size:11.5px;font-weight:700;line-height:1.25;color:var(--ink-2);
-  border-top:3px solid var(--sc,var(--hair));
+  border-top:3px solid var(--sc,var(--hair));min-height:44px;
 }
 .subj-pick button.on{background:var(--sc);color:#fff;border-color:var(--sc)}
 

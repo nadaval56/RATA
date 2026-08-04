@@ -27,7 +27,7 @@ function startDrill(id){
   go('drill');drawQ();
 }
 function startExam(){
-  const per={LAW:12,CALC:8,TECH:6,MET:4};
+  const per={LAW:11,CALC:6,OPS:5,TECH:4,MET:2,ENG:2};
   let qs=[];
   SUBJ.forEach(s=>{qs=qs.concat(shuffle(Q.filter(q=>q.s===s.id)).slice(0,per[s.id]));});
   sess={mode:'exam',qs:shuffle(qs).map(prep),i:0,c:0,ans:[]};
@@ -70,7 +70,7 @@ function pick(i){
   if(sess.mode!=='exam'){
     fb=`<div class="expl ${ok?'':'bad'}"><span class="hd">${ok?'נכון':'לא נכון'}</span>${q.e}
       ${q.flag?`<div class="notice mag" style="margin:10px 0 0"><b>שים לב:</b> ${q.flag}</div>`:''}
-      <div class="src">מקור: ${q.src}</div></div>`;
+      <div class="src">מקור: ${q.src}${q.ref?` · ${q.ref}`:''}</div></div>`;
   }
   const last=sess.i===sess.qs.length-1;
   fb+=`<div class="btn-row"><button class="btn" onclick="next()">${last?'סיום':'הבא'}</button></div>`;

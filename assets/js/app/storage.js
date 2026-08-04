@@ -26,11 +26,23 @@ const store = {
   }
 };
 
-let S = {best:{}, wrong:[], seen:0};
+/* גרסת מרחב-האינדקסים של Q. יש להעלות אותה בכל פעם שמערך Q מוחלף/מסודר מחדש —
+   כי S.wrong שומר אינדקסים לתוך Q, והם מאבדים משמעות כשהמאגר משתנה. */
+const QVERSION = 2;
+
+let S = {best:{}, wrong:[], seen:0, ver:QVERSION};
+
+/* מחזיר אובייקט התקדמות תקין. אם הנתונים השמורים שייכים לגרסת מאגר אחרת —
+   מתחילים נקי (אינדקסי החולשות הישנים אינם תואמים ל-Q הנוכחי). */
+function coerceProgress(d){
+  if(d && typeof d==='object' && d.ver===QVERSION)
+    return Object.assign({best:{}, wrong:[], seen:0, ver:QVERSION}, d);
+  return {best:{}, wrong:[], seen:0, ver:QVERSION};
+}
 
 async function load(){
   const d = await store.get('altimeter:v1');
-  if(d && typeof d==='object') S = Object.assign(S,d);
+  S = coerceProgress(d);
   render();
 }
 async function save(){ await store.set('altimeter:v1',S); }
@@ -45,12 +57,12 @@ function importData(ev){
   const f=ev.target.files[0];if(!f)return;
   const r=new FileReader();
   r.onload=async()=>{
-    try{const d=JSON.parse(r.result);S=Object.assign({best:{},wrong:[],seen:0},d);await save();render();go('home');}
+    try{const d=JSON.parse(r.result);S=coerceProgress(d);await save();render();go('home');}
     catch(e){alert('הקובץ אינו תקין. ודא שזה קובץ שיוצא מהאפליקציה הזו.');}
   };
   r.readAsText(f);
 }
 async function resetAll(){
   if(!confirm('לאפס את כל ההתקדמות? הפעולה אינה הפיכה.'))return;
-  S={best:{},wrong:[],seen:0};await save();render();
+  S={best:{},wrong:[],seen:0,ver:QVERSION};await save();render();
 }

@@ -5,16 +5,39 @@ let deck=null;
 
 function subjColor(id){return (SUBJ.find(s=>s.id===id)||{}).c||'#B4326D';}
 
+/* חומרי הלימוד (STUDY / CARDS) מכסים רק את הנושאים הישניים וטרם עודכנו לגרסה 2.0
+   של השאלות. נושאים חדשים (OPS/ENG) אין להם עדיין כרטיסיות/סיכומים. */
+function hasCardsFor(id){return typeof CARDS!=='undefined' && CARDS.some(c=>c.s===id);}
+function hasSummaryFor(id){return typeof STUDY!=='undefined' && !!STUDY[id];}
+
 function renderStudy(){
   const c=subjColor(studySub);
-  document.getElementById('study-nav').innerHTML=
-    `<div class="subj-pick">`+
-    SUBJ.map(s=>`<button class="${s.id===studySub?'on':''}" style="--sc:${s.c}" onclick="pickSubj('${s.id}')">${s.name.split(',')[0].replace(' ו','<br>ו')}</button>`).join('')+
-    `</div>
-     <div class="btn-row" style="margin:0 0 14px">
-       <button class="btn ${studyMode==='cards'?'':'alt'}" style="padding:7px 15px;font-size:13px;${studyMode==='cards'?'background:'+c:''}" onclick="studyMode='cards';renderStudy()">כרטיסיות</button>
-       <button class="btn ${studyMode==='list'?'':'alt'}" style="padding:7px 15px;font-size:13px;${studyMode==='list'?'background:'+c:''}" onclick="studyMode='list';renderStudy()">סיכום</button>
-     </div>`;
+  const picker=`<div class="subj-pick">`+
+    SUBJ.map(s=>`<button class="${s.id===studySub?'on':''}" style="--sc:${s.c}" onclick="pickSubj('${s.id}')">${s.name}</button>`).join('')+
+    `</div>`;
+  const nav=document.getElementById('study-nav');
+  const cards=hasCardsFor(studySub), summary=hasSummaryFor(studySub);
+
+  // נושא ללא חומר לימוד (נוסף בגרסה 2.0) — מפנים לתרגול.
+  if(!cards && !summary){
+    nav.innerHTML=picker;
+    document.getElementById('study-body').innerHTML=
+      `<div class="notice mag"><b>אין עדיין חומר לימוד לנושא זה.</b> הנושא נוסף בגרסה 2.0 של השאלות, וכרטיסיות הלימוד והסיכום עדיין בהכנה. בינתיים אפשר לתרגל את הנושא במאגר השאלות.</div>
+       <div class="btn-row"><button class="btn" style="background:${c}" onclick="startDrill('${studySub}')">תרגול בנושא זה</button></div>`;
+    return;
+  }
+
+  // ודא שמצב התצוגה הנבחר אכן קיים לנושא הזה.
+  if(studyMode==='list' && !summary) studyMode='cards';
+  if(studyMode==='cards' && !cards) studyMode='list';
+
+  nav.innerHTML=picker+
+    `<div class="btn-row" style="margin:0 0 12px">
+       ${cards?`<button class="btn ${studyMode==='cards'?'':'alt'}" style="padding:7px 15px;font-size:13px;${studyMode==='cards'?'background:'+c:''}" onclick="studyMode='cards';renderStudy()">כרטיסיות</button>`:''}
+       ${summary?`<button class="btn ${studyMode==='list'?'':'alt'}" style="padding:7px 15px;font-size:13px;${studyMode==='list'?'background:'+c:''}" onclick="studyMode='list';renderStudy()">סיכום</button>`:''}
+     </div>
+     <div class="notice" style="margin:0 0 12px">חומרי הלימוד (כרטיסיות וסיכומים) עדיין לא עודכנו לגרסה 2.0 של השאלות — ייתכנו בהם אי-דיוקים שכבר תוקנו בשאלות ובהסברים. בכל סתירה, סמוך על השאלות ועל התרגול.</div>`;
+
   if(studyMode==='list') renderSummary();
   else buildDeck();
 }
@@ -22,6 +45,7 @@ function renderStudy(){
 function pickSubj(id){studySub=id;deck=null;renderStudy();}
 
 function renderSummary(){
+  if(!hasSummaryFor(studySub)){renderStudy();return;}
   document.getElementById('study-body').innerHTML=
     STUDY[studySub].map(sec=>`<div class="card"><div class="topic"><h3 style="color:${subjColor(studySub)}">${sec.t}</h3><ul>${sec.i.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>`).join('')+
     `<div class="btn-row"><button class="btn" style="background:${subjColor(studySub)}" onclick="startDrill('${studySub}')">תרגול בנושא זה</button></div>`;
