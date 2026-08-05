@@ -890,12 +890,12 @@ e:'המהירות הקרקעית רלוונטית לחישוב זמן הגעה, 
 
 {s:'ENG',t:'מונחים תעופתיים',src:SRC.caa,ref:'תקנה 5(א)(11)',
 q:'מה פירוש NOTAM?',
-o:['Notice to Airmen — פרסום מידע תעופתי זמני','No Take-off Area Marked','Notification of Air Missions','National Operations and Traffic Management'],a:0,
+o:['Notice to Airmen — פרסום מידע תעופתי זמני','No Take-off Area Marked — אין סימון אזור המראה','Notification of Air Missions — הודעה על משימות אוויריות','National Operations and Traffic Management — ניהול תפעול ותנועה ארצי'],a:0,
 e:'NOTAM הוא פרסום מידע תעופתי זמני, המתפרסם באתר רשות שדות התעופה. לעומתו הפמ"ת — פרסום מידע תעופתי — הוא מידע קבוע המתפרסם באתר רשות התעופה האזרחית.'},
 
 {s:'ENG',t:'מונחים תעופתיים',src:SRC.gen,ref:'תקנה 5(א)(11)',
 q:'מה פירוש הקיצור VLOS?',
-o:['Visual Line of Sight — קשר עין ישיר','Very Low Operating Speed','Vertical Lift Off System','Visual Landing Order System'],a:0,
+o:['Visual Line of Sight — קשר עין ישיר','Very Low Operating Speed — מהירות הפעלה נמוכה מאוד','Vertical Lift Off System — מערכת המראה אנכית','Visual Landing Order System — מערכת סדר נחיתה חזותי'],a:0,
 e:'VLOS הוא המונח הבין-לאומי המקביל ל"קשר עין ישיר" שבתקנות. הניגוד לו הוא BVLOS — Beyond Visual Line of Sight, שבישראל מחייב הרשאה להפעלה מיוחדת לתקנה 27.'}
 
 ];
