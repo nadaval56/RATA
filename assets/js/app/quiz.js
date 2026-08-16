@@ -1,5 +1,15 @@
 /* תרגול, סימולציית מבחן וחולשות */
 /* ================= תרגול ומבחן ================= */
+
+/* מבנה סימולציית המבחן — מיושר לדיווח ממי שניגש לבחינה בפועל:
+   כ-36 שאלות, מול מחשב, ציון עובר 70. חלק מהשאלות במבחן האמיתי
+   שוות 2 נקודות; כאן כל השאלות שוות ערך, ולכן האחוז הוא קירוב. */
+const EXAM = {
+  n:36,
+  pass:70,
+  per:{LAW:13, CALC:6, OPS:5, TECH:6, MET:3, ENG:3}
+};
+
 let sess=null;
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
@@ -17,8 +27,24 @@ function renderDrillMenu(){
      ${SUBJ.map(s=>`<button class="strip" onclick="startDrill('${s.id}')"><div class="top"><span class="nm">${s.name}</span><span class="pc">${Q.filter(q=>q.s===s.id).length}</span></div></button>`).join('')}
      </div>
      <div class="card"><h3>סימולציית מבחן</h3>
-     <p class="tiny" style="margin:0 0 12px">30 שאלות מכל הנושאים, בלי הסברים תוך כדי. ציון מוצג בסוף.</p>
-     <button class="btn mag" onclick="startExam()">התחל סימולציה</button></div>`;
+     <p class="tiny" style="margin:0 0 12px">${EXAM.n} שאלות מכל הנושאים, בלי הסברים תוך כדי. ציון מוצג בסוף, סף מעבר ${EXAM.pass}.</p>
+     <button class="btn mag" onclick="startExam()">התחל סימולציה</button></div>
+     ${examFormatCard()}`;
+}
+
+/* מה ידוע על המבחן עצמו — לא פרסום רשמי, אלא דיווח ממי שניגש */
+function examFormatCard(){
+  return `<div class="card"><h3>מה מחכה לך במבחן</h3>
+    <p class="tiny" style="margin:0 0 10px">לפי דיווח ממי שניגש לבחינה. <b>לא פרסום רשמי של רת"א</b> — הפרטים עשויים להשתנות.</p>
+    <div class="brk">
+      <div class="brk-row"><span>אופן העריכה</span><span>מול מחשב</span></div>
+      <div class="brk-row"><span>קבלת הציון</span><span>מיידית</span></div>
+      <div class="brk-row"><span>ציון עובר</span><span>${EXAM.pass}</span></div>
+      <div class="brk-row"><span>מספר שאלות</span><span>כ-${EXAM.n}</span></div>
+      <div class="brk-row"><span>ניקוד</span><span>חלקן 2 נק׳</span></div>
+    </div>
+    <div class="notice mag" style="margin-bottom:0"><b>"בחר בתשובה הנכונה ביותר"</b> — בחלק לא קטן מהשאלות זה הניסוח, ואז יותר ממסיח אחד נכון כשלעצמו. אל תבחר בתשובה הראשונה שנראית נכונה: קרא את כל הארבע, ובחר את זו שהיא <b>השלמה ביותר</b> או <b>המדויקת ביותר</b> — זו שמכילה את האחרות, או זו שאינה משמיטה רכיב מההגדרה.</div>
+  </div>`;
 }
 
 function startDrill(id){
@@ -27,7 +53,7 @@ function startDrill(id){
   go('drill');drawQ();
 }
 function startExam(){
-  const per={LAW:11,CALC:6,OPS:5,TECH:4,MET:2,ENG:2};
+  const per=EXAM.per;
   let qs=[];
   SUBJ.forEach(s=>{qs=qs.concat(shuffle(Q.filter(q=>q.s===s.id)).slice(0,per[s.id]));});
   sess={mode:'exam',qs:shuffle(qs).map(prep),i:0,c:0,ans:[]};
@@ -48,7 +74,7 @@ function drawQ(){
    `<div class="qmeta"><span>${modeLbl}</span><span class="mono">${sess.i+1} / ${sess.qs.length}</span></div>
     <div class="card">
       <span class="qtag" style="font-size:11px">${q.t}</span>
-      <div class="qtext" style="margin-top:10px">${q.q}</div>
+      <div class="qtext" style="margin-top:10px">${q.best?'<span class="qbest">בחר בתשובה הנכונה ביותר:</span> ':''}${q.q}</div>
       <div id="opts">${q._o.map((o,i)=>`<button class="opt" onclick="pick(${i})"><span class="lt">${L[i]}</span>${o}</button>`).join('')}</div>
       <div id="fb"></div>
     </div>`;
@@ -107,7 +133,7 @@ async function finish(){
   }
   await save();
 
-  const pass=pct>=80;
+  const pass=pct>=EXAM.pass;
   let brk='';
   if(sess.mode==='exam'){
     brk='<div class="brk">'+SUBJ.map(s=>{
@@ -121,7 +147,9 @@ async function finish(){
    `<div class="card">
       <div class="score ${pass?'pass':'fail'}"><div class="big mono">${pct}%</div><div class="lbl">${c} מתוך ${n}</div></div>
       ${brk}
-      <div class="notice">סף 80% הוא יעד עבודה שקבעתי כאן, לא ציון העובר הרשמי. את ציון העובר בפועל בדוק מול רת"א.</div>
+      <div class="notice">${sess.mode==='exam'
+        ? `סף המעבר כאן הוא <b>${EXAM.pass}</b>, לפי דיווח ממי שניגש לבחינה — לא פרסום רשמי. שים לב: במבחן האמיתי חלק מהשאלות שוות <b>2 נקודות</b>, ולכן הציון שם משוקלל והאחוז כאן הוא קירוב בלבד. אל תתייחס ל-${EXAM.pass}—${EXAM.pass+5} כאל מקום בטוח.`
+        : `סף המעבר במבחן הוא <b>${EXAM.pass}</b>, לפי דיווח ממי שניגש — לא פרסום רשמי. בתרגול נושא בודד כדאי לכוון גבוה יותר.`}</div>
       <div class="btn-row">
         ${S.wrong.length?`<button class="btn mag" onclick="startWeakDrill()">חזרה על ${S.wrong.length} החולשות</button>`:''}
         <button class="btn alt" onclick="go('home')">חזרה למצב</button>

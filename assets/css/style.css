@@ -314,6 +314,7 @@ header.band{
 .qmeta{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;
   font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-3);letter-spacing:.06em}
 .qtag{background:var(--surface-2);border:1px solid var(--hair);padding:2px 8px;border-radius:2px;color:var(--ink-2)}
+.qbest{color:var(--magenta);font-weight:700}
 .qtext{font-size:17px;font-weight:500;line-height:1.5;margin-bottom:15px}
 .opt{
   display:block;width:100%;text-align:right;background:var(--surface);
