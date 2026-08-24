@@ -50,13 +50,23 @@ const jsonStr = s => JSON.stringify(stripTags(s));
    הוא נכתב כ-HTML ולא עובר escaping. שדות טקסט-בלבד עוברים דרך attr(). */
 const html = s => String(s);
 
-/* חזית הכרטיסייה נכתבה לתצוגת כרטיס גדול וממורכז: היא נושאת <br>
-   ותת-כותרת ב-span עם font-size מוטבע. ברשימה זה נקרא כג'יבריש,
-   ולכן מפרקים אותה למונח ולתת-כותרת ומעצבים אותן כאן. */
+/* חזית הכרטיסייה נכתבה לתצוגת כרטיס גדול וממורכז, ויש בה שני דברים
+   שנראים דומים אבל אינם:
+     - תווית אפורה ב-<span> עם font-size מוטבע ("שלושת הסעיפים",
+       "corrective lenses") — קישוט לכרטיס, יורד כאן.
+     - <br> חשוף — שבירת שורה בתוך המונח עצמו ("איפה מוצאים" /
+       "את הפמ\"ת?"). מחיקת הזנב הזה הורסת את המונח, ולכן מאחדים. */
 function splitTerm(front) {
-  const flat = String(front).replace(/<span[^>]*>/gi, '').replace(/<\/span>/gi, '');
-  const parts = flat.split(/<br\s*\/?>/i).map(x => x.trim()).filter(Boolean);
-  return { term: parts[0] || '', sub: parts.slice(1).join(' · ') };
+  const parts = String(front)
+    .replace(/<span[^>]*>[\s\S]*?<\/span>/gi, '')
+    .split(/<br\s*\/?>/gi)
+    .map(x => x.replace(/\s+/g, ' ').trim())
+    .filter(Boolean);
+  /* מונח שכבר מופרד בנקודות הוא רשימה ("location · attitude" /
+     "altitude · direction of flight") ומתאחד באותו מפריד; מונח שהוא
+     משפט ("איפה מוצאים" / "את הפמ\"ת?") מתאחד ברווח. */
+  const sep = parts.some(x => x.includes(' · ')) ? ' · ' : ' ';
+  return parts.join(sep);
 }
 
 function today() {
@@ -89,11 +99,10 @@ ${(s.i || []).map(x => `      <li>${html(x)}</li>`).join('\n')}
   /* כל מונח הוא <details>: נסגר כברירת מחדל כדי שהדף לא יימתח,
      אבל התוכן נשאר ב-HTML ולכן נסרק ונקרא כרגיל. */
   const glossary = cards.map(c => {
-    const { term, sub } = splitTerm(c.f);
     return `
       <details class="gl">
         <summary>
-          <span class="gl-term">${html(term)}</span>${sub ? `<span class="gl-sub">${html(sub)}</span>` : ''}
+          <span class="gl-term">${html(splitTerm(c.f))}</span>
         </summary>
         <div class="gl-body">${html(c.b)}${/[0-9\u0590-\u05FF]/.test(c.ref || '')
           ? `<span class="gl-ref">${attr(c.ref)}</span>` : ''}</div>
