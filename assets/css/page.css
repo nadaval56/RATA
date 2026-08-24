@@ -91,10 +91,6 @@ body.doc{padding-bottom:0}                    /* אין סרגל ניווט קב
   flex:1;font-family:'Suez One',Georgia,serif;font-weight:400;font-size:16px;
   color:var(--ink);line-height:1.35;
 }
-.gl-sub{
-  font-family:'IBM Plex Mono',monospace;font-size:10.5px;
-  letter-spacing:.05em;color:var(--ink-3);
-}
 /* סימן ה-+/− בקצה הפנימי של השורה */
 .glossary summary::after{
   content:'+';order:-1;flex:0 0 auto;
