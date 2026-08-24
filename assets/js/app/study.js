@@ -43,10 +43,16 @@ function renderStudy(){
 
 function pickSubj(id){studySub=id;deck=null;renderStudy();}
 
+/* נושאים שיש להם דף עיון סטטי משלהם (נוצר על ידי tools/pages/render.js).
+   הדף הוא הגרסה הקריאה והשיתופית של אותו סיכום — אפשר לשלוח ולהדפיס. */
+const DOC_PAGE={LAW:'aviation-law/'};
+
 function renderSummary(){
   if(!hasSummaryFor(studySub)){renderStudy();return;}
+  const doc=DOC_PAGE[studySub];
   document.getElementById('study-body').innerHTML=
     STUDY[studySub].map(sec=>`<div class="card"><div class="topic"><h3 style="color:${subjColor(studySub)}">${sec.t}</h3><ul>${sec.i.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>`).join('')+
+    (doc?`<p class="doc-link"><a href="${doc}">פתח כדף מלא לקריאה ולשיתוף ›</a></p>`:'')+
     `<div class="btn-row"><button class="btn" style="background:${subjColor(studySub)}" onclick="startDrill('${studySub}')">תרגול בנושא זה</button></div>`;
 }
 

@@ -383,28 +383,30 @@ header.band{
 .brk-row span:last-child{font-family:'IBM Plex Mono',monospace;font-weight:600}
 
 /* ---- nav ---- */
-nav{
+/* סרגל הניווט התחתון של האפליקציה. ממוקד למחלקה ולא לתגית nav,
+   כדי שרכיבי nav סמנטיים אחרים (פירורי לחם, תוכן עניינים) לא ייתפסו. */
+nav.tabbar{
   position:fixed;bottom:0;inset-inline:0;background:var(--surface);
   border-top:1px solid var(--hair);display:flex;z-index:50;
   padding-bottom:env(safe-area-inset-bottom);
   box-shadow:0 -2px 12px rgba(20,32,43,.07);
 }
-nav button{
+nav.tabbar button{
   flex:1;background:none;border:none;padding:9px 2px 10px;
   display:flex;flex-direction:column;align-items:center;gap:3px;
   font-size:11px;color:var(--ink-3);font-weight:500;border-top:2.5px solid transparent;
   margin-top:-1px;
 }
-nav button.on{color:var(--magenta);border-top-color:var(--magenta);font-weight:700}
-nav button svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.6;
+nav.tabbar button.on{color:var(--magenta);border-top-color:var(--magenta);font-weight:700}
+nav.tabbar button svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.6;
   stroke-linecap:round;stroke-linejoin:round}
-nav .badge{
+nav.tabbar .badge{
   position:absolute;top:5px;transform:translateX(13px);
   background:var(--magenta);color:#fff;font-family:'IBM Plex Mono',monospace;
   font-size:9px;font-weight:600;min-width:15px;height:15px;border-radius:8px;
   display:flex;align-items:center;justify-content:center;padding:0 4px;
 }
-nav button{position:relative}
+nav.tabbar button{position:relative}
 
 /* ---- flashcards ---- */
 .subj-pick{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
@@ -481,3 +483,8 @@ hr.rule{border:none;border-top:1px solid var(--hair);margin:20px 0}
   font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;
   color:var(--ink-3);margin-top:12px;
 }
+
+/* ---- קישור מהסיכום אל דף הנושא הסטטי ---- */
+.doc-link{margin:14px 0 2px;font-size:13.5px}
+.doc-link a{color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
+.site-foot .foot-links a{color:var(--ink-2)}

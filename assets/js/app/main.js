@@ -4,7 +4,7 @@ function go(v){
   cur=v;
   document.querySelectorAll('.view').forEach(e=>e.classList.remove('on'));
   document.getElementById('v-'+v).classList.add('on');
-  document.querySelectorAll('nav button').forEach(e=>e.classList.remove('on'));
+  document.querySelectorAll('nav.tabbar button').forEach(e=>e.classList.remove('on'));
   document.getElementById('n-'+v).classList.add('on');
   window.scrollTo(0,0);
   if(v==='study') renderStudy();
