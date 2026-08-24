@@ -86,14 +86,18 @@ ${(s.i || []).map(x => `      <li>${html(x)}</li>`).join('\n')}
     </ul>
   </section>`).join('\n');
 
+  /* כל מונח הוא <details>: נסגר כברירת מחדל כדי שהדף לא יימתח,
+     אבל התוכן נשאר ב-HTML ולכן נסרק ונקרא כרגיל. */
   const glossary = cards.map(c => {
     const { term, sub } = splitTerm(c.f);
     return `
-      <div class="gl">
-        <dt>${html(term)}${sub ? `<span class="gl-sub">${html(sub)}</span>` : ''}</dt>
-        <dd>${html(c.b)}${/[0-9\u0590-\u05FF]/.test(c.ref || '')
-          ? `<span class="gl-ref">${attr(c.ref)}</span>` : ''}</dd>
-      </div>`;
+      <details class="gl">
+        <summary>
+          <span class="gl-term">${html(term)}</span>${sub ? `<span class="gl-sub">${html(sub)}</span>` : ''}
+        </summary>
+        <div class="gl-body">${html(c.b)}${/[0-9\u0590-\u05FF]/.test(c.ref || '')
+          ? `<span class="gl-ref">${attr(c.ref)}</span>` : ''}</div>
+      </details>`;
   }).join('');
 
   const ld = {
@@ -204,12 +208,16 @@ ${body}
 
   <section class="doc-sec">
     <h2 id="glossary">מילון מונחים</h2>
-    <dl class="glossary">${glossary}
-    </dl>
+    <div class="gl-tools">
+      <span>${cards.length} מונחים</span>
+      <button type="button" id="gl-all" hidden>פתח הכל</button>
+    </div>
+    <div class="glossary">${glossary}
+    </div>
   </section>
 
   <aside class="cta">
-    <p>קראת את החומר — עכשיו תבדוק מה נשאר.</p>
+    <p>בוא נראה מה אתה זוכר.</p>
     <a class="btn mag" href="../">${nQuestions} שאלות תרגול בנושא ${attr(subj.name)}</a>
   </aside>
 
@@ -230,6 +238,30 @@ ${body}
     <p class="tlh">ט.ל.ח</p>
   </div>
 </footer>
+
+<script>
+/* שיפור מתקדם בלבד. בלי JS הדף עובד במלואו — <details> נפתח בלחיצה,
+   והכפתור פשוט לא מופיע. לפני הדפסה פותחים הכל, אחרת המדפסת מקבלת
+   מילון ריק. */
+(function () {
+  var box = document.querySelector('.glossary');
+  if (!box) return;
+  var items = box.querySelectorAll('details');
+  var btn = document.getElementById('gl-all');
+  if (!btn) return;
+  btn.hidden = false;
+  function setAll(open) {
+    Array.prototype.forEach.call(items, function (d) { d.open = open; });
+    btn.textContent = open ? 'סגור הכל' : 'פתח הכל';
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  setAll(false);
+  btn.addEventListener('click', function () {
+    setAll(btn.getAttribute('aria-expanded') !== 'true');
+  });
+  window.addEventListener('beforeprint', function () { setAll(true); });
+})();
+</script>
 
 </body>
 </html>
