@@ -1,7 +1,7 @@
 /* Service Worker — עבודה אופליין מלאה.
    אסטרטגיה: cache-first על כל הנכסים הסטטיים.
    כדי לפרוס גרסה חדשה: העלה את מספר CACHE (v1 → v2) — כל הנכסים ייטענו מחדש. */
-const CACHE = 'altimeter-v17';
+const CACHE = 'altimeter-v18';
 
 const ASSETS = [
   './',
@@ -11,6 +11,16 @@ const ASSETS = [
   './assets/css/page.css',
   './aviation-law/',
   './aviation-law/index.html',
+  './altitude-separation/',
+  './altitude-separation/index.html',
+  './safety-emergency/',
+  './safety-emergency/index.html',
+  './technical-loading/',
+  './technical-loading/index.html',
+  './meteorology/',
+  './meteorology/index.html',
+  './aviation-english/',
+  './aviation-english/index.html',
   './assets/js/data/subjects.js',
   './assets/js/data/questions.js',
   './assets/js/data/cards.js',
