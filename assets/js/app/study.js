@@ -5,8 +5,8 @@ let deck=null;
 
 function subjColor(id){return (SUBJ.find(s=>s.id===id)||{}).c||'#B4326D';}
 
-/* חומרי הלימוד (STUDY / CARDS) מכסים רק את הנושאים הישניים וטרם עודכנו לגרסה 2.0
-   של השאלות. נושאים חדשים (OPS/ENG) אין להם עדיין כרטיסיות/סיכומים. */
+/* כל ששת הנושאים מכוסים בכרטיסיות ובסיכום. הבדיקות נשארות כרשת ביטחון:
+   נושא שיתווסף בעתיד בלי חומר לימוד יופנה לתרגול במקום להציג מסך ריק. */
 function hasCardsFor(id){return typeof CARDS!=='undefined' && CARDS.some(c=>c.s===id);}
 function hasSummaryFor(id){return typeof STUDY!=='undefined' && !!STUDY[id];}
 
