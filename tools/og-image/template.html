@@ -2,39 +2,44 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
+<!-- תבנית תמונת ה-OG (1200x630). מרונדרת ל-assets/og/cover.jpg על ידי render.py.
+     הפלטה זהה לפלטת האתר, כדי שהתצוגה המקדימה תיראה כמו הדף שנפתח אחרי הקליק. -->
 <style>
 @font-face{font-family:'Heebo';font-weight:300;src:url(../../assets/fonts/heebo-300-hebrew.woff2) format('woff2');}
-@font-face{font-family:'HeeboL';font-weight:300;src:url(../../assets/fonts/heebo-300-latin.woff2) format('woff2');}
+@font-face{font-family:'HeeboLatin';font-weight:300;src:url(../../assets/fonts/heebo-300-latin.woff2) format('woff2');}
 @font-face{font-family:'Suez One';src:url(../../assets/fonts/suezone-400-hebrew.woff2) format('woff2');}
 @font-face{font-family:'Suez One';src:url(../../assets/fonts/suezone-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF;}
 @font-face{font-family:'Plex';font-weight:600;src:url(../../assets/fonts/ibmplexmono-600-latin.woff2) format('woff2');}
-@font-face{font-family:'Plex';font-weight:400;src:url(../../assets/fonts/ibmplexmono-400-latin.woff2) format('woff2');}
+
+:root{
+  --paper:#E4E6DE; --ink:#14202B; --ink-2:#4A5561; --ink-3:#7C8792;
+  --hair:#C3C8BE; --magenta:#B4326D; --blue:#22608F;
+}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1200px;height:630px}
-body{
-  background:#14202B;
-  font-family:'Heebo','HeeboL',sans-serif;
-  overflow:hidden;position:relative;
-}
+body{background:var(--paper);font-family:'Heebo','HeeboLatin',sans-serif;overflow:hidden;position:relative}
+
 .bg{position:absolute;inset:0}
-.stage{position:absolute;inset:0;display:flex;align-items:center;padding:0 78px;gap:34px}
-.txt{width:498px;flex:none}
+.stage{position:absolute;inset:0;display:flex;align-items:center;padding:0 76px;gap:40px}
+
+.txt{width:512px;flex:none}
 .eyebrow{
   font-family:'Plex',monospace;font-weight:600;font-size:19px;letter-spacing:.17em;
-  color:#B4326D;text-transform:uppercase;direction:ltr;text-align:right;
-  margin-bottom:26px;
+  color:var(--magenta);text-transform:uppercase;direction:ltr;text-align:right;margin-bottom:26px;
 }
-h1{font-family:'Suez One',serif;font-weight:400;font-size:82px;line-height:1.06;color:#F8F8F4;letter-spacing:-.01em}
-.sub{font-size:31px;line-height:1.42;color:#AEBCC7;font-weight:300;margin-top:24px}
-.meta{
-  margin-top:34px;padding-top:22px;border-top:1px solid #2C3B49;
-  display:flex;gap:30px;direction:rtl;
-}
+h1{font-family:'Suez One',serif;font-size:82px;line-height:1.06;color:var(--ink);letter-spacing:-.01em}
+.sub{font-size:31px;line-height:1.42;color:var(--ink-2);font-weight:300;margin-top:24px}
+
+/* שורת המספרים — לעדכן כאן כשהתוכן גדל, ואז להריץ שוב את render.py */
+.meta{margin-top:34px;padding-top:22px;border-top:1px solid var(--hair);display:flex;gap:30px;direction:rtl}
 .meta div{text-align:right}
-.meta .n{font-family:'Plex',monospace;font-weight:600;font-size:33px;color:#F8F8F4;line-height:1;direction:ltr}
-.meta .l{font-size:16px;color:#7C8792;margin-top:7px;letter-spacing:.02em}
-.art{flex:1;display:flex;align-items:center;justify-content:center;position:relative}
-.bar{position:absolute;bottom:0;left:0;right:0;height:9px;background:#B4326D}
+.meta .n{font-family:'Plex',monospace;font-weight:600;font-size:33px;color:var(--ink);line-height:1;direction:ltr}
+.meta .l{font-size:16px;color:var(--ink-3);margin-top:7px}
+
+.art{flex:1;display:flex;align-items:center;justify-content:center}
+.art img{width:372px;height:auto;display:block}
+
+.bar{position:absolute;bottom:0;left:0;right:0;height:9px;background:var(--magenta)}
 </style>
 </head>
 <body>
@@ -42,21 +47,15 @@ h1{font-family:'Suez One',serif;font-weight:400;font-size:82px;line-height:1.06;
 <svg class="bg" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="glow" cx="30%" cy="46%" r="46%">
-      <stop offset="0%" stop-color="#22608F" stop-opacity=".30"/>
+      <stop offset="0%" stop-color="#22608F" stop-opacity=".10"/>
       <stop offset="100%" stop-color="#22608F" stop-opacity="0"/>
     </radialGradient>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0H0V40" fill="none" stroke="#FFFFFF" stroke-opacity=".030" stroke-width="1"/>
+      <path d="M40 0H0V40" fill="none" stroke="#14202B" stroke-opacity=".045" stroke-width="1"/>
     </pattern>
   </defs>
   <rect width="1200" height="630" fill="url(#grid)"/>
   <rect width="1200" height="630" fill="url(#glow)"/>
-  <!-- altimeter dial behind the drone -->
-  <g transform="translate(352,306)" opacity=".5">
-    <circle r="232" fill="none" stroke="#2C3B49" stroke-width="1.5"/>
-    <circle r="212" fill="none" stroke="#22303D" stroke-width="1"/>
-    <path d="M -164 164 A 232 232 0 0 1 -164 -164" fill="none" stroke="#B4326D" stroke-opacity=".55" stroke-width="4" stroke-linecap="round"/>
-  </g>
 </svg>
 
 <div class="stage">
@@ -71,79 +70,7 @@ h1{font-family:'Suez One',serif;font-weight:400;font-size:82px;line-height:1.06;
     </div>
   </div>
 
-  <div class="art">
-    <svg width="520" height="430" viewBox="0 0 520 430" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#5B6E7C"/>
-          <stop offset="100%" stop-color="#283745"/>
-        </linearGradient>
-        <linearGradient id="arm" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#546573"/>
-          <stop offset="100%" stop-color="#2C3B49"/>
-        </linearGradient>
-        <radialGradient id="disc" cx="50%" cy="50%" r="50%">
-          <stop offset="55%" stop-color="#8FA3B3" stop-opacity="0"/>
-          <stop offset="88%" stop-color="#A9BCC9" stop-opacity=".42"/>
-          <stop offset="100%" stop-color="#8FA3B3" stop-opacity=".05"/>
-        </radialGradient>
-      </defs>
-
-      <g stroke-linecap="round" stroke-linejoin="round">
-
-        <!-- ===== rear arms + rotors (drawn first = behind) ===== -->
-        <g>
-          <path d="M232 186 L118 150" stroke="url(#arm)" stroke-width="17" fill="none"/>
-          <path d="M288 186 L402 150" stroke="url(#arm)" stroke-width="17" fill="none"/>
-          <!-- rear motors -->
-          <rect x="102" y="128" width="32" height="26" rx="7" fill="#384956" stroke="#6E8290" stroke-width="2"/>
-          <rect x="386" y="128" width="32" height="26" rx="7" fill="#384956" stroke="#6E8290" stroke-width="2"/>
-          <!-- rear prop discs -->
-          <ellipse cx="118" cy="126" rx="86" ry="19" fill="url(#disc)" stroke="#A9BCC9" stroke-opacity=".46" stroke-width="1.5"/>
-          <ellipse cx="402" cy="126" rx="86" ry="19" fill="url(#disc)" stroke="#A9BCC9" stroke-opacity=".46" stroke-width="1.5"/>
-          <path d="M40 126 H196" stroke="#B4326D" stroke-opacity=".30" stroke-width="2.5" fill="none"/>
-          <path d="M324 126 H480" stroke="#B4326D" stroke-opacity=".30" stroke-width="2.5" fill="none"/>
-          <circle cx="118" cy="126" r="6" fill="#7A8C9A"/>
-          <circle cx="402" cy="126" r="6" fill="#7A8C9A"/>
-        </g>
-
-        <!-- ===== front arms + rotors ===== -->
-        <g>
-          <path d="M234 214 L96 246" stroke="url(#arm)" stroke-width="20" fill="none"/>
-          <path d="M286 214 L424 246" stroke="url(#arm)" stroke-width="20" fill="none"/>
-          <rect x="78" y="222" width="36" height="30" rx="8" fill="#3E5060" stroke="#7B8F9D" stroke-width="2"/>
-          <rect x="406" y="222" width="36" height="30" rx="8" fill="#3E5060" stroke="#7B8F9D" stroke-width="2"/>
-          <ellipse cx="96" cy="220" rx="96" ry="22" fill="url(#disc)" stroke="#BECDD8" stroke-opacity=".55" stroke-width="1.6"/>
-          <ellipse cx="424" cy="220" rx="96" ry="22" fill="url(#disc)" stroke="#BECDD8" stroke-opacity=".55" stroke-width="1.6"/>
-          <path d="M10 220 H182" stroke="#B4326D" stroke-opacity=".38" stroke-width="3" fill="none"/>
-          <path d="M338 220 H510" stroke="#B4326D" stroke-opacity=".38" stroke-width="3" fill="none"/>
-          <circle cx="96" cy="220" r="7" fill="#8798A6"/>
-          <circle cx="424" cy="220" r="7" fill="#8798A6"/>
-          <!-- nav lights -->
-          <circle cx="96" cy="252" r="6" fill="#B4326D"/>
-          <circle cx="424" cy="252" r="6" fill="#B4326D"/>
-        </g>
-
-        <!-- ===== landing gear ===== -->
-        <path d="M212 250 L196 306" stroke="#445563" stroke-width="9" fill="none"/>
-        <path d="M308 250 L324 306" stroke="#445563" stroke-width="9" fill="none"/>
-        <path d="M162 308 H230" stroke="#4E6070" stroke-width="10" fill="none"/>
-        <path d="M290 308 H358" stroke="#4E6070" stroke-width="10" fill="none"/>
-
-        <!-- ===== fuselage ===== -->
-        <path d="M212 176 H308 a26 26 0 0 1 25 19 l9 36 a22 22 0 0 1 -21 27 H207 a22 22 0 0 1 -21 -27 l9 -36 a26 26 0 0 1 25 -19 z"
-              fill="url(#body)" stroke="#8AA0B0" stroke-width="2.5"/>
-        <path d="M216 190 H304" stroke="#9DB0BE" stroke-opacity=".55" stroke-width="2" fill="none"/>
-
-        <!-- ===== camera gimbal ===== -->
-        <path d="M238 256 h44 a14 14 0 0 1 14 14 v10 a20 20 0 0 1 -20 20 h-32 a20 20 0 0 1 -20 -20 v-10 a14 14 0 0 1 14 -14 z"
-              fill="#344553" stroke="#7B8F9D" stroke-width="2.5"/>
-        <circle cx="260" cy="282" r="15" fill="#101A22" stroke="#7C8792" stroke-width="2.5"/>
-        <circle cx="260" cy="282" r="7" fill="#22608F"/>
-        <circle cx="255.5" cy="277.5" r="2.6" fill="#DDE6EC" opacity=".85"/>
-      </g>
-    </svg>
-  </div>
+  <div class="art"><img src="logo-mark.png" alt=""></div>
 </div>
 
 <div class="bar"></div>
