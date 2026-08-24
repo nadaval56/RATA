@@ -1,0 +1,10 @@
+# https://dronexam.co.il/robots.txt
+# אתר בן דף אחד — הכל פתוח לסריקה.
+
+User-agent: *
+Allow: /
+
+# תיקיית כלי הפיתוח אינה חלק מהאתר עצמו.
+Disallow: /tools/
+
+Sitemap: https://dronexam.co.il/sitemap.xml

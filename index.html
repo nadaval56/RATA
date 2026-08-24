@@ -3,27 +3,120 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>לעוף לשמיים · הכנה למבחן מטיס כטב"ם קטן</title>
-<meta name="description" content="לימוד ותרגול לקראת הבחינה העיונית של רת&quot;א לרישיון מטיס כטב&quot;ם קטן (מתחת 25 ק&quot;ג, קשר עין).">
+
+<title>לעוף לשמיים · הכנה לבחינה העיונית לרישיון מטיס כטב"ם קטן (רת"א)</title>
+<meta name="description" content="הכנה לבחינה העיונית של רת&quot;א לרישיון מטיס כטב&quot;ם קטן (עד 25 ק&quot;ג, קשר עין): 169 שאלות עם הסבר ומקור, 150 כרטיסיות לימוד, סימולציית מבחן ומד כשירות. חינם, בעברית, עובד גם אופליין.">
+
+<!-- ===== זהות הדף לזחלנים (canonical + hreflang) =====
+     הכתובות מוחלטות ומצביעות לדומיין הסופי. אם הדומיין משתנה — יש לעדכן
+     כאן, ב-sitemap.xml, ב-robots.txt וב-JSON-LD שבתחתית ה-head. -->
+<link rel="canonical" href="https://dronexam.co.il/">
+<link rel="alternate" hreflang="he-IL" href="https://dronexam.co.il/">
+<link rel="alternate" hreflang="x-default" href="https://dronexam.co.il/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+<!-- ===== Open Graph — תצוגה מקדימה בוואטסאפ / פייסבוק / טלגרם / לינקדאין =====
+     וואטסאפ קורא רק HTML סטטי (לא מריץ JS), דורש כתובת תמונה מוחלטת ב-https,
+     ומעדיף תמונה קלה. cover.jpg הוא 1200x630 (יחס 1.91:1) במשקל ~75KB. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="לעוף לשמיים">
+<meta property="og:locale" content="he_IL">
+<meta property="og:url" content="https://dronexam.co.il/">
+<meta property="og:title" content="לעוף לשמיים · הכנה לבחינת רת&quot;א למטיס כטב&quot;ם קטן">
+<meta property="og:description" content="169 שאלות עם הסבר ומקור, 150 כרטיסיות, סימולציית מבחן ומד כשירות — לבחינה העיונית לרישיון מטיס כטב&quot;ם קטן. חינם ובעברית.">
+<meta property="og:image" content="https://dronexam.co.il/assets/og/cover.jpg">
+<meta property="og:image:secure_url" content="https://dronexam.co.il/assets/og/cover.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="איור רחפן ארבעה מדחפים על רקע כהה, לצד הכותרת &quot;לעוף לשמיים&quot;">
+
+<!-- ===== Twitter / X ===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="לעוף לשמיים · הכנה לבחינת רת&quot;א למטיס כטב&quot;ם קטן">
+<meta name="twitter:description" content="169 שאלות עם הסבר ומקור, 150 כרטיסיות, סימולציית מבחן ומד כשירות. חינם ובעברית.">
+<meta name="twitter:image" content="https://dronexam.co.il/assets/og/cover.jpg">
+<meta name="twitter:image:alt" content="איור רחפן ארבעה מדחפים על רקע כהה, לצד הכותרת &quot;לעוף לשמיים&quot;">
+
 <meta name="theme-color" content="#B4326D">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="לעוף לשמיים">
+
+<!-- טעינה מוקדמת של שני הפונטים שמופיעים במסך הראשון — משפר LCP. -->
+<link rel="preload" href="assets/fonts/heebo-300-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/suezone-400-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
+
+<!-- ===== נתונים מובנים (schema.org) — כך גוגל מבין מה האתר הזה ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://dronexam.co.il/#website",
+      "url": "https://dronexam.co.il/",
+      "name": "לעוף לשמיים",
+      "description": "הכנה לבחינה העיונית של רשות התעופה האזרחית לרישיון מטיס כטב\"ם קטן",
+      "inLanguage": "he-IL"
+    },
+    {
+      "@type": ["WebApplication", "LearningResource"],
+      "@id": "https://dronexam.co.il/#app",
+      "name": "לעוף לשמיים",
+      "url": "https://dronexam.co.il/",
+      "isPartOf": { "@id": "https://dronexam.co.il/#website" },
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any (web browser)",
+      "browserRequirements": "דפדפן מודרני עם JavaScript",
+      "inLanguage": "he-IL",
+      "isAccessibleForFree": true,
+      "isFamilyFriendly": true,
+      "learningResourceType": ["תרגול", "כרטיסיות לימוד", "סימולציית מבחן"],
+      "educationalLevel": "הכשרה מקצועית — רישיון מטיס כטב\"ם קטן",
+      "teaches": [
+        "דיני תעופה",
+        "גובה והפרדה",
+        "בטיחות וחירום",
+        "ידע טכני והעמסה",
+        "מטאורולוגיה",
+        "אנגלית טכנית"
+      ],
+      "about": {
+        "@type": "Thing",
+        "name": "הבחינה העיונית לרישיון מטיס כטב\"ם קטן",
+        "description": "בחינה עיונית של רשות התעופה האזרחית (רת\"א) לכלי טיס בלתי מאויש שמסתו בהמראה קטנה מ-25 ק\"ג, בהפעלה בקשר עין ישיר (VLOS)",
+        "sameAs": "https://www.gov.il/he/pages/knowledge-exam-uav"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "ILS",
+        "availability": "https://schema.org/InStock"
+      },
+      "image": "https://dronexam.co.il/assets/og/cover.jpg"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
+<a class="skip" href="#main">דלג לתוכן</a>
+
 <header class="band">
   <div class="wrap">
-    <span class="ttl">לעוף לשמיים</span>
+    <h1 class="ttl">לעוף לשמיים<span class="sr-only"> — הכנה לבחינה העיונית לרישיון מטיס כטב"ם קטן של רת"א</span></h1>
     <span class="cs">CAAI · כטב"ם קטן &lt; 25kg · VLOS</span>
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="main">
 
 <!-- ============ DASHBOARD ============ -->
 <section id="v-home" class="view on">
@@ -35,8 +128,18 @@
     </div>
   </div>
 
-  <div class="eyebrow">נושאי הבחינה</div>
-  <div id="subjects"></div>
+  <h2 class="eyebrow">נושאי הבחינה</h2>
+  <!-- תוכן סטטי לזחלנים ולגולשים ללא JS. render() מחליף אותו בפסי ההתקדמות. -->
+  <div id="subjects">
+    <ul class="seo-list">
+      <li><b>דיני תעופה</b> — תקנה 5(א)(1) · הגדרות · רישוי · מגבלות</li>
+      <li><b>גובה והפרדה</b> — תקנה 5(א)(1)(ג) · חישובים</li>
+      <li><b>בטיחות וחירום</b> — תקנה 5(א)(4)(5)(7)(10) · CRM · שיפוט</li>
+      <li><b>ידע טכני והעמסה</b> — תקנה 5(א)(3)(6)(9) · ביצועים · תחזוקה</li>
+      <li><b>מטאורולוגיה</b> — תקנה 5(א)(2) · בסיסית ויישומה</li>
+      <li><b>אנגלית טכנית</b> — תקנה 5(א)(11) · מונחים תעופתיים</li>
+    </ul>
+  </div>
 
   <div class="btn-row">
     <button class="btn mag" onclick="startExam()">סימולציית מבחן מלאה</button>
@@ -44,7 +147,7 @@
   </div>
 
   <hr class="rule">
-  <div class="eyebrow">נתונים</div>
+  <h2 class="eyebrow">נתונים</h2>
   <div class="card">
     <p class="tiny" style="margin:0 0 10px">ההתקדמות נשמרת בדפדפן. אם אתה פותח את הקובץ ממחשב אחר או מוריד אותו — ייצא את הנתונים ושמור אותם.</p>
     <div class="btn-row" style="margin:0">
@@ -58,7 +161,7 @@
 
 <!-- ============ STUDY ============ -->
 <section id="v-study" class="view">
-  <div class="eyebrow">לימוד לפי נושא</div>
+  <h2 class="eyebrow">לימוד לפי נושא</h2>
   <div id="study-nav"></div>
   <div id="study-body"></div>
 </section>
@@ -77,8 +180,10 @@
 
 <footer class="site-foot">
   <div class="wrap">
-    <p>האתר נבנה על ידי Claude (Anthropic) כעזרה אישית לנדב, לקראת הבחינה העיונית
-    לרישיון מטיס כטב"ם קטן של רשות התעופה האזרחית.</p>
+    <p><b>לעוף לשמיים</b> הוא כלי לימוד חופשי בעברית לקראת הבחינה העיונית של רשות התעופה
+    האזרחית (רת"א) לרישיון מטיס כטב"ם קטן — כלי טיס בלתי מאויש שמסתו בהמראה קטנה מ-25 ק"ג,
+    בהפעלה בקשר עין ישיר (VLOS). האתר כולל 169 שאלות תרגול עם הסבר ומקור, 150 כרטיסיות
+    לימוד, סימולציית מבחן ומד כשירות אישי, ועובד גם ללא חיבור לאינטרנט.</p>
 
     <p>התוכן מבוסס על החומר העיוני הרשמי של רת"א, תקנות הטיס (הפעלת מערכת כטב"ם קטן)
     התשפ"ד-2024, פמ"ת פרק ב-09 וחוק הטיס התשע"א-2011 — אך אינו מסמך רשמי,
@@ -92,21 +197,21 @@
   </div>
 </footer>
 
-<nav>
+<nav aria-label="ניווט ראשי">
   <button id="n-home" class="on" onclick="go('home')">
-    <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="7"/><path d="M12 12l3.5-3.5"/></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="7"/><path d="M12 12l3.5-3.5"/></svg>
     מצב
   </button>
   <button id="n-study" onclick="go('study')">
-    <svg viewBox="0 0 24 24"><path d="M4 4h7a2 2 0 012 2v14a2 2 0 00-2-2H4z"/><path d="M20 4h-7a2 2 0 00-2 2v14a2 2 0 012-2h7z"/></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7a2 2 0 012 2v14a2 2 0 00-2-2H4z"/><path d="M20 4h-7a2 2 0 00-2 2v14a2 2 0 012-2h7z"/></svg>
     לימוד
   </button>
   <button id="n-drill" onclick="go('drill')">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg>
     תרגול
   </button>
   <button id="n-weak" onclick="go('weak')">
-    <svg viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 9v5M12 17v.5"/></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 16H3z"/><path d="M12 9v5M12 17v.5"/></svg>
     חולשות<span class="badge" id="weak-badge" style="display:none">0</span>
   </button>
 </nav>
