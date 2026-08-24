@@ -1,7 +1,7 @@
 /* Service Worker — עבודה אופליין מלאה.
    אסטרטגיה: cache-first על כל הנכסים הסטטיים.
    כדי לפרוס גרסה חדשה: העלה את מספר CACHE (v1 → v2) — כל הנכסים ייטענו מחדש. */
-const CACHE = 'altimeter-v15';
+const CACHE = 'altimeter-v16';
 
 const ASSETS = [
   './',
@@ -20,6 +20,8 @@ const ASSETS = [
   './assets/icons/icon.svg',
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',
+  './assets/icons/icon-32.png',
+  './assets/icons/icon-16.png',
   './assets/fonts/heebo-300-hebrew.woff2',
   './assets/fonts/heebo-300-latin.woff2',
   './assets/fonts/heebo-300-latin-ext.woff2',
