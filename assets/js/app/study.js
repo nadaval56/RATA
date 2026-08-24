@@ -45,7 +45,7 @@ function pickSubj(id){studySub=id;deck=null;renderStudy();}
 
 /* נושאים שיש להם דף עיון סטטי משלהם (נוצר על ידי tools/pages/render.js).
    הדף הוא הגרסה הקריאה והשיתופית של אותו סיכום — אפשר לשלוח ולהדפיס. */
-const DOC_PAGE={LAW:'aviation-law/'};
+const DOC_PAGE={LAW:'aviation-law/',CALC:'altitude-separation/',OPS:'safety-emergency/',TECH:'technical-loading/',MET:'meteorology/',ENG:'aviation-english/'};
 
 function renderSummary(){
   if(!hasSummaryFor(studySub)){renderStudy();return;}

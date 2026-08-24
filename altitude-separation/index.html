@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- נוצר על ידי tools/pages/render.js מתוך assets/js/data/ — אין לערוך ידנית. -->
+
+<title>חישוב גובה והפרדה לכטב&quot;ם קטן — השיטה הרשמית | לעוף לשמיים</title>
+<meta name="description" content="ארבעת שלבי החישוב הרשמי, הערכים שמותר ושאסור להשתמש בהם, הדוגמה של רת&quot;א, וארבע המלכודות שמפילות בחישוב תקרת הטיסה.">
+<link rel="canonical" href="https://dronexam.co.il/altitude-separation/">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="לעוף לשמיים">
+<meta property="og:locale" content="he_IL">
+<meta property="og:url" content="https://dronexam.co.il/altitude-separation/">
+<meta property="og:title" content="חישוב גובה והפרדה לכטב&quot;ם קטן — השיטה הרשמית | לעוף לשמיים">
+<meta property="og:description" content="ארבעת שלבי החישוב הרשמי, הערכים שמותר ושאסור להשתמש בהם, הדוגמה של רת&quot;א, וארבע המלכודות שמפילות בחישוב תקרת הטיסה.">
+<meta property="og:image" content="https://dronexam.co.il/assets/og/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dronexam.co.il/assets/og/cover.jpg">
+
+<meta name="theme-color" content="#B4326D">
+<link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/icons/icon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="../assets/icons/icon-16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="../assets/icons/icon-192.png">
+
+<link rel="preload" href="../assets/fonts/heebo-300-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/suezone-400-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/page.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://dronexam.co.il/altitude-separation/#article",
+      "headline": "גובה והפרדה — חישוב תקרת הטיסה לכטב\"ם קטן",
+      "description": "ארבעת שלבי החישוב הרשמי, הערכים שמותר ושאסור להשתמש בהם, הדוגמה של רת\"א, וארבע המלכודות שמפילות בחישוב תקרת הטיסה.",
+      "inLanguage": "he-IL",
+      "isAccessibleForFree": true,
+      "about": {
+        "@type": "Thing",
+        "name": "גובה והפרדה"
+      },
+      "isPartOf": {
+        "@id": "https://dronexam.co.il/#website"
+      },
+      "image": "https://dronexam.co.il/assets/og/cover.jpg"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "לעוף לשמיים",
+          "item": "https://dronexam.co.il/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "גובה והפרדה",
+          "item": "https://dronexam.co.il/altitude-separation/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="doc">
+
+<a class="skip" href="#doc">דלג לתוכן</a>
+
+<header class="band">
+  <div class="wrap">
+    <a class="ttl" href="../">לעוף לשמיים</a>
+    <span class="cs">CAAI · כטב"ם קטן &lt; 25kg · VLOS</span>
+  </div>
+</header>
+
+<main class="wrap doc-main" id="doc">
+
+  <nav class="crumb" aria-label="נתיב">
+    <a href="../">בית</a> <span aria-hidden="true">›</span> <span>גובה והפרדה</span>
+  </nav>
+
+  <h1>גובה והפרדה — חישוב תקרת הטיסה לכטב&quot;ם קטן</h1>
+  <p class="lede">ארבעת שלבי החישוב הרשמי, הערכים שמותר ושאסור להשתמש בהם, הדוגמה של רת"א, וארבע המלכודות שמפילות בחישוב תקרת הטיסה.</p>
+
+  <div class="factbar">
+    <div><b>27</b><span>פריטי סיכום</span></div>
+    <div><b>13</b><span>הגדרות</span></div>
+    <div><b>30</b><span>שאלות תרגול</span></div>
+  </div>
+  <p class="srcline">תקנה 5(א)(1)(ג) · חישובים</p>
+
+  <aside class="cta">
+    <p>הדף הזה הוא חומר העיון. <b>30 שאלות תרגול בנושא</b>, עם הסבר ומקור
+    לכל אחת, נמצאות באפליקציה — יחד עם &quot;מד כשירות&quot; שעוקב אחרי ההתקדמות שלך.</p>
+    <a class="btn mag" href="../">פתח את התרגול</a>
+  </aside>
+
+  <nav class="toc" aria-label="תוכן העניינים">
+    <h2>בדף הזה</h2>
+    <ol>
+      <li><a href="#s-1">השיטה הרשמית — ארבעה שלבים</a></li>
+      <li><a href="#s-2">הערכים — ואיזה מהם אסור</a></li>
+      <li><a href="#s-3">הדוגמה הרשמית של רת&quot;א</a></li>
+      <li><a href="#s-4">כל המגבלות שעשויות לחול</a></li>
+      <li><a href="#s-5">ארבע המלכודות</a></li>
+      <li><a href="#s-6">קרא את ניסוח השאלה — שני דברים שמשנים את התשובה</a></li>
+      <li><a href="#glossary">מילון מונחים (13)</a></li>
+    </ol>
+  </nav>
+
+  <section class="doc-sec">
+    <h2 id="s-1">השיטה הרשמית — ארבעה שלבים</h2>
+    <ul>
+      <li><b>1.</b> המר את גובה הקרקע לרגל ASL: <span class="kv">מטרים × 3.28</span>. במפות רת"א הנתיב תמיד ברגל ASL.</li>
+      <li><b>2.</b> <span class="kv">נתיב − 200 רגל = תקרה ASL</span></li>
+      <li><b>3.</b> <span class="kv">תקרה ASL − קרקע ASL = AGL</span></li>
+      <li><b>4.</b> השווה מול <span class="kv">100 מ׳ AGL</span> של תקנה 35 — וקח את <u>המחמיר</u>. זה השלב שהכי הרבה אנשים שוכחים.</li>
+    </ul>
+  </section>
+
+  <section class="doc-sec">
+    <h2 id="s-2">הערכים — ואיזה מהם אסור</h2>
+    <ul>
+      <li><span class="kv">1 מטר = 3.28 רגל</span> · <span class="kv">1 רגל = 0.3048 מטר</span></li>
+      <li><b>אל תחלק ב-3.</b> השגיאה כ-9%. ב-1,500 רגל זה פער של 43 מטר — מספיק כדי להפוך תשובה נכונה לשגויה ולהפוך טיסה חוקית לעבירה.</li>
+      <li>ערכי עוגן: <span class="kv">100 מ׳ = 328 רגל</span> · <span class="kv">300 רגל = 91.5 מ׳</span> · <span class="kv">200 מ׳ = 656 רגל</span> · <span class="kv">30.5 מ׳ = 100 רגל</span></li>
+    </ul>
+  </section>
+
+  <section class="doc-sec">
+    <h2 id="s-3">הדוגמה הרשמית של רת"א</h2>
+    <ul>
+      <li>נתון: אזור נתניה, גובה קרקע <span class="kv">30.5 מ׳</span>, נתיב בפמ"ת בגובה <span class="kv">400 רגל</span>.</li>
+      <li>קרקע: 30.5 × 3.28 = <span class="kv">100 רגל ASL</span></li>
+      <li>תקרה: 400 − 200 = <span class="kv">200 רגל ASL</span></li>
+      <li>גובה מותר: 200 − 100 = <span class="kv">100 רגל AGL</span> בלבד.</li>
+    </ul>
+  </section>
+
+  <section class="doc-sec">
+    <h2 id="s-4">כל המגבלות שעשויות לחול</h2>
+    <ul>
+      <li>החישוב <b>הגיאומטרי</b> — נתיב פחות הפרדה פחות קרקע</li>
+      <li><b>תקנה 35</b> — 100 מטר AGL</li>
+      <li><b>פמ"ת</b> — 60 מטר, אם נקבע כך למקום</li>
+      <li><b>הפרדות מופחתות</b> — 300 רגל מעפ"ש, כ-91 מטר</li>
+      <li><b>נוטאם</b> — כל גובה נמוך יותר, בתקופת תוקפו</li>
+      <li><b>הרשאה מיוחדת</b> — רק מה שנקבע בה במפורש; היא אינה מבטלת תקנה אלא מתירה בתנאיה</li>
+      <li><u>הרץ את כולן. קח את הנמוכה. אין ממוצע ואין בחירה.</u></li>
+    </ul>
+  </section>
+
+  <section class="doc-sec">
+    <h2 id="s-5">ארבע המלכודות</h2>
+    <ul>
+      <li><b>ערבוב AGL ו-ASL.</b> הנתיב תמיד ASL; מערכת השליטה מציגה בדרך כלל AGL.</li>
+      <li><b>שכחת תקרת 100 המטרים.</b> חישוב ההפרדה נותן תקרה אחת — התקנה נותנת שנייה. שתיהן חלות.</li>
+      <li><b>ערבוב יחידות ההפרדה.</b> אנכית ברגל, רוחבית ואורכית במטרים.</li>
+      <li><b>המרה גסה.</b> 3.28, לא 3.</li>
+    </ul>
+  </section>
+
+  <section class="doc-sec">
+    <h2 id="s-6">קרא את ניסוח השאלה — שני דברים שמשנים את התשובה</h2>
+    <ul>
+      <li><b>1. "בהנחה שלא נקבעה מגבלה נוספת לאזור".</b> הסוגריים האלה אינם קישוט — הם אומרים לך <u>אילו מגבלות להריץ</u>. כשהן מופיעות: מריצים את החישוב הגיאומטרי מול תקרת <span class="kv">100 מ׳</span> של תקנה 35, ולוקחים את הנמוכה. אין פמ"ת של 60, אין נוטאם ואין הפרדות מופחתות.</li>
+      <li><u>כשהן <b>לא</b> מופיעות</u> — או כשהשאלה מזכירה במפורש פמ"ת, נוטאם או הרשאה — יש להריץ גם אותן, ולקחת את הנמוכה מכולן. <b>המבחן נוטה לציין את ההנחה במפורש; היעדרה הוא רמז שיש מגבלה נוספת בשאלה.</b></li>
+      <li><b>2. באיזו יחידה נוסחו התשובות.</b> חלק מהתשובות הנכונות מנוסחות <u>ברגל</u> ולא במטרים. אל תמיר את התוצאה שלך — <b>המר את המגבלה</b>: תקרת תקנה 35 היא <span class="kv">100 מ׳ = 328 רגל</span>.</li>
+      <li>המסיח שנועד לתפוס אותך כאן הוא <u>המספר הנכון עם היחידה הלא נכונה</u> — למשל "כ-91 רגל" כשהתוצאה הנכונה היא 91.5 <u>מטר</u>, שהם 300 רגל. פער של פי 3.28.</li>
+      <li><b>שיטת עבודה:</b> אם הנתיב ברגל וגם התשובות ברגל — <u>עבוד ברגל מההתחלה ועד הסוף</u>, והמר רק את גובה הקרקע ואת תקרת התקנה. כל המרה מיותרת היא הזדמנות לטעות.</li>
+    </ul>
+  </section>
+
+  <section class="doc-sec">
+    <h2 id="glossary">מילון מונחים</h2>
+    <div class="gl-tools">
+      <span>13 מונחים</span>
+      <button type="button" id="gl-all" hidden>פתח הכל</button>
+    </div>
+    <div class="glossary">
+      <details class="gl">
+        <summary>
+          <span class="gl-term">1 מטר = ? רגל</span>
+        </summary>
+        <div class="gl-body"><b>3.28 רגל</b> (המדויק 3.2808).<br><br><u>אל תחלק ב-3.</u> השגיאה כ-9% — ב-1,500 רגל זה פער של 43 מטר.</div>
+      </details>
+      <details class="gl">
+        <summary>
+          <span class="gl-term">1 רגל = ? מטר</span>
+        </summary>
+        <div class="gl-body"><b>0.3048 מטר.</b><br><br>ממטרים לרגל מכפילים ב-3.28; מרגל למטרים מחלקים ב-3.28.</div>
+      </details>
+      <details class="gl">
+        <summary>
+          <span class="gl-term">100 מטר = ? רגל</span>
+        </summary>
+        <div class="gl-body"><b>328 רגל.</b><br><br>ערך העוגן החשוב ביותר: התקנה מנוסחת במטרים, אך הנתיבים במפה מסומנים ברגל.<span class="gl-ref">תקנה 35(א)(2)</span></div>
+      </details>
+      <details class="gl">
+        <summary>
+          <span class="gl-term">300 רגל = ? מטר</span>
+        </summary>
+        <div class="gl-body"><b>כ-91.5 מטר.</b><br><br>לכן תקרת ההפרדות המופחתות מחמירה מ-100 המטרים של תקנה 35 והיא הקובעת.<span class="gl-ref">פמ&quot;ת ב-09</span></div>
+      </details>
+      <details class="gl">
+        <summary>
+          <span class="gl-term">200 מטר = ? רגל</span>
+        </summary>
+        <div class="gl-body"><b>656 רגל.</b><br><br>"600 רגל" הוא תוצאת ההכפלה ב-3 — שגיאה של 56 רגל, כ-17 מטר.</div>
+      </details>
+      <details class="gl">
+        <summary>
+          <span class="gl-term">ארבעת השלבים</span>
+        </summary>
+        <div class="gl-body"><b>1.</b> המר את גובה הקרקע לרגל ASL (× 3.28)<br><b>2.</b> נתיב − 200 רגל = תקרה ASL<br><b>3.</b> תקרה − קרקע = AGL<br><b>4.</b> השווה מול 100 מ׳ AGL וקח את <u>המחמיר</u><br><br>שלב 4 הוא זה שהכי הרבה אנשים שוכחים.</div>
+      </details>
+      <details class="gl">
+        <summary>
+          <span class="gl-term">הדוגמה הרשמית</span>
+        </summary>
+        <div class="gl-body">קרקע 30.5 מ׳, נתיב 400 רגל.<br>30.5 × 3.28 = <b>100 רגל ASL</b><br>400 − 200 = <b>200 רגל ASL</b><br>200 − 100 = <b>100 רגל AGL</b></div>
+      </details>
+      <details class="gl">
+        <summary>
+          <span class="gl-term">ארבע המלכודות</span>
+        </summary>
+        <div class="gl-body">• ערבוב AGL ו-ASL<br>• שכחת תקרת 100 המטרים<br>• ערבוב יחידות ההפרדה — אנכית ברגל, רוחבית במטרים<br>• המרה גסה: 3 במקום 3.28</div>
+      </details>
+      <details class="gl">
+        <summary>
+          <span class="gl-term">איזו מגבלה גוברת?</span>
+        </summary>
+        <div class="gl-body"><b>תמיד המחמירה.</b> בלי קשר למקור.<br><br>המגבלות האפשריות: החישוב הגיאומטרי · תקנה 35 (100 מ׳) · פמ"ת (60 מ׳) · הפרדות מופחתות (300 רגל) · <b>נוטאם</b>.<br><br>הרץ את כולן, קח את הנמוכה.<span class="gl-ref">תקנה 35 + 33(3)</span></div>
+      </details>
+      <details class="gl">
+        <summary>
+          <span class="gl-term">הרשאה מיוחדת וגובה</span>
+        </summary>
+        <div class="gl-body">הרשאה <b>אינה מבטלת</b> תקנה — היא היתר קונקרטי <u>בתנאים ובמגבלות שנקבעו בה</u>, על בסיס ניהול הסיכונים שהוגש.<br><br>מותר בדיוק מה שכתוב בה. המנהל רשאי להגביל בזמן או במרחב.<span class="gl-ref">תקנה 37 + 40</span></div>
+      </details>
+      <details class="gl">
+        <summary>
+          <span class="gl-term">"בהנחה שלא נקבעה מגבלה נוספת לאזור"</span>
+        </summary>
+        <div class="gl-body">הסוגריים אומרות לך <b>אילו מגבלות להריץ</b>:<br>הגיאומטריה מול <b>100 מ׳</b> של תקנה 35 — והנמוכה קובעת.<br>אין פמ"ת של 60, אין נוטאם ואין הפרדות מופחתות.<br><br><u>אין את המשפט הזה?</u> חפש בשאלה מגבלה נוספת — היא שם.</div>
+      </details>
+      <details class="gl">
+        <summary>
+          <span class="gl-term">התשובות ברגל. מה עושים?</span>
+        </summary>
+        <div class="gl-body"><b>לא</b> ממירים את התוצאה למטרים — <b>ממירים את המגבלה לרגל</b>:<br>תקרת תקנה 35 = <b>328 רגל</b>.<br><br>הנתיב ברגל והתשובות ברגל → <u>עבוד ברגל מההתחלה ועד הסוף</u>. המר רק את גובה הקרקע.<span class="gl-ref">תקנה 35(א)(2)</span></div>
+      </details>
+      <details class="gl">
+        <summary>
+          <span class="gl-term">המסיח "כ-91 רגל"</span>
+        </summary>
+        <div class="gl-body">המספר הנכון עם <b>היחידה הלא נכונה</b>.<br><br>מי שחישב נכון וקיבל 91.5 <u>מטר</u>, ואז קרא "רגל" בלי להמיר. התשובה הנכונה שם היא <b>300 רגל</b>.<br><br>פער של פי 3.28 — והוא נראה כמו הצלחה.</div>
+      </details>
+    </div>
+  </section>
+
+  <aside class="cta">
+    <p>בוא נראה מה אתה זוכר.</p>
+    <a class="btn mag" href="../">30 שאלות תרגול בנושא גובה והפרדה</a>
+  </aside>
+
+  <nav class="siblings" aria-label="נושאים נוספים">
+    <h2>שאר נושאי הבחינה</h2>
+    <ul>
+      <li><a href="../aviation-law/">דיני תעופה</a><span>תקנה 5(א)(1) · הגדרות · רישוי · מגבלות</span></li>
+      <li><a href="../safety-emergency/">בטיחות וחירום</a><span>תקנה 5(א)(4)(5)(7)(10) · CRM · שיפוט</span></li>
+      <li><a href="../technical-loading/">ידע טכני והעמסה</a><span>תקנה 5(א)(3)(6)(9) · ביצועים · תחזוקה</span></li>
+      <li><a href="../meteorology/">מטאורולוגיה</a><span>תקנה 5(א)(2) · בסיסית ויישומה</span></li>
+      <li><a href="../aviation-english/">אנגלית טכנית</a><span>תקנה 5(א)(11) · מונחים תעופתיים</span></li>
+    </ul>
+  </nav>
+
+  <div class="notice">
+    <b>אינו מסמך רשמי.</b> הדף מבוסס על תקנות הטיס (הפעלת מערכת כטב"ם קטן) התשפ"ד-2024,
+    על פמ"ת פרק ב-09 ועל חוק הטיס התשע"א-2011, אך אינו מחליף אותם ואינו מהווה ייעוץ
+    מקצועי או משפטי. ייתכנו טעויות. לפני כל הסתמכות — אמת מול המקור הרשמי
+    ב<a href="https://www.gov.il/he/pages/knowledge-exam-uav" target="_blank" rel="noopener">אתר רת"א</a>.
+  </div>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p><a href="../"><b>לעוף לשמיים</b></a> — כלי לימוד חופשי בעברית לקראת הבחינה העיונית
+    של רשות התעופה האזרחית (רת"א) לרישיון מטיס כטב"ם קטן.</p>
+    <p>השאלות, ההסברים והמסיחים נוסחו על ידי Claude ואינם שאלות מבחן רשמיות.</p>
+    <p class="tlh">ט.ל.ח</p>
+  </div>
+</footer>
+
+<script>
+/* שיפור מתקדם בלבד. בלי JS הדף עובד במלואו — <details> נפתח בלחיצה,
+   והכפתור פשוט לא מופיע. לפני הדפסה פותחים הכל, אחרת המדפסת מקבלת
+   מילון ריק. */
+(function () {
+  var box = document.querySelector('.glossary');
+  if (!box) return;
+  var items = box.querySelectorAll('details');
+  var btn = document.getElementById('gl-all');
+  if (!btn) return;
+  btn.hidden = false;
+  function setAll(open) {
+    Array.prototype.forEach.call(items, function (d) { d.open = open; });
+    btn.textContent = open ? 'סגור הכל' : 'פתח הכל';
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  setAll(false);
+  btn.addEventListener('click', function () {
+    setAll(btn.getAttribute('aria-expanded') !== 'true');
+  });
+  window.addEventListener('beforeprint', function () { setAll(true); });
+})();
+</script>
+
+</body>
+</html>

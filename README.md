@@ -96,17 +96,64 @@
 ## מבנה הפרויקט
 
 ```
-index.html
+index.html                · האפליקציה
 manifest.webmanifest      · הגדרות PWA
 sw.js                     · Service Worker (cache-first)
+robots.txt · sitemap.xml  · נוצרים/מתוחזקים מול הדומיין
+CNAME                     · dronexam.co.il (נוצר על ידי GitHub Pages)
+
+aviation-law/  altitude-separation/  safety-emergency/
+technical-loading/  meteorology/  aviation-english/
+                          · דפי הנושא — נוצרים, לא נכתבים ידנית
+
 assets/
-  css/style.css           · @font-face מקומי + עיצוב
+  css/style.css           · @font-face מקומי + עיצוב האפליקציה
+  css/page.css            · עיצוב דפי הנושא
   fonts/                  · Heebo · Suez One · IBM Plex Mono (woff2)
-  icons/                  · אייקון מד הגובה (SVG + PNG 192/512)
+  icons/                  · אייקון האתר (SVG + PNG 16/32/192/512)
+  og/cover.jpg            · תמונת התצוגה המקדימה בשליחת קישור
   js/
     data/                 · subjects · questions · cards · study  (התוכן)
     app/                  · storage · gauge · study · quiz · main  (הלוגיקה)
+
+tools/                    · סקריפטי ייצור. אינם חלק מהאתר (חסומים ב-robots.txt)
+  pages/render.js         · דפי הנושא + sitemap.xml
+  og-image/render.py      · assets/og/cover.jpg
+  icons/render.py         · קובצי ה-PNG של האייקון
 ```
+
+---
+
+## דפי הנושא
+
+מלבד האפליקציה יש באתר **שישה דפי עיון סטטיים**, אחד לכל נושא:
+
+| נושא | כתובת |
+|---|---|
+| דיני תעופה | [`/aviation-law/`](https://dronexam.co.il/aviation-law/) |
+| גובה והפרדה | [`/altitude-separation/`](https://dronexam.co.il/altitude-separation/) |
+| בטיחות וחירום | [`/safety-emergency/`](https://dronexam.co.il/safety-emergency/) |
+| ידע טכני והעמסה | [`/technical-loading/`](https://dronexam.co.il/technical-loading/) |
+| מטאורולוגיה | [`/meteorology/`](https://dronexam.co.il/meteorology/) |
+| אנגלית טכנית | [`/aviation-english/`](https://dronexam.co.il/aviation-english/) |
+
+כל דף מכיל את **הסיכום** ואת **מילון המונחים** של הנושא, עם ההפניה לתקנה בכל פריט.
+השאלות נשארות באפליקציה — הן מה שהאפליקציה עושה, והדפים מקשרים אליהן.
+
+הדפים נועדו לשני דברים שהאפליקציה לא נותנת: **כתובת שאפשר לשלוח ולהדפיס** לכל נושא
+בנפרד, ותוכן שמנועי חיפוש יכולים לאנדקס (האפליקציה היא כתובת אחת שכל תוכנה מוזרק ב-JS).
+
+### הדפים נוצרים, לא נכתבים
+
+```bash
+node tools/pages/render.js
+```
+
+הסקריפט קורא את `assets/js/data/` ומייצר את ששת הדפים ואת `sitemap.xml`.
+**אין לערוך את קובצי ה-HTML שבתיקיות הנושא ידנית** — הם ייכתבו מחדש בהרצה הבאה.
+לשינוי תוכן יש לערוך את קובצי הנתונים; לשינוי מבנה או ניסוח הדף — את `render.js`.
+
+הרצה מחדש נדרשת אחרי כל שינוי ב-`data/`, אחרת הדפים מציגים תוכן ישן.
 
 ---
 
