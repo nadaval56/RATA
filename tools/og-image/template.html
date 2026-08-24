@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<!-- תבנית תמונת ה-OG (1200x630). מרונדרת ל-assets/og/cover.jpg על ידי render.py.
+     הפלטה זהה לפלטת האתר, כדי שהתצוגה המקדימה תיראה כמו הדף שנפתח אחרי הקליק. -->
+<style>
+@font-face{font-family:'Heebo';font-weight:300;src:url(../../assets/fonts/heebo-300-hebrew.woff2) format('woff2');}
+@font-face{font-family:'HeeboLatin';font-weight:300;src:url(../../assets/fonts/heebo-300-latin.woff2) format('woff2');}
+@font-face{font-family:'Suez One';src:url(../../assets/fonts/suezone-400-hebrew.woff2) format('woff2');}
+@font-face{font-family:'Suez One';src:url(../../assets/fonts/suezone-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF;}
+@font-face{font-family:'Plex';font-weight:600;src:url(../../assets/fonts/ibmplexmono-600-latin.woff2) format('woff2');}
+
+:root{
+  --paper:#E4E6DE; --ink:#14202B; --ink-2:#4A5561; --ink-3:#7C8792;
+  --hair:#C3C8BE; --magenta:#B4326D; --blue:#22608F;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1200px;height:630px}
+body{background:var(--paper);font-family:'Heebo','HeeboLatin',sans-serif;overflow:hidden;position:relative}
+
+.bg{position:absolute;inset:0}
+.stage{position:absolute;inset:0;display:flex;align-items:center;padding:0 76px;gap:40px}
+
+.txt{width:512px;flex:none}
+.eyebrow{
+  font-family:'Plex',monospace;font-weight:600;font-size:19px;letter-spacing:.17em;
+  color:var(--magenta);text-transform:uppercase;direction:ltr;text-align:right;margin-bottom:26px;
+}
+h1{font-family:'Suez One',serif;font-size:82px;line-height:1.06;color:var(--ink);letter-spacing:-.01em}
+.sub{font-size:31px;line-height:1.42;color:var(--ink-2);font-weight:300;margin-top:24px}
+
+/* שורת המספרים — לעדכן כאן כשהתוכן גדל, ואז להריץ שוב את render.py */
+.meta{margin-top:34px;padding-top:22px;border-top:1px solid var(--hair);display:flex;gap:30px;direction:rtl}
+.meta div{text-align:right}
+.meta .n{font-family:'Plex',monospace;font-weight:600;font-size:33px;color:var(--ink);line-height:1;direction:ltr}
+.meta .l{font-size:16px;color:var(--ink-3);margin-top:7px}
+
+.art{flex:1;display:flex;align-items:center;justify-content:center}
+.art img{width:372px;height:auto;display:block}
+
+.bar{position:absolute;bottom:0;left:0;right:0;height:9px;background:var(--magenta)}
+</style>
+</head>
+<body>
+
+<svg class="bg" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="30%" cy="46%" r="46%">
+      <stop offset="0%" stop-color="#22608F" stop-opacity=".10"/>
+      <stop offset="100%" stop-color="#22608F" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#14202B" stroke-opacity=".045" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+</svg>
+
+<div class="stage">
+  <div class="txt">
+    <div class="eyebrow">CAAI &middot; UAS &lt; 25 KG &middot; VLOS</div>
+    <h1>לעוף לשמיים</h1>
+    <div class="sub">הכנה לבחינה העיונית של רת&quot;א<br>לרישיון מטיס כטב&quot;ם קטן</div>
+    <div class="meta">
+      <div><div class="n">204</div><div class="l">שאלות</div></div>
+      <div><div class="n">170</div><div class="l">כרטיסיות</div></div>
+      <div><div class="n">6</div><div class="l">נושאים</div></div>
+    </div>
+  </div>
+
+  <div class="art"><img src="logo-mark.png" alt=""></div>
+</div>
+
+<div class="bar"></div>
+</body>
+</html>
