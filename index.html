@@ -56,6 +56,12 @@
 <link rel="preload" href="assets/fonts/suezone-400-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
 
+<!-- החלה מוקדמת של גודל הטקסט השמור — לפני הציור הראשון, כדי למנוע הבהוב.
+     הלוגיקה המלאה (שמירה, סנכרון הסרגל) יושבת ב-assets/js/app/fontsize.js. -->
+<script>
+try{var _fs=localStorage.getItem('altimeter:fs');if(_fs==='m'||_fs==='l')document.documentElement.setAttribute('data-fs',_fs);}catch(e){}
+</script>
+
 <!-- ===== נתונים מובנים (schema.org) — כך גוגל מבין מה האתר הזה ===== -->
 <script type="application/ld+json">
 {
@@ -114,9 +120,16 @@
 <a class="skip" href="#main">דלג לתוכן</a>
 
 <header class="band">
-  <div class="wrap">
-    <h1 class="ttl">לעוף לשמיים<span class="sr-only"> — הכנה לבחינה העיונית לרישיון מטיס כטב"ם קטן של רת"א</span></h1>
-    <span class="cs">CAAI · כטב"ם קטן &lt; 25kg · VLOS</span>
+  <div class="wrap band-wrap">
+    <div class="band-txt">
+      <h1 class="ttl">לעוף לשמיים<span class="sr-only"> — הכנה לבחינה העיונית לרישיון מטיס כטב"ם קטן של רת"א</span></h1>
+      <span class="cs">CAAI · כטב"ם קטן &lt; 25kg · VLOS</span>
+    </div>
+    <div class="fs-bar" role="group" aria-label="גודל טקסט">
+      <button type="button" data-fs="s" aria-pressed="true" title="טקסט קטן" onclick="setFontSize('s')">א<span class="sr-only">קטן</span></button>
+      <button type="button" data-fs="m" aria-pressed="false" title="טקסט בינוני" onclick="setFontSize('m')">א<span class="sr-only">בינוני</span></button>
+      <button type="button" data-fs="l" aria-pressed="false" title="טקסט גדול" onclick="setFontSize('l')">א<span class="sr-only">גדול</span></button>
+    </div>
   </div>
 </header>
 
@@ -227,6 +240,7 @@
 <script src="assets/js/data/questions.js"></script>
 <script src="assets/js/data/cards.js"></script>
 <script src="assets/js/data/study.js"></script>
+<script src="assets/js/app/fontsize.js"></script>
 <script src="assets/js/app/storage.js"></script>
 <script src="assets/js/app/gauge.js"></script>
 <script src="assets/js/app/study.js"></script>
