@@ -33,8 +33,8 @@ function renderStudy(){
 
   nav.innerHTML=picker+
     `<div class="btn-row" style="margin:0 0 12px">
-       ${cards?`<button class="btn ${studyMode==='cards'?'':'alt'}" style="padding:7px 15px;font-size:.8125rem;${studyMode==='cards'?'background:'+c:''}" onclick="studyMode='cards';renderStudy()">כרטיסיות</button>`:''}
-       ${summary?`<button class="btn ${studyMode==='list'?'':'alt'}" style="padding:7px 15px;font-size:.8125rem;${studyMode==='list'?'background:'+c:''}" onclick="studyMode='list';renderStudy()">סיכום</button>`:''}
+       ${cards?`<button class="btn ${studyMode==='cards'?'':'alt'}" style="padding:7px 15px;font-size:13px;${studyMode==='cards'?'background:'+c:''}" onclick="studyMode='cards';renderStudy()">כרטיסיות</button>`:''}
+       ${summary?`<button class="btn ${studyMode==='list'?'':'alt'}" style="padding:7px 15px;font-size:13px;${studyMode==='list'?'background:'+c:''}" onclick="studyMode='list';renderStudy()">סיכום</button>`:''}
      </div>`;
 
   if(studyMode==='list') renderSummary();
