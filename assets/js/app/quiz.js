@@ -73,7 +73,7 @@ function drawQ(){
   document.getElementById('drill-body').innerHTML=
    `<div class="qmeta"><span>${modeLbl}</span><span class="mono">${sess.i+1} / ${sess.qs.length}</span></div>
     <div class="card">
-      <span class="qtag" style="font-size:11px">${q.t}</span>
+      <span class="qtag" style="font-size:.6875rem">${q.t}</span>
       <div class="qtext" style="margin-top:10px">${q.best?'<span class="qbest">בחר בתשובה הנכונה ביותר:</span> ':''}${q.q}</div>
       <div id="opts">${q._o.map((o,i)=>`<button class="opt" onclick="pick(${i})"><span class="lt">${L[i]}</span>${o}</button>`).join('')}</div>
       <div id="fb"></div>
