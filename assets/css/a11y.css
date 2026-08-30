@@ -1,0 +1,330 @@
+/* ================= נגישות ופרטיות =================
+   נטען בכל דפי האתר, אחרי style.css ולפני page.css.
+   מכיל שלושה דברים נפרדים:
+     1. מצבי התצוגה של תפריט הנגישות (מחלקות על <html>)
+     2. העיצוב של כפתור הנגישות והתפריט עצמו
+     3. העיצוב של הודעת הפרטיות שמופיעה בכניסה הראשונה
+
+   העיקרון: כל מצב תצוגה מיושם על ידי דריסת משתני הצבע של :root
+   ולא על ידי filter על <html> — filter על אלמנט השורש הופך אותו
+   ל-containing block, וסרגל הניווט הקבוע (position:fixed) היה
+   מפסיק להיצמד לתחתית המסך ומתחיל לגלול עם הדף. */
+
+/* ---------------------------------------------------------------
+   1. מצבי תצוגה
+   --------------------------------------------------------------- */
+
+/* ---- ניגודיות גבוהה ----
+   שחור על לבן, גבולות מלאים, וגוונים כהים לצבעי ההדגשה.
+   כל היחסים כאן עוברים 7:1 (AAA) מול הרקע שלהם. */
+html.a11y-contrast{
+  --paper:#FFFFFF;
+  --surface:#FFFFFF;
+  --surface-2:#F0F0F0;
+  --ink:#000000;
+  --ink-2:#000000;
+  --ink-3:#1C1C1C;
+  --magenta:#7A0037;
+  --blue:#00375F;
+  --amber:#5A3300;
+  --green:#00432A;
+  --red:#7A0000;
+  --hair:#000000;
+  --hair-2:#3A3A3A;
+  --shadow:none;
+}
+html.a11y-contrast .card,
+html.a11y-contrast .strip,
+html.a11y-contrast .opt,
+html.a11y-contrast .cta,
+html.a11y-contrast .toc{border-width:2px}
+html.a11y-contrast .expl,
+html.a11y-contrast .notice{background:#FFFFFF;color:#000000}
+html.a11y-contrast .opt.correct{background:#FFFFFF}
+html.a11y-contrast .opt.wrong{background:#FFFFFF}
+
+/* ---- ניגודיות הפוכה (רקע כהה) ----
+   ה-header הופך אוטומטית ללבן-על-שחור, כי הוא בנוי על
+   background:var(--ink) עם color:var(--surface) — והשניים מתחלפים. */
+html.a11y-invert{
+  --paper:#000000;
+  --surface:#101010;
+  --surface-2:#1C1C1C;
+  --ink:#FFFFFF;
+  --ink-2:#EDEDED;
+  --ink-3:#C4C4C4;
+  --magenta:#FF9CC4;
+  --blue:#8FC6F2;
+  --amber:#F2C078;
+  --green:#7EDCAC;
+  --red:#FF9A9A;
+  --hair:#555555;
+  --hair-2:#3A3A3A;
+  --shadow:none;
+}
+html.a11y-invert body{background:#000}
+html.a11y-invert .expl{background:#12202B;color:#DCE8F2}
+html.a11y-invert .expl.bad{background:#2A1414;color:#F4DADA}
+html.a11y-invert .notice{background:#1C1710;color:#EDE0CC}
+html.a11y-invert .notice a{color:#F2C078}
+html.a11y-invert .opt.correct{background:#0E2018}
+html.a11y-invert .opt.wrong{background:#241010}
+html.a11y-invert .fs-bar{background:#1C1C1C;border-color:#555}
+html.a11y-invert .fs-bar button{color:#C4C4C4}
+html.a11y-invert .fs-bar button[aria-pressed="true"]{background:#FF9CC4;color:#000}
+/* המחוג מצויר ב-SVG עם צבעים קבועים; היפוך הבהירות מחזיר אותו לקריאוּת. */
+html.a11y-invert .gauge svg{filter:invert(1) hue-rotate(180deg)}
+
+/* ---- גווני אפור ----
+   דריסת משתנים ולא filter, מאותה סיבה שתוארה למעלה.
+   ה-filter על img/svg בלבד בטוח — הם אינם מכילים אלמנטים קבועים. */
+html.a11y-mono{
+  --magenta:#3D3D3D;
+  --blue:#4A4A4A;
+  --amber:#5C5C5C;
+  --green:#454545;
+  --red:#333333;
+}
+html.a11y-mono img,
+html.a11y-mono svg{filter:grayscale(1)}
+/* צבע הנושא מוזרק כ---sc מתוך subjects.js; כאן הוא מנוטרל. */
+html.a11y-mono .subj-pick button,
+html.a11y-mono .fc-f,
+html.a11y-mono .fc-got,
+html.a11y-mono .deckbar .prog i,
+html.a11y-mono .strip .bar i{--sc:#4A4A4A}
+
+/* ---- הדגשת קישורים ---- */
+html.a11y-links a{
+  text-decoration:underline!important;
+  text-underline-offset:3px;
+  text-decoration-thickness:2px!important;
+  font-weight:600;
+}
+html.a11y-links a:focus-visible,
+html.a11y-links a:hover{background:#FFF3A8;color:#000}
+html.a11y-invert.a11y-links a:focus-visible,
+html.a11y-invert.a11y-links a:hover{background:#4A3D00;color:#FFF}
+
+/* ---- פונט קריא ----
+   מחליף את Suez One (פונט תצוגה עם משיכות משתנות) בפונט מערכת
+   אחיד, ומבטל את ה-tabular-nums וה-letter-spacing הצפוף. */
+html.a11y-readable body,
+html.a11y-readable h1,
+html.a11y-readable h2,
+html.a11y-readable h3,
+html.a11y-readable .ttl,
+html.a11y-readable .fc-term,
+html.a11y-readable .gl-term,
+html.a11y-readable .siblings a,
+html.a11y-readable .mono,
+html.a11y-readable .eyebrow,
+html.a11y-readable .cs{
+  font-family:Arial,'Segoe UI',system-ui,sans-serif!important;
+}
+html.a11y-readable .eyebrow,
+html.a11y-readable .cs,
+html.a11y-readable .crumb,
+html.a11y-readable .fc-top,
+html.a11y-readable .toc h2,
+html.a11y-readable .siblings h2{letter-spacing:.04em!important;text-transform:none}
+
+/* ---- ריווח מוגדל ----
+   הערכים תואמים לקריטריון 1.4.12 (Text Spacing) של WCAG 2.1:
+   שורה 1.5, פסקה 2.0, אות 0.12em, מילה 0.16em. */
+html.a11y-spacing body,
+html.a11y-spacing p,
+html.a11y-spacing li,
+html.a11y-spacing .qtext,
+html.a11y-spacing .fc-def,
+html.a11y-spacing .gl-body{
+  line-height:1.9!important;
+  letter-spacing:.12em!important;
+  word-spacing:.16em!important;
+}
+html.a11y-spacing p{margin-bottom:2em!important}
+
+/* ---- עצירת אנימציות ---- */
+html.a11y-still *,
+html.a11y-still *::before,
+html.a11y-still *::after{
+  animation:none!important;
+  transition:none!important;
+  scroll-behavior:auto!important;
+}
+html.a11y-still .fc-in{transition:none!important}
+
+/* ---- סמן גדול ----
+   סמן SVG מוטבע (data URI) — נשאר זמין גם אופליין. */
+html.a11y-cursor,
+html.a11y-cursor *{
+  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 32 32'><path d='M6 2l0 24 6-6 4 9 5-2-4-9 9 0z' fill='%23fff' stroke='%23000' stroke-width='2' stroke-linejoin='round'/></svg>") 4 2, auto!important;
+}
+html.a11y-cursor a,
+html.a11y-cursor button,
+html.a11y-cursor summary,
+html.a11y-cursor [role="button"]{
+  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 32 32'><path d='M12 2c-1.7 0-3 1.3-3 3v11l-2-2c-1.2-1.2-3-1.2-4 0-1 1.2-1 2.8 0 4l7 10h14l2-13c.2-1.6-1-3-2.6-3-1 0-1.9.6-2.3 1.4-.2-1.3-1.3-2.4-2.7-2.4-1 0-1.9.6-2.4 1.4V5c0-1.7-1.3-3-3-3z' fill='%23fff' stroke='%23000' stroke-width='2' stroke-linejoin='round'/></svg>") 10 2, pointer!important;
+}
+
+/* ---- הדגשת מיקוד מקלדת ----
+   מעבה את טבעת המיקוד מעבר לברירת המחדל של האתר, ומחיל אותה
+   גם על :focus רגיל (לא רק focus-visible) עבור מי שמנווט במקלדת. */
+html.a11y-focus :focus,
+html.a11y-focus :focus-visible{
+  outline:4px solid #FFB300!important;
+  outline-offset:3px!important;
+  box-shadow:0 0 0 3px #000!important;
+  border-radius:2px;
+}
+
+/* ---------------------------------------------------------------
+   2. כפתור הנגישות והתפריט
+   --------------------------------------------------------------- */
+
+/* מיקום הכפתור: בצד ההתחלתי (שמאל ב-RTL), מעל הודעת הפרטיות
+   אם היא פתוחה, ומעל סרגל הניווט התחתון באפליקציה עצמה.
+
+   --dock הוא הגובה שתפוס בתחתית המסך. בדפי התוכן זהו רק המרווח
+   הבטוח של המכשיר; באפליקציה זהו גובה סרגל הניווט, ש-a11y.js
+   *מודד* ומעדכן ב---tabbar-h. מדידה ולא מספר קבוע, מפני שגובה
+   הסרגל משתנה עם גודל הטקסט — ומספר קבוע היה משאיר פס ריק
+   או מכסה את הסרגל באחת משלוש המדרגות. */
+:root{--tabbar-h:4.875rem;--consent-h:0px;--dock:env(safe-area-inset-bottom)}
+body:not(.doc){--dock:var(--tabbar-h)}
+
+.a11y-fab{
+  position:fixed;z-index:80;
+  inset-inline-start:12px;
+  bottom:calc(var(--dock) + var(--consent-h) + 12px);
+  width:48px;height:48px;border-radius:50%;
+  background:var(--ink);color:var(--surface);
+  border:2px solid var(--surface);
+  box-shadow:0 2px 10px rgba(20,32,43,.35);
+  display:flex;align-items:center;justify-content:center;
+  padding:0;transition:bottom .2s ease;
+}
+.a11y-fab svg{width:26px;height:26px;fill:currentColor}
+.a11y-fab:hover{background:var(--magenta)}
+.a11y-fab[aria-expanded="true"]{background:var(--magenta)}
+
+.a11y-panel{
+  position:fixed;z-index:81;
+  inset-inline-start:12px;
+  bottom:calc(var(--dock) + var(--consent-h) + 68px);
+  width:min(21rem,calc(100vw - 24px));
+  max-height:min(38rem,calc(100vh - var(--dock) - var(--consent-h) - 96px));
+  overflow-y:auto;overscroll-behavior:contain;
+  background:var(--surface);color:var(--ink);
+  border:1px solid var(--hair);border-radius:6px;
+  box-shadow:0 6px 28px rgba(20,32,43,.28);
+  padding:14px 15px 16px;
+}
+.a11y-panel[hidden]{display:none}
+
+.a11y-hd{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  border-bottom:1px solid var(--hair-2);padding-bottom:9px;margin-bottom:11px;
+}
+.a11y-hd h2{font-size:1rem;line-height:1.3}
+.a11y-x{
+  background:none;border:1px solid var(--hair);border-radius:3px;
+  width:30px;height:30px;line-height:1;font-size:1.125rem;color:var(--ink-2);
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+}
+.a11y-x:hover{border-color:var(--ink);color:var(--ink)}
+
+.a11y-grp{margin-bottom:14px}
+.a11y-grp>h3{
+  font-family:'IBM Plex Mono',monospace;font-size:.65625rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:400;margin-bottom:7px;
+}
+
+/* שורת שלושה כפתורים (גודל טקסט / מצב תצוגה) */
+.a11y-seg{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}
+.a11y-seg.three{grid-template-columns:repeat(3,1fr)}
+.a11y-seg button{
+  background:var(--surface-2);border:1px solid var(--hair);border-radius:3px;
+  padding:9px 4px;font-size:.78125rem;font-weight:500;color:var(--ink-2);
+  min-height:44px;line-height:1.25;
+}
+.a11y-seg button[aria-pressed="true"]{
+  background:var(--ink);color:var(--surface);border-color:var(--ink);font-weight:700;
+}
+.a11y-seg .sz-s{font-size:.75rem}
+.a11y-seg .sz-m{font-size:.9375rem}
+.a11y-seg .sz-l{font-size:1.125rem}
+
+/* מתגי הפעלה/כיבוי */
+.a11y-tog{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  width:100%;background:none;border:none;border-bottom:1px solid var(--hair-2);
+  padding:10px 2px;text-align:start;font-size:.84375rem;color:var(--ink);
+  min-height:44px;
+}
+.a11y-tog:last-child{border-bottom:none}
+.a11y-tog:hover{color:var(--magenta)}
+/* המתג חייב להיות ניתן לזיהוי גם כשהוא כבוי (WCAG 1.4.11 — 3:1 לרכיבי
+   ממשק). לכן המסגרת והידית במצב כבוי הן --ink-3 ולא גוון שיער בהיר,
+   והידית מקבלת את --surface במצב דלוק — כך שכל המצבים עובדים גם
+   בניגודיות גבוהה וגם בניגודיות הפוכה, בלי כללים נפרדים לכל מצב.
+   מלבד הצבע, גם *מיקום* הידית משתנה — כדי שהמצב לא ייקרא מהצבע לבדו. */
+.a11y-tog .sw{
+  flex:0 0 auto;width:38px;height:22px;border-radius:11px;
+  background:var(--surface-2);border:1px solid var(--ink-3);position:relative;
+  transition:background .15s ease;
+}
+.a11y-tog .sw::after{
+  content:'';position:absolute;top:2px;inset-inline-start:2px;
+  width:16px;height:16px;border-radius:50%;background:var(--ink-3);
+  transition:transform .15s ease, background .15s ease;
+}
+.a11y-tog[aria-pressed="true"] .sw{background:var(--magenta);border-color:var(--magenta)}
+.a11y-tog[aria-pressed="true"] .sw::after{background:var(--surface);transform:translateX(-16px)}
+
+.a11y-foot{border-top:1px solid var(--hair-2);padding-top:11px;margin-top:4px}
+.a11y-reset{
+  width:100%;background:transparent;border:1.5px solid var(--ink);
+  border-radius:3px;padding:10px;font-size:.8125rem;font-weight:700;
+  color:var(--ink);min-height:44px;
+}
+.a11y-reset:hover{background:var(--ink);color:var(--surface)}
+.a11y-links-row{margin-top:10px;font-size:.75rem;line-height:1.7;color:var(--ink-3)}
+.a11y-links-row a{color:var(--ink-2);text-decoration:underline;text-underline-offset:2px}
+.a11y-kbd{
+  margin-top:9px;font-family:'IBM Plex Mono',monospace;font-size:.65625rem;
+  color:var(--ink-3);line-height:1.6;
+}
+
+/* בהדפסה אין טעם בכפתור ובתפריט. */
+@media print{.a11y-fab,.a11y-panel,.consent{display:none!important}}
+
+/* ---------------------------------------------------------------
+   3. הודעת הפרטיות
+   --------------------------------------------------------------- */
+
+.consent{
+  position:fixed;z-index:79;inset-inline:0;bottom:var(--dock);
+  background:var(--ink);color:var(--surface);
+  border-top:3px solid var(--magenta);
+  padding:14px 0;
+  box-shadow:0 -3px 18px rgba(20,32,43,.3);
+}
+.consent[hidden]{display:none}
+.consent .wrap{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.consent-txt{flex:1 1 15rem;min-width:0}
+.consent-txt b{display:block;font-size:.875rem;margin-bottom:4px}
+.consent-txt p{margin:0;font-size:.78125rem;line-height:1.65;color:#C6D0D9}
+.consent-txt a{color:#FFB4D4;text-decoration:underline;text-underline-offset:2px}
+.consent-act{display:flex;gap:8px;flex:0 0 auto;flex-wrap:wrap;align-items:center}
+.consent-act button{
+  border-radius:3px;padding:10px 16px;font-size:.8125rem;font-weight:700;
+  min-height:44px;border:1.5px solid;
+}
+.consent-ok{background:var(--magenta);border-color:var(--magenta);color:#fff}
+.consent-no{background:transparent;border-color:#6E7C88;color:#C6D0D9}
+.consent-no:hover{border-color:var(--surface);color:var(--surface)}
+@media(max-width:520px){
+  .consent-act{width:100%}
+  .consent-act button{flex:1 1 auto}
+}

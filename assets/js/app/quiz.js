@@ -21,7 +21,7 @@ function prep(q){
 
 function renderDrillMenu(){
   document.getElementById('drill-body').innerHTML=
-    `<div class="eyebrow">תרגול</div>
+    `<h2 class="eyebrow" tabindex="-1">תרגול</h2>
      <div class="card"><h3>בחר נושא</h3>
      <p class="tiny" style="margin:0 0 12px">כל השאלות בנושא, בסדר אקראי, עם הסבר מלא אחרי כל תשובה.</p>
      ${SUBJ.map(s=>`<button class="strip" onclick="startDrill('${s.id}')"><div class="top"><span class="nm">${s.name}</span><span class="pc">${Q.filter(q=>q.s===s.id).length}</span></div></button>`).join('')}
@@ -71,14 +71,18 @@ function drawQ(){
   const L=['א','ב','ג','ד'];
   const modeLbl=sess.mode==='exam'?'סימולציית מבחן':sess.mode==='weak'?'חזרה על חולשות':'תרגול';
   document.getElementById('drill-body').innerHTML=
-   `<div class="qmeta"><span>${modeLbl}</span><span class="mono">${sess.i+1} / ${sess.qs.length}</span></div>
+   `<h2 class="sr-only" id="q-head" tabindex="-1">${modeLbl} — שאלה ${sess.i+1} מתוך ${sess.qs.length}</h2>
+    <div class="qmeta"><span>${modeLbl}</span><span class="mono">${sess.i+1} / ${sess.qs.length}</span></div>
     <div class="card">
       <span class="qtag" style="font-size:.6875rem">${q.t}</span>
       <div class="qtext" style="margin-top:10px">${q.best?'<span class="qbest">בחר בתשובה הנכונה ביותר:</span> ':''}${q.q}</div>
       <div id="opts">${q._o.map((o,i)=>`<button class="opt" onclick="pick(${i})"><span class="lt">${L[i]}</span>${o}</button>`).join('')}</div>
-      <div id="fb"></div>
+      <div id="fb" role="status" aria-live="polite"></div>
     </div>`;
   window.scrollTo(0,0);
+  /* מעבירים את המיקוד לכותרת השאלה: קורא מסך מכריז על השאלה החדשה,
+     וניווט המקלדת מתחיל מראש הכרטיס ולא מהמקום שבו היה הכפתור הקודם. */
+  document.getElementById('q-head').focus();
 }
 
 function pick(i){
@@ -89,19 +93,31 @@ function pick(i){
   const btns=document.querySelectorAll('#opts .opt');
   btns.forEach((b,j)=>{
     b.disabled=true;
-    if(j===q._a)b.classList.add('correct');
-    else if(j===i)b.classList.add('wrong');
+    /* הצבע והסמל הם לעין; לקורא מסך מוסיפים את אותו מידע כטקסט. */
+    if(j===q._a){
+      b.classList.add('correct');
+      b.insertAdjacentHTML('beforeend','<span class="sr-only"> — זו התשובה הנכונה</span>');
+    } else if(j===i){
+      b.classList.add('wrong');
+      b.insertAdjacentHTML('beforeend','<span class="sr-only"> — התשובה שבחרת, שגויה</span>');
+    }
   });
   let fb='';
   if(sess.mode!=='exam'){
-    fb=`<div class="expl ${ok?'':'bad'}"><span class="hd">${ok?'נכון':'לא נכון'}</span>${q.e}
+    fb=`<div class="expl ${ok?'':'bad'}" tabindex="-1"><span class="hd">${ok?'נכון':'לא נכון'}</span>${q.e}
       ${q.flag?`<div class="notice mag" style="margin:10px 0 0"><b>שים לב:</b> ${q.flag}</div>`:''}
       <div class="src">מקור: ${q.src}${q.ref?` · ${q.ref}`:''}</div></div>`;
   }
   const last=sess.i===sess.qs.length-1;
   fb+=`<div class="btn-row"><button class="btn" onclick="next()">${last?'סיום':'הבא'}</button></div>`;
-  document.getElementById('fb').innerHTML=fb;
-  if(sess.mode!=='exam')document.getElementById('fb').scrollIntoView({behavior:'smooth',block:'nearest'});
+  const box=document.getElementById('fb');
+  box.innerHTML=fb;
+  if(sess.mode!=='exam')box.scrollIntoView({behavior:'smooth',block:'nearest'});
+  /* המסיחים הפכו ל-disabled ואיבדו את המיקוד. בלי ההעברה הזו המיקוד
+     נופל ל-body וניווט המקלדת מתחיל שוב מראש הדף. בתרגול עוברים אל
+     ההסבר (שנקרא במלואו), ובמבחן — ישר אל כפתור ההמשך. */
+  const target=box.querySelector('.expl')||box.querySelector('button');
+  if(target)target.focus();
 }
 
 function next(){
@@ -144,8 +160,9 @@ async function finish(){
     }).join('')+'</div>';
   }
   document.getElementById('drill-body').innerHTML=
-   `<div class="card">
-      <div class="score ${pass?'pass':'fail'}"><div class="big mono">${pct}%</div><div class="lbl">${c} מתוך ${n}</div></div>
+   `<h2 class="sr-only" id="res-head" tabindex="-1">התוצאה: ${pct} אחוז, ${c} מתוך ${n}. ${pass?'מעל סף המעבר':'מתחת לסף המעבר'}.</h2>
+    <div class="card">
+      <div class="score ${pass?'pass':'fail'}"><div class="big mono" aria-hidden="true">${pct}%</div><div class="lbl" aria-hidden="true">${c} מתוך ${n}</div></div>
       ${brk}
       <div class="notice">${sess.mode==='exam'
         ? `סף המעבר כאן הוא <b>${EXAM.pass}</b>, לפי דיווח ממי שניגש לבחינה — לא פרסום רשמי. שים לב: במבחן האמיתי חלק מהשאלות שוות <b>2 נקודות</b>, ולכן הציון שם משוקלל והאחוז כאן הוא קירוב בלבד. אל תתייחס ל-${EXAM.pass}—${EXAM.pass+5} כאל מקום בטוח.`
@@ -156,6 +173,7 @@ async function finish(){
       </div>
     </div>`;
   window.scrollTo(0,0);
+  document.getElementById('res-head').focus();
   render();
 }
 
@@ -163,12 +181,12 @@ async function finish(){
 function renderWeak(){
   const el=document.getElementById('weak-body');
   if(!S.wrong.length){
-    el.innerHTML=`<div class="empty"><div class="eyebrow">חולשות</div><p>אין שאלות פתוחות. כל שאלה שתטעה בה תיכנס לכאן ותצא רק כשתענה עליה נכון.</p></div>`;
+    el.innerHTML=`<div class="empty"><h2 class="eyebrow" tabindex="-1">חולשות</h2><p>אין שאלות פתוחות. כל שאלה שתטעה בה תיכנס לכאן ותצא רק כשתענה עליה נכון.</p></div>`;
     return;
   }
   const byS={};
   S.wrong.forEach(i=>{const s=Q[i].s;(byS[s]=byS[s]||[]).push(i);});
-  el.innerHTML=`<div class="eyebrow">חולשות · ${S.wrong.length} שאלות</div>
+  el.innerHTML=`<h2 class="eyebrow" tabindex="-1">חולשות · ${S.wrong.length} שאלות</h2>
     <div class="card"><p class="tiny" style="margin:0 0 12px">שאלות שטעית בהן. הן נשארות כאן עד שתענה עליהן נכון.</p>
     ${SUBJ.filter(s=>byS[s.id]).map(s=>`<div class="brk-row"><span>${s.name}</span><span>${byS[s.id].length}</span></div>`).join('')}
     <div class="btn-row"><button class="btn mag" onclick="startWeakDrill()">תרגל אותן</button></div></div>`;
