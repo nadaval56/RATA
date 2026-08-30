@@ -69,6 +69,9 @@ html.a11y-invert .notice{background:#1C1710;color:#EDE0CC}
 html.a11y-invert .notice a{color:#F2C078}
 html.a11y-invert .opt.correct{background:#0E2018}
 html.a11y-invert .opt.wrong{background:#241010}
+/* .cs מקודד קשיח ל-#9FB0BE, שנבחר לפס הכהה. במצב הפוך הפס הופך ללבן
+   והכיתוב נופל ל-2.2:1 — לכן גוון כהה כאן. */
+html.a11y-invert .band .cs{color:#3F3F3F}
 html.a11y-invert .fs-bar{background:#1C1C1C;border-color:#555}
 html.a11y-invert .fs-bar button{color:#C4C4C4}
 html.a11y-invert .fs-bar button[aria-pressed="true"]{background:#FF9CC4;color:#000}

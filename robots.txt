@@ -4,7 +4,8 @@
 User-agent: *
 Allow: /
 
-# תיקיית כלי הפיתוח אינה חלק מהאתר עצמו.
+# תיקיות הפיתוח אינן חלק מהאתר עצמו.
 Disallow: /tools/
+Disallow: /.claude/
 
 Sitemap: https://dronexam.co.il/sitemap.xml
