@@ -269,9 +269,11 @@ header.band{
   color:#9FB0BE;
 }
 .fs-bar button+button{border-inline-start:1px solid #3B4A57}
-.fs-bar button[data-fs="s"]{font-size:11px}
-.fs-bar button[data-fs="m"]{font-size:14px}
-.fs-bar button[data-fs="l"]{font-size:17px}
+/* שלושת אלה נשארים ב-px בכוונה: הסרגל הוא עוגן יציב ולא משנה גודל
+   יחד עם התוכן, אחרת ה"א" הקטנה גדלה גם היא ואי אפשר להשוות. */
+.fs-bar button[data-fs="s"]{font-size:11px} /* a11y-allow-px */
+.fs-bar button[data-fs="m"]{font-size:14px} /* a11y-allow-px */
+.fs-bar button[data-fs="l"]{font-size:17px} /* a11y-allow-px */
 .fs-bar button[aria-pressed="true"]{background:var(--magenta);color:#fff}
 .fs-bar button:active{background:#2C3B48}
 .fs-bar button[aria-pressed="true"]:active{background:var(--magenta)}
