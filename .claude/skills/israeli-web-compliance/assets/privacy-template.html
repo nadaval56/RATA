@@ -1,0 +1,249 @@
+<!--
+  ┌──────────────────────────────────────────────────────────────┐
+  │  מדיניות פרטיות — תבנית                                       │
+  ├──────────────────────────────────────────────────────────────┤
+  │  {{SITE_NAME}}      שם האתר                                   │
+  │  {{DOMAIN}}         example.co.il                             │
+  │  {{OWNER}}          שם מפעיל האתר — לשאול, לא להמציא          │
+  │  {{EMAIL}}          כתובת לפניות — לשאול, לא להמציא           │
+  │  {{DATE}}           תאריך עדכון בעברית: 30 באוגוסט 2026        │
+  │  {{DATE_ISO}}       2026-08-30                                │
+  │  {{ROOT}}           נתיב יחסי לשורש: ../ או ריק               │
+  │  {{HOST}}           ספק האחסון: GitHub Pages / Netlify / ...  │
+  │  {{HOST_PRIVACY}}   קישור למדיניות הפרטיות של הספק            │
+  ├──────────────────────────────────────────────────────────────┤
+  │  לפני מילוי — הרץ את הביקורת שב-SKILL.md. הטבלה בסעיף 3       │
+  │  והרשימה בסעיף 2 חייבות לתאר את האתר הזה, לא תבנית.           │
+  │  אם יש כלי מדידה, טופס או צד שלישי — סעיף 2 מתהפך: פרט אותם   │
+  │  במקום להצהיר שאינם קיימים.                                   │
+  └──────────────────────────────────────────────────────────────┘
+-->
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מדיניות פרטיות | {{SITE_NAME}}</title>
+<meta name="description" content="מדיניות הפרטיות של {{DOMAIN}}: מה נשמר, איפה, ואיך למחוק — עם פקדי עיון, ייצוא ומחיקה בדף עצמו.">
+<link rel="canonical" href="https://{{DOMAIN}}/privacy/">
+<meta name="robots" content="index, follow">
+
+<link rel="stylesheet" href="{{ROOT}}assets/css/site.css">
+<link rel="stylesheet" href="{{ROOT}}assets/css/a11y.css">
+<script>
+try{
+  var _p=localStorage.getItem('privacy:v1');
+  if(!_p||JSON.parse(_p).local!==false){
+    var _r=document.documentElement,_a=localStorage.getItem('a11y:v1');
+    if(_a){_a=JSON.parse(_a);
+      if(_a.fs)_r.setAttribute('data-fs',_a.fs);
+      if(_a.mode)_r.classList.add('a11y-'+_a.mode);
+      ['links','readable','spacing','still','cursor','focus'].forEach(function(k){if(_a[k])_r.classList.add('a11y-'+k);});}
+  }
+}catch(e){}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"PrivacyPolicy",
+ "name":"מדיניות פרטיות — {{SITE_NAME}}","url":"https://{{DOMAIN}}/privacy/",
+ "inLanguage":"he-IL","dateModified":"{{DATE_ISO}}"}
+</script>
+</head>
+<body class="legal">
+
+<a class="skip" href="#doc">דלג לתוכן</a>
+
+<header><a href="{{ROOT}}">{{SITE_NAME}}</a></header>
+
+<main id="doc">
+  <h1>מדיניות פרטיות</h1>
+  <p class="lede">{{!-- שורה אחת שאומרת את העיקר בלי עורך דין. אם אין איסוף: --}}
+  האתר הזה לא אוסף עליך מידע. כל מה שנשמר — נשמר במכשיר שלך, ואתה יכול
+  לראות אותו, לייצא אותו ולמחוק אותו מהדף הזה, עכשיו.</p>
+
+  <section>
+    <h2>1. מי מפעיל את האתר</h2>
+    <p><b>מפעיל האתר:</b> {{OWNER}}<br>
+       <b>דואר אלקטרוני:</b> <a href="mailto:{{EMAIL}}">{{EMAIL}}</a><br>
+       <b>כתובת האתר:</b> <a href="https://{{DOMAIN}}/">{{DOMAIN}}</a></p>
+    <p>המדיניות נכתבה כדי לקיים את חובת היידוע שבסעיף 11 לחוק הגנת הפרטיות,
+    התשמ"א-1981, בנוסחו לאחר תיקון מס' 13 (התשפ"ה-2024), שנכנס לתוקף
+    ב-14 באוגוסט 2025.</p>
+  </section>
+
+  <section>
+    <h2>2. מה האתר לא עושה</h2>
+    <p>זו רשימה שלמה ולא חלקית — כל פריט בה נבדק בקוד.</p>
+    <ul>
+      <li>אינו מבקש ואינו קולט שם, כתובת, טלפון, דואר אלקטרוני או כל פרט מזהה.</li>
+      <li>אין הרשמה, התחברות או חשבון משתמש.</li>
+      <li>אין טופס יצירת קשר, ניוזלטר או רשימת תפוצה.</li>
+      <li>אין כלי מדידה — לא Google Analytics, לא Tag Manager, לא Meta Pixel, לא Hotjar.</li>
+      <li>אין פרסומות, רשתות פרסום או מעקב שיווקי, ואין מכירת מידע או העברתו לצד שלישי.</li>
+      <li>אין רכיבי צד-שלישי: אין iframe, אין כפתורי שיתוף, ואין CDN חיצוני.
+          גם הפונטים מוגשים מהאתר עצמו ולא מ-Google Fonts.</li>
+      <li>אינו מבקש הרשאות למיקום, מצלמה, מיקרופון או התראות.</li>
+    </ul>
+    <p>אפשר לוודא: פתח את לשונית <span class="mono">Network</span> בכלי הפיתוח
+    וראה שכל הבקשות פונות ל-<span class="mono">{{DOMAIN}}</span> בלבד.</p>
+  </section>
+
+  <section>
+    <h2>3. מה כן נשמר — ואיפה</h2>
+    <p><b>אחסון מקומי אינו עוגייה.</b> הוא לא נשלח לשרת בכל בקשה, לא נגיש
+    לאתרים אחרים, ונשאר על המכשיר שלך. אף אחד — כולל מפעיל האתר — לא יכול
+    לקרוא אותו מרחוק.</p>
+    <div class="tbl-scroll">
+    <table class="legal-tbl">
+      <caption>כל מה שהאתר שומר במכשיר שלך</caption>
+      <thead><tr><th>מפתח</th><th>מה נשמר בו</th><th>למה</th><th>משך</th></tr></thead>
+      <tbody>
+        <!-- שורה לכל מפתח שהאתר באמת שומר. אל תשאיר שורה שאינה מדויקת. -->
+        <tr><td><code>a11y:v1</code></td><td>הגדרות תפריט הנגישות</td><td>שההתאמות יחולו בכל דף ובכל ביקור</td><td>עד שתמחק</td></tr>
+        <tr><td><code>privacy:v1</code></td><td>שראית את ההודעה, ומה בחרת</td><td>שההודעה לא תחזור, ושאפשר יהיה לכבד את הבחירה</td><td>עד שתמחק</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <h3>המפתח שנשאר גם אם ביקשת לא לשמור</h3>
+    <p>אם תבחר "בלי שמירה מקומית", האתר ימחק את השאר וישמור <b>רק</b> את
+    <code>privacy:v1</code>. בלעדיו האתר לא יזכור בביקור הבא שביקשת לא
+    לשמור, ויתחיל לשמור מחדש. הוא המינימום ההכרחי כדי לכבד את הבחירה.</p>
+  </section>
+
+  <section>
+    <h2>4. הנתונים שלך — עיון, ייצוא ומחיקה</h2>
+    <p>אלה אינם קישורים לטופס. אלה פקדים שפועלים כאן ועכשיו, על המכשיר שלך.</p>
+    <div class="datactl">
+      <p class="st" id="dv-state">בודק…</p>
+      <div class="btn-row">
+        <button type="button" id="dv-show">הצג מה שמור עליי</button>
+        <button type="button" id="dv-export">ייצוא לקובץ</button>
+        <button type="button" id="dv-wipe">מחיקת הכול</button>
+        <button type="button" id="dv-toggle">טוען…</button>
+        <button type="button" id="dv-again">הצג מחדש את ההודעה</button>
+      </div>
+      <div id="dv-out"></div>
+      <noscript><p>הפקדים דורשים JavaScript. אפשר גם ידנית: הגדרות הדפדפן ←
+      נתוני אתרים ← מחיקה עבור <span class="mono">{{DOMAIN}}</span>.</p></noscript>
+    </div>
+  </section>
+
+  <section>
+    <h2>5. עוגיות</h2>
+    <p><b>האתר אינו עושה שימוש בעוגיות כלל.</b> ההודעה שמופיעה בכניסה הראשונה
+    אינה "באנר עוגיות" ואינה מבקשת הסכמה לאיסוף — אין איסוף. היא הודעה שקופה
+    על מה שנשמר במכשיר שלך, ואפשרות לוותר גם על זה.</p>
+  </section>
+
+  <section>
+    <h2>6. גורמים חיצוניים שמעורבים בכל זאת</h2>
+    <h3>אחסון האתר — {{HOST}}</h3>
+    <p>כמו כל שרת אינטרנט, השרת שמגיש את הדפים רושם ביומני שרת טכניים את
+    <b>כתובת ה-IP</b> של הפונה, את זהות הדפדפן ואת הקובץ שהתבקש. זה חלק
+    מהאופן שבו האינטרנט עובד. היומנים הם של {{HOST}};
+    <b>מפעיל האתר אינו רואה אותם ואינו יכול לשלוף מהם דבר</b>. השימוש בהם
+    כפוף <a href="{{HOST_PRIVACY}}" target="_blank" rel="noopener">למדיניות הפרטיות שלהם</a>.</p>
+    <!-- אם יש Google Search Console, הוסף כאן. דייק: הוא אינו מתקין קוד
+         ואינו כותב עוגייה; האימות הוא קובץ טקסט סטטי, והנתונים מצטברים
+         ומגיעים ממערכות גוגל ולא מהאתר. -->
+    <h3>קישורים יוצאים</h3>
+    <p>ברגע שאתה לוחץ על קישור חיצוני אתה עוזב את האתר, והמדיניות של האתר
+    שאליו הגעת היא זו שחלה.</p>
+  </section>
+
+  <section>
+    <h2>7. אבטחת מידע</h2>
+    <p>תקנות הגנת הפרטיות (אבטחת מידע), התשע"ז-2017, מסדירות אבטחת מאגרי
+    מידע. האתר <b>אינו מנהל מאגר מידע</b> — אין שרת שאוסף ואין מסד נתונים —
+    ולכן אין כאן מאגר שיש לאבטח. ברמת ההגשה: כל התעבורה מוצפנת ב-HTTPS,
+    אין קוד צד-שלישי, והנתונים שבמכשיר מוגנים ב-Same-Origin Policy.</p>
+  </section>
+
+  <section>
+    <h2>8. הזכויות שלך</h2>
+    <ul>
+      <li><b>זכות עיון</b> (סעיף 13) — לדעת איזה מידע מוחזק עליך.</li>
+      <li><b>זכות לתיקון</b> (סעיף 14) — לתקן מידע שאינו נכון, שלם, ברור או מעודכן.</li>
+      <li><b>זכות למחיקה</b>, בנסיבות שהחוק קובע.</li>
+    </ul>
+    <p>ביחס לאתר הזה יש לזכויות האלה תשובה פשוטה: <b>אין מאגר שאפשר לעיין בו,
+    מפני שלא נאסף עליך דבר.</b> כל המידע נמצא במכשיר שלך, ואת הזכויות אתה
+    מממש בעצמך ומיידית — <a href="#doc">בכפתורים שבסעיף 4</a>.</p>
+    <p>שאלה או טענה: <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>. אם התשובה אינה
+    מספקת, אפשר להגיש תלונה
+    <a href="https://www.gov.il/he/departments/the_privacy_protection_authority" target="_blank" rel="noopener">לרשות להגנת הפרטיות</a>.</p>
+  </section>
+
+  <section>
+    <h2>9. קטינים</h2>
+    <p>מאחר שהאתר אינו אוסף מידע מאף אחד, הוא אינו אוסף מידע גם מקטינים.</p>
+  </section>
+
+  <section>
+    <h2>10. שינויים במדיניות</h2>
+    <p>אם האתר ישתנה באופן שמשנה את תמונת הפרטיות, המדיניות תעודכן
+    <b>לפני</b> השינוי, ההודעה תוצג מחדש, ותאריך העדכון ישתנה.</p>
+  </section>
+
+  <p class="updated">עודכן לאחרונה: {{DATE}}</p>
+
+  <div class="notice"><b>אינו ייעוץ משפטי.</b> המסמך מתאר את מה שהאתר עושה
+  ואינו עושה. הוא נכתב לפי חוק הגנת הפרטיות, התשמ"א-1981, לרבות תיקון
+  מס' 13, אך אינו מהווה חוות דעת משפטית ואינו מחליף את לשון החוק.</div>
+</main>
+
+<footer>
+  <p><a href="{{ROOT}}privacy/">מדיניות פרטיות</a> · <a href="{{ROOT}}accessibility/">הצהרת נגישות</a></p>
+</footer>
+
+<script src="{{ROOT}}assets/js/privacy.js"></script>
+<script src="{{ROOT}}assets/js/a11y.js"></script>
+<script>
+/* פקדי הנתונים — הכול מקומי, אין כאן שום קריאת רשת. */
+(function () {
+  var out = document.getElementById('dv-out'), st = document.getElementById('dv-state'),
+      tg = document.getElementById('dv-toggle');
+  function items(n){ return n===0 ? 'שום פריט' : n===1 ? 'פריט אחד' : n+' פריטים'; }
+  function esc(s){ return String(s).replace(/[&<>]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+  function refresh(){
+    var rows = PRIVACY.inventory(), allowed = PRIVACY.storageAllowed();
+    var bytes = rows.reduce(function(a,r){return a+r.size;},0);
+    st.innerHTML = allowed
+      ? (rows.length
+          ? 'שמירה מקומית: <b>פעילה</b>. במכשיר הזה שמור כרגע <b>'+items(rows.length)+'</b>, בגודל כולל של <b>'+bytes+'</b> תווים.'
+          : 'שמירה מקומית: <b>פעילה</b>, אבל עדיין לא נשמר במכשיר הזה דבר.')
+      : 'שמירה מקומית: <b>מבוטלת</b> לפי בקשתך. נשמרת רק רשומת הבחירה עצמה.';
+    tg.textContent = allowed ? 'ביטול השמירה המקומית' : 'הפעלת השמירה המקומית';
+  }
+  document.getElementById('dv-show').addEventListener('click', function(){
+    var rows = PRIVACY.inventory();
+    if(!rows.length){ out.innerHTML='<p class="dv-msg">לא שמור עליך דבר במכשיר הזה.</p>'; return; }
+    out.innerHTML = '<p class="dv-msg">זה כל מה ששמור — '+items(rows.length)+':</p><pre tabindex="0">'
+      + esc(rows.map(function(r){return r.key+'\n'+r.value;}).join('\n\n')) + '</pre>';
+  });
+  document.getElementById('dv-export').addEventListener('click', function(){
+    var obj={}; PRIVACY.inventory().forEach(function(r){obj[r.key]=r.value;});
+    var b=new Blob([JSON.stringify(obj,null,2)],{type:'application/json'});
+    var u=URL.createObjectURL(b), a=document.createElement('a');
+    a.href=u; a.download='local-data.json'; a.click(); URL.revokeObjectURL(u);
+    out.innerHTML='<p class="dv-msg">הקובץ ירד למכשיר.</p>';
+  });
+  document.getElementById('dv-wipe').addEventListener('click', function(){
+    if(!confirm('למחוק את כל מה שהאתר שמר במכשיר הזה? הפעולה אינה הפיכה.')) return;
+    var n=PRIVACY.purge(); PRIVACY.remove(PRIVACY.KEY);
+    out.innerHTML='<p class="dv-msg">נמחק '+items(n+1)+'. לא נשאר דבר.</p>'; refresh();
+  });
+  tg.addEventListener('click', function(){
+    var allowed=PRIVACY.storageAllowed();
+    if(allowed && !confirm('ביטול השמירה המקומית ימחק עכשיו את מה שנשמר. להמשיך?')) return;
+    PRIVACY.decide(!allowed);
+    out.innerHTML='<p class="dv-msg">'+(allowed?'השמירה בוטלה, והנתונים נמחקו.':'השמירה הופעלה מחדש.')+'</p>';
+    refresh();
+  });
+  document.getElementById('dv-again').addEventListener('click', function(){ PRIVACY.reopen(); location.reload(); });
+  /* ההחלטה בהודעה עשויה להתקבל אחרי הטעינה — אז המספרים כאן כבר לא נכונים. */
+  document.addEventListener('privacy:change', refresh);
+  refresh();
+})();
+</script>
+</body>
+</html>
