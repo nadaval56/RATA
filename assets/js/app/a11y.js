@@ -229,10 +229,16 @@ var A11Y = (function () {
     if (panel.hidden) return;
     panel.hidden = true;
     fab.setAttribute('aria-expanded', 'false');
-    /* body אינו ניתן למיקוד, ולכן פתיחה בקיצור מקלדת (שבה המיקוד היה
-       עליו) הייתה משאירה את המיקוד באוויר בסגירה. במקרה כזה חוזרים לכפתור. */
-    if (lastFocus && lastFocus !== document.body && document.contains(lastFocus)) lastFocus.focus();
-    else fab.focus();
+    /* חוזרים למקום שממנו נפתח התפריט — אבל רק אם זה באמת פקד שהמשתמש
+       עמד עליו. פתיחה בקיצור מקלדת עלולה לתפוס אלמנט שמוקד תכנותית
+       (<main> אחרי סגירת הודעת הפרטיות, למשל) או את body, שאינו ניתן
+       למיקוד כלל; בשני המקרים החזרה לשם מאבדת את המשתמש. הנפילה
+       האחורית היא הכפתור, שהוא עוגן קבוע וצפוי. */
+    const CONTROL = 'a[href], button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])';
+    if (lastFocus && document.contains(lastFocus) && lastFocus.matches && lastFocus.matches(CONTROL))
+      lastFocus.focus();
+    else
+      fab.focus();
   }
   function toggle() { panel.hidden ? open() : close(); }
 
