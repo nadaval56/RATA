@@ -3,23 +3,31 @@
    שומר על מפתח זהה ('altimeter:v1') ועל מבנה {best, wrong, seen},
    כדי שקובצי JSON שיוצאו מהאפליקציה יישארו תואמים לייבוא.
    השיטות נשארו async כדי לא לגעת בקוראים (load/save/finish/resetAll/importData)
-   — כל await מכוון לפונקציה async, עקבי לאורך כל השרשרת. */
+   — כל await מכוון לפונקציה async, עקבי לאורך כל השרשרת.
+
+   הכתיבה לדפדפן עוברת דרך PRIVACY (privacy.js). מי שבחר בהודעת
+   הפרטיות "בלי שמירה מקומית" מקבל אפליקציה מלאה שעובדת מהזיכרון
+   בלבד: ההתקדמות נשמרת כל עוד הלשונית פתוחה, ולא נוגעת בדיסק.
+   הייצוא לקובץ JSON ממשיך לעבוד גם במצב הזה. */
 const MEM = {};
 const KEY_PREFIX = 'altimeter:';
 
 const store = {
   async get(k){
     try {
-      const raw = localStorage.getItem(KEY_PREFIX + k);
-      return raw ? JSON.parse(raw) : null;
-    } catch(e) {
-      return MEM[k] !== undefined ? MEM[k] : null;
-    }
+      const raw = (typeof PRIVACY !== 'undefined')
+        ? PRIVACY.get(KEY_PREFIX + k)
+        : localStorage.getItem(KEY_PREFIX + k);
+      if (raw) return JSON.parse(raw);
+    } catch(e) { /* נופלים לזיכרון */ }
+    return MEM[k] !== undefined ? MEM[k] : null;
   },
   async set(k, v){
     MEM[k] = v;
+    const raw = JSON.stringify(v);
+    if (typeof PRIVACY !== 'undefined') { PRIVACY.set(KEY_PREFIX + k, raw); return; }
     try {
-      localStorage.setItem(KEY_PREFIX + k, JSON.stringify(v));
+      localStorage.setItem(KEY_PREFIX + k, raw);
     } catch(e) {
       // מצב פרטי או חריגת מכסה — נשאר בזיכרון בלבד
     }

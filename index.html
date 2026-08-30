@@ -55,11 +55,24 @@
 <link rel="preload" href="assets/fonts/heebo-300-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/suezone-400-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/a11y.css">
 
-<!-- החלה מוקדמת של גודל הטקסט השמור — לפני הציור הראשון, כדי למנוע הבהוב.
-     הלוגיקה המלאה (שמירה, סנכרון הסרגל) יושבת ב-assets/js/app/fontsize.js. -->
+<!-- החלה מוקדמת של העדפות התצוגה — לפני הציור הראשון, כדי למנוע הבהוב.
+     הלוגיקה המלאה יושבת ב-assets/js/app/fontsize.js וב-assets/js/app/a11y.js.
+     אם המשתמש בחר "בלי שמירה מקומית" אין מה לקרוא, ולכן אין מה להחיל. -->
 <script>
-try{var _fs=localStorage.getItem('altimeter:fs');if(_fs==='m'||_fs==='l')document.documentElement.setAttribute('data-fs',_fs);}catch(e){}
+try{
+  var _p=localStorage.getItem('privacy:v1');
+  if(!_p||JSON.parse(_p).local!==false){
+    var _r=document.documentElement;
+    var _fs=localStorage.getItem('altimeter:fs');
+    if(_fs==='m'||_fs==='l')_r.setAttribute('data-fs',_fs);
+    var _a=localStorage.getItem('a11y:v1');
+    if(_a){_a=JSON.parse(_a);
+      if(_a.mode)_r.classList.add('a11y-'+_a.mode);
+      ['links','readable','spacing','still','cursor','focus'].forEach(function(k){if(_a[k])_r.classList.add('a11y-'+k);});}
+  }
+}catch(e){}
 </script>
 
 <!-- ===== נתונים מובנים (schema.org) — כך גוגל מבין מה האתר הזה ===== -->
@@ -212,12 +225,14 @@ try{var _fs=localStorage.getItem('altimeter:fs');if(_fs==='m'||_fs==='l')documen
 
     <p>ייתכנו טעויות. לפני כל הסתמכות — אמת מול המקור הרשמי ב<a href="https://www.gov.il/he/pages/knowledge-exam-uav" target="_blank" rel="noopener">אתר רת"א</a>.</p>
 
+    <p class="foot-links"><b>מסמכי האתר:</b> <a href="privacy/">מדיניות פרטיות</a> · <a href="accessibility/">הצהרת נגישות</a></p>
+
     <p class="tlh">ט.ל.ח</p>
   </div>
 </footer>
 
 <nav class="tabbar" aria-label="ניווט ראשי">
-  <button id="n-home" class="on" onclick="go('home')">
+  <button id="n-home" class="on" aria-current="page" onclick="go('home')">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="7"/><path d="M12 12l3.5-3.5"/></svg>
     מצב
   </button>
@@ -240,7 +255,9 @@ try{var _fs=localStorage.getItem('altimeter:fs');if(_fs==='m'||_fs==='l')documen
 <script src="assets/js/data/questions.js"></script>
 <script src="assets/js/data/cards.js"></script>
 <script src="assets/js/data/study.js"></script>
+<script src="assets/js/app/privacy.js"></script>
 <script src="assets/js/app/fontsize.js"></script>
+<script src="assets/js/app/a11y.js"></script>
 <script src="assets/js/app/storage.js"></script>
 <script src="assets/js/app/gauge.js"></script>
 <script src="assets/js/app/study.js"></script>

@@ -1,5 +1,5 @@
 # https://dronexam.co.il/robots.txt
-# אתר בן דף אחד — הכל פתוח לסריקה.
+# הכל פתוח לסריקה, כולל דפי המדיניות.
 
 User-agent: *
 Allow: /

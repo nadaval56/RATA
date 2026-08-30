@@ -205,7 +205,7 @@
   --surface-2:#EEEFE8;
   --ink:#14202B;
   --ink-2:#4A5561;
-  --ink-3:#7C8792;
+  --ink-3:#5A6470;   /* 4.78:1 מול הרקע — טקסט משני קטן חייב 4.5:1 (WCAG 1.4.3) */
   --magenta:#B4326D;
   --blue:#22608F;
   --amber:#A2601A;
@@ -381,10 +381,19 @@ header.band{
 }
 .opt:active{background:var(--surface-2)}
 .opt .lt{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--ink-3);margin-inline-end:8px}
+/* הסימון אינו נשען על צבע בלבד (WCAG 1.4.1): לצד הצבע יש גם סמל
+   בקצה השורה, שנקרא גם בעיוורון צבעים ובהדפסה בשחור-לבן. */
 .opt.correct{border-color:var(--green);border-width:2px;background:#EDF5F0}
 .opt.correct .lt{color:var(--green)}
 .opt.wrong{border-color:var(--red);border-width:2px;background:#F8EDED}
 .opt.wrong .lt{color:var(--red)}
+.opt.correct::after,.opt.wrong::after{
+  position:absolute;inset-inline-end:12px;top:50%;transform:translateY(-50%);
+  font-family:'IBM Plex Mono',monospace;font-size:1rem;font-weight:600;line-height:1;
+}
+.opt.correct::after{content:'\2713';color:var(--green)}
+.opt.wrong::after{content:'\2717';color:var(--red)}
+.opt.correct,.opt.wrong{padding-inline-end:34px}
 .opt[disabled]{cursor:default}
 .expl{
   border-inline-start:3px solid var(--blue);background:#EDF2F7;padding:12px 14px;

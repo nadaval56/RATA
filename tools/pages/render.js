@@ -207,7 +207,25 @@ ${(s.i || []).map(x => `      <li>${html(x)}</li>`).join('\n')}
 <link rel="preload" href="../assets/fonts/heebo-300-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/suezone-400-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/a11y.css">
 <link rel="stylesheet" href="../assets/css/page.css">
+
+<!-- החלה מוקדמת של העדפות התצוגה — לפני הציור הראשון, כדי למנוע הבהוב.
+     אם המשתמש בחר "בלי שמירה מקומית" אין מה לקרוא, ולכן אין מה להחיל. -->
+<script>
+try{
+  var _p=localStorage.getItem('privacy:v1');
+  if(!_p||JSON.parse(_p).local!==false){
+    var _r=document.documentElement;
+    var _fs=localStorage.getItem('altimeter:fs');
+    if(_fs==='m'||_fs==='l')_r.setAttribute('data-fs',_fs);
+    var _a=localStorage.getItem('a11y:v1');
+    if(_a){_a=JSON.parse(_a);
+      if(_a.mode)_r.classList.add('a11y-'+_a.mode);
+      ['links','readable','spacing','still','cursor','focus'].forEach(function(k){if(_a[k])_r.classList.add('a11y-'+k);});}
+  }
+}catch(e){}
+</script>
 
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
@@ -294,9 +312,14 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
     <p><a href="../"><b>לעוף לשמיים</b></a> — כלי לימוד חופשי בעברית לקראת הבחינה העיונית
     של רשות התעופה האזרחית (רת"א) לרישיון מטיס כטב"ם קטן.</p>
     <p>השאלות, ההסברים והמסיחים נוסחו על ידי Claude ואינם שאלות מבחן רשמיות.</p>
+    <p class="foot-links"><a href="../privacy/">מדיניות פרטיות</a> · <a href="../accessibility/">הצהרת נגישות</a></p>
     <p class="tlh">ט.ל.ח</p>
   </div>
 </footer>
+
+<script src="../assets/js/app/privacy.js"></script>
+<script src="../assets/js/app/fontsize.js"></script>
+<script src="../assets/js/app/a11y.js"></script>
 
 <script>
 /* שיפור מתקדם בלבד. בלי JS הדף עובד במלואו — <details> נפתח בלחיצה,
@@ -329,8 +352,12 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
 
 /* ---------- sitemap ---------- */
 function buildSitemap(slugs, lastmod) {
+  /* דפי המדיניות אינם נוצרים כאן (הם נכתבים ביד), אבל הם חלק מהאתר
+     ולכן חייבים להופיע במפה — אחרת הרינדור הבא היה מוחק אותם ממנה. */
+  const STATIC = ['privacy', 'accessibility'];
   const urls = [{ loc: ORIGIN + '/', priority: '1.0' }]
-    .concat(slugs.map(s => ({ loc: `${ORIGIN}/${s}/`, priority: '0.8' })));
+    .concat(slugs.map(s => ({ loc: `${ORIGIN}/${s}/`, priority: '0.8' })))
+    .concat(STATIC.map(s => ({ loc: `${ORIGIN}/${s}/`, priority: '0.3' })));
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(u => `  <url>
@@ -358,4 +385,4 @@ for (const cfg of PAGES) {
 
 const sm = path.join(ROOT, 'sitemap.xml');
 fs.writeFileSync(sm, buildSitemap(PAGES.map(p => p.slug), stamp));
-console.log(`sitemap.xml — ${PAGES.length + 1} URLs, lastmod ${stamp}`);
+console.log(`sitemap.xml — ${PAGES.length + 3} URLs, lastmod ${stamp}`);
