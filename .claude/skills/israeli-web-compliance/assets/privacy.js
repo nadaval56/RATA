@@ -150,14 +150,18 @@ var PRIVACY = (function () {
        על סדר המקלדת. בסוף ה-body הוא היה תחנת Tab מספר 28 בערך, כלומר
        הודעה שמבקשת החלטה שאי אפשר להגיע אליה. אחרי קישור הדילוג היא
        בהישג יד מיד. */
-    const skip = document.querySelector('a.skip');
+    /* אותו בורר כמו ב-a11y.js: אתרים רבים קוראים לקישור skip-link
+       ולא skip, ואז הפס נחת בראש ה-body במקום אחרי קישור הדילוג. */
+    const skip = document.querySelector('a.skip, a[class*="skip"]');
     if (skip && skip.parentNode === document.body) skip.after(bar);
     else document.body.insertBefore(bar, document.body.firstChild);
 
     /* גובה ההודעה נמדד ונשמר כמשתנה CSS, כדי שכפתור הנגישות
-       יעלה מעליה ולא יוסתר. */
+       יעלה מעליה ולא יוסתר. השם חייב להיות זהה לזה ש-a11y.css קורא
+       (--a11y-consent-h). כשהיה כאן --consent-h הכפתור פשוט ישב
+       מאחורי ההודעה — שני קבצים שנראו נכונים כל אחד לחוד. */
     function measure() {
-      document.documentElement.style.setProperty('--consent-h', bar.offsetHeight + 'px');
+      document.documentElement.style.setProperty('--a11y-consent-h', bar.offsetHeight + 'px');
     }
     measure();
     window.addEventListener('resize', measure);
@@ -166,7 +170,7 @@ var PRIVACY = (function () {
       PRIVACY.decide(allowLocal);
       bar.remove();
       window.removeEventListener('resize', measure);
-      document.documentElement.style.setProperty('--consent-h', '0px');
+      document.documentElement.style.setProperty('--a11y-consent-h', '0px');
       /* ההודעה נמחקה מה-DOM ואיתה הכפתור שהיה במיקוד. בלי ההעברה הזו
          המיקוד נופל ל-body, ומי שמנווט במקלדת מאבד את מקומו בדף. */
       const main = document.querySelector('main');
