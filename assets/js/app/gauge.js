@@ -13,7 +13,7 @@ function gaugeSVG(pct){
   }
   const a=(-210+(pct/100)*240)*Math.PI/180;
   const nx=cx+Math.cos(a)*(r-15), ny=cy+Math.sin(a)*(r-15);
-  const bx=cx-Math.cos(a)*11, by=cy-Math.sin(a)*11;
+  const bx=cx-Math.cos(a)*6, by=cy-Math.sin(a)*6;   // זנב קצר, כדי שלא ייגע בקריאה שבתחתית
   const arcEnd=(-210+(pct/100)*240)*Math.PI/180;
   const sx=cx+Math.cos(-210*Math.PI/180)*(r+4), sy=cy+Math.sin(-210*Math.PI/180)*(r+4);
   const ex=cx+Math.cos(arcEnd)*(r+4), ey=cy+Math.sin(arcEnd)*(r+4);

@@ -282,11 +282,14 @@ html[data-theme="dark"] .icon-btn .i-moon{display:none}
 }
 .gauge{flex:0 0 8.25rem;width:8.25rem;height:8.25rem;position:relative}
 .gauge svg{display:block;width:100%;height:100%}
+/* הקריאה יושבת בפתח התחתון של השעון: המחוג נע על 240 מעלות בלבד, והרבע
+   התחתון (120 מעלות סביב "שש") נשאר תמיד פנוי. כך המחוג לא עובר אף פעם
+   מעל המספר. */
 .gauge .rdg{
   position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;pointer-events:none;
+  align-items:center;justify-content:flex-end;padding-bottom:6%;pointer-events:none;
 }
-.gauge .rdg b{font-family:'IBM Plex Mono',monospace;font-size:1.5625rem;font-weight:600;letter-spacing:-.02em;line-height:1}
+.gauge .rdg b{font-family:'IBM Plex Mono',monospace;font-size:1.25rem;font-weight:600;letter-spacing:-.02em;line-height:1}
 .gauge .rdg span{font-family:'IBM Plex Mono',monospace;font-size:.53125rem;letter-spacing:.13em;color:var(--ink-3);margin-top:3px}
 /* המחוג מצויר ב-SVG; הצבעים שלו מגיעים מהמשתנים דרך המחלקות האלה */
 .gauge .g-face{fill:var(--surface-2);stroke:var(--ink)}
@@ -306,7 +309,7 @@ html[data-theme="dark"] .icon-btn .i-moon{display:none}
   .band .cs{font-size:.6875rem}
   .gauge-row{gap:14px;padding:14px}
   .gauge{flex-basis:6.75rem;width:6.75rem;height:6.75rem}
-  .gauge .rdg b{font-size:1.3125rem}
+  .gauge .rdg b{font-size:1.0625rem}
   .gauge-txt h2{font-size:1.0625rem}
   .gauge-txt p{font-size:.78125rem}
 }
