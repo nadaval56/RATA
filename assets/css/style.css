@@ -561,20 +561,37 @@ hr.rule{border:none;border-top:1px solid var(--hair);margin:22px 0}
 .site-foot{padding-bottom:68px}
 
 /* ---- האתרים הנוספים ----
-   פס דק אחד שנגלל לרוחב, בלי פס גלילה. הדהייה בקצה השמאלי רומזת שיש עוד.
-   קישורים בלבד: שום דבר לא נטען מהאתרים האלה. */
-.sister{
-  display:flex;align-items:center;gap:6px;margin-top:12px;
-  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
-  padding-inline-end:36px;
-  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 20px);
-  mask-image:linear-gradient(to right,transparent 0,#000 20px);
-}
-.sister::-webkit-scrollbar{display:none}
+   פס דק שנע לאט מעצמו (שני עותקים של הרשימה, כדי שהתנועה תהיה רציפה).
+   נעצר בריחוף, במיקוד מקלדת ובנגיעה (WCAG 2.2.2). במצב "בלי תנועה" הוא
+   פס רגיל שגוללים ביד. קישורים בלבד: שום דבר לא נטען מהאתרים האלה. */
+.sister{display:flex;align-items:center;gap:8px;margin-top:12px;min-width:0}
 .sister-lbl{flex:none;font-size:.6875rem;color:var(--ink-3);white-space:nowrap}
+.sister-view{
+  flex:1;min-width:0;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0,#000 20px,#000 calc(100% - 20px),transparent 100%);
+}
+.sister-track{display:flex;width:max-content;animation:sister-run 45s linear infinite}
+.sister-set{display:flex;gap:6px;padding-inline-end:6px}
+.sister-view:hover .sister-track,
+.sister-view:focus-within .sister-track,
+.sister-view:active .sister-track{animation-play-state:paused}
+/* ב-RTL הסט השני יושב משמאל לראשון; הזזה ימינה ברוחב סט אחד מחזירה
+   לנקודת ההתחלה בדיוק, ולכן אין קפיצה בסוף הסבב. */
+@keyframes sister-run{from{transform:translateX(0)}to{transform:translateX(50%)}}
 .site-foot .sister a{
   flex:none;white-space:nowrap;font-size:.6875rem;color:var(--ink-3);text-decoration:none;
   border:1px solid var(--hair);border-radius:999px;padding:3px 10px;
 }
 .site-foot .sister a:hover{color:var(--ink);border-color:var(--ink-3)}
+/* בלי תנועה: פס רגיל שגוללים ביד, בלי ההעתק */
+@media (prefers-reduced-motion:reduce){
+  .sister-view{overflow-x:auto;scrollbar-width:none}
+  .sister-track{animation:none}
+  .sister-clone{display:none}
+}
+html.a11y-still .sister-view{overflow-x:auto;scrollbar-width:none}
+html.a11y-still .sister-track{animation:none}
+html.a11y-still .sister-clone{display:none}
+.sister-view::-webkit-scrollbar{display:none}
 @media print{.sister{display:none}}
