@@ -425,6 +425,7 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
 <script src="../assets/js/app/privacy.js"></script>
 <script src="../assets/js/app/fontsize.js"></script>
 <script src="../assets/js/app/theme.js"></script>
+<script src="../assets/js/app/sister.js"></script>
 <script src="../assets/js/app/a11y.js"></script>
 
 <script>
