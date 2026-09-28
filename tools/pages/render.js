@@ -392,8 +392,7 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
     <p><a href="../"><b>לעוף לשמיים</b></a>: כלי לימוד חינמי בעברית לקראת הבחינה העיונית
     של רשות התעופה האזרחית (רת"א) לרישיון מטיס כטב"ם קטן.</p>
     <p>השאלות, ההסברים והמסיחים נוסחו על ידי Claude ואינם שאלות מבחן רשמיות.</p>
-    <p class="foot-links"><a href="../privacy/">מדיניות פרטיות</a> · <a href="../accessibility/">הצהרת נגישות</a></p>
-    <p class="tlh">ט.ל.ח</p>
+    <p class="foot-legal"><a href="../privacy/">מדיניות פרטיות</a> · <a href="../accessibility/">הצהרת נגישות</a> · <span class="tlh">ט.ל.ח</span></p>
   </div>
 </footer>
 
