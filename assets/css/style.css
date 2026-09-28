@@ -533,3 +533,29 @@ hr.rule{border:none;border-top:1px solid var(--hair);margin:22px 0}
 .doc-link{margin:14px 0 2px;font-size:.875rem}
 .doc-link a{color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
 .site-foot .foot-links a{color:var(--ink-2)}
+
+/* ---- כותרת תחתונה מקופלת (דף הבית) ----
+   דפי הנושא כשבבים, הטקסט הארוך בתוך <details>, ושורת המסמכים בסוף. */
+.foot-topics{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.foot-topics a{
+  font-size:.75rem;font-weight:500;color:var(--ink-2);text-decoration:none;
+  background:var(--surface);border:1px solid var(--hair);border-radius:999px;padding:4px 11px;
+}
+.foot-topics a:active{background:var(--tap)}
+.foot-more{margin-bottom:10px}
+.foot-more summary{
+  cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:6px;
+  font-size:.75rem;font-weight:600;color:var(--ink-2);padding:4px 0;
+}
+.foot-more summary::-webkit-details-marker{display:none}
+.foot-more summary::after{
+  content:'';width:6px;height:6px;border:solid currentColor;border-width:0 1.5px 1.5px 0;
+  transform:translateY(-2px) rotate(45deg);transition:transform .2s;
+}
+.foot-more[open] summary::after{transform:translateY(1px) rotate(-135deg)}
+.foot-more[open] summary{margin-bottom:6px}
+.site-foot .foot-legal{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px}
+.site-foot .foot-legal .tlh{margin:0}
+@media print{.foot-more > *{display:block}}
+/* כפתור הנגישות הצף יושב בפינה התחתונה; מרווח כדי שלא יכסה את שורת המסמכים */
+body:not(.doc) .site-foot{padding-bottom:68px}
