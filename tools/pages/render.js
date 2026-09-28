@@ -214,7 +214,7 @@ ${(s.i || []).map(x => `      <li>${html(x)}</li>`).join('\n')}
         isAccessibleForFree: true,
         about: { '@type': 'Thing', name: stripTags(subj.name) },
         isPartOf: { '@id': ORIGIN + '/#website' },
-        image: ORIGIN + '/assets/og/cover.jpg',
+        image: ORIGIN + '/assets/og/cover.jpg?v=3',
         dateModified: today(),
       },
       {
@@ -257,11 +257,11 @@ ${(s.i || []).map(x => `      <li>${html(x)}</li>`).join('\n')}
 <meta property="og:url" content="${url}">
 <meta property="og:title" content="${attr(cfg.title)}">
 <meta property="og:description" content="${desc}">
-<meta property="og:image" content="${ORIGIN}/assets/og/cover.jpg">
+<meta property="og:image" content="${ORIGIN}/assets/og/cover.jpg?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="${ORIGIN}/assets/og/cover.jpg">
+<meta name="twitter:image" content="${ORIGIN}/assets/og/cover.jpg?v=3">
 
 <meta name="theme-color" content="#F4F2EC" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1C1B19" media="(prefers-color-scheme: dark)">
