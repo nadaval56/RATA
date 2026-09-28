@@ -66,7 +66,7 @@ function importData(ev){
   const r=new FileReader();
   r.onload=async()=>{
     try{const d=JSON.parse(r.result);S=coerceProgress(d);await save();render();go('home');}
-    catch(e){alert('הקובץ אינו תקין. ודא שזה קובץ שיוצא מהאפליקציה הזו.');}
+    catch(e){alert('הקובץ אינו תקין. ודא שזה קובץ שייצאת מהאפליקציה הזו.');}
   };
   r.readAsText(f);
 }
