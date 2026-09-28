@@ -396,6 +396,7 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
 
     <nav class="sister" aria-label="האתרים הנוספים שלי">
       <span class="sister-lbl">עוד אתרים שלי</span>
+      <a href="https://making-il.co.il/" rel="noopener"><span aria-hidden="true">🛠️</span> Making</a>
       <a href="https://banknote.co.il/" rel="noopener"><span aria-hidden="true">💶</span> Banknote · שטרות ומטבעות</a>
       <a href="https://www.geniza.co.il/" rel="noopener"><span aria-hidden="true">📜</span> הגניזה הקהירית</a>
       <a href="https://holisticcenter.co.il/" rel="noopener"><span aria-hidden="true">🌱</span> מעט צרי · רפואה משלימה</a>
