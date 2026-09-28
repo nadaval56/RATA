@@ -1,7 +1,7 @@
 /* Service Worker — עבודה אופליין מלאה.
    אסטרטגיה: cache-first על כל הנכסים הסטטיים.
    כדי לפרוס גרסה חדשה: העלה את מספר CACHE (v1 → v2) — כל הנכסים ייטענו מחדש. */
-const CACHE = 'altimeter-v30';
+const CACHE = 'altimeter-v31';
 
 const ASSETS = [
   './',
@@ -33,6 +33,7 @@ const ASSETS = [
   './assets/js/app/privacy.js',
   './assets/js/app/fontsize.js',
   './assets/js/app/theme.js',
+  './assets/js/app/sister.js',
   './assets/js/app/a11y.js',
   './assets/js/app/storage.js',
   './assets/js/app/gauge.js',
