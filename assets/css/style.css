@@ -559,3 +559,22 @@ hr.rule{border:none;border-top:1px solid var(--hair);margin:22px 0}
 @media print{.foot-more > *{display:block}}
 /* כפתור הנגישות הצף יושב בפינה התחתונה; מרווח כדי שלא יכסה את שורת המסמכים */
 .site-foot{padding-bottom:68px}
+
+/* ---- האתרים הנוספים ----
+   פס דק אחד שנגלל לרוחב, בלי פס גלילה. הדהייה בקצה השמאלי רומזת שיש עוד.
+   קישורים בלבד: שום דבר לא נטען מהאתרים האלה. */
+.sister{
+  display:flex;align-items:center;gap:6px;margin-top:12px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+  padding-inline-end:36px;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 20px);
+  mask-image:linear-gradient(to right,transparent 0,#000 20px);
+}
+.sister::-webkit-scrollbar{display:none}
+.sister-lbl{flex:none;font-size:.6875rem;color:var(--ink-3);white-space:nowrap}
+.site-foot .sister a{
+  flex:none;white-space:nowrap;font-size:.6875rem;color:var(--ink-3);text-decoration:none;
+  border:1px solid var(--hair);border-radius:999px;padding:3px 10px;
+}
+.site-foot .sister a:hover{color:var(--ink);border-color:var(--ink-3)}
+@media print{.sister{display:none}}
