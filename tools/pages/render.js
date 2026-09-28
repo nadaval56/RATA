@@ -8,8 +8,9 @@
   כל דף שנכתב ביד יתיישן בשקט ברגע שמישהו יוסיף שאלה או כרטיסייה.
   הסקריפט גם מייצר מחדש את sitemap.xml, כדי שהוא לא ייפרד מהמציאות.
 
-  הדפים מכילים את הסיכום ואת מילון המונחים — לא את השאלות.
-  השאלות הן מה שהאפליקציה עושה, והן הסיבה ללחוץ פנימה.
+  הדפים מכילים את הסיכום, את מילון המונחים ומדגם קטן של שאלות (SAMPLE_N
+  לכל נושא). שאר השאלות נשארות באפליקציה. המדגם קיים כי בלעדיו אין בדף
+  אף שאלה אחת בטקסט סטטי, ומי שמחפש "שאלות לדוגמה" לא מגיע לאתר.
 */
 const fs = require('fs');
 const path = require('path');
@@ -33,52 +34,79 @@ const PAGES = [
   {
     id: 'LAW',
     slug: 'aviation-law',
-    h1: 'דיני תעופה — חומר הלימוד לבחינה העיונית למטיס כטב"ם קטן',
-    title: 'דיני תעופה לכטב"ם קטן — הגדרות, רישוי ומגבלות | לעוף לשמיים',
-    lede: 'ההגדרות, תנאי הרישוי, מגבלות ההפעלה והמרחקים — מרוכזים מתוך תקנות הטיס ' +
+    h1: 'דיני תעופה: חומר הלימוד לבחינה העיונית למטיס כטב"ם קטן',
+    title: 'דיני תעופה לכטב"ם קטן: הגדרות, רישוי ומגבלות | לעוף לשמיים',
+    lede: 'ההגדרות, תנאי הרישוי, מגבלות ההפעלה והמרחקים מתוך תקנות הטיס ' +
           '(הפעלת מערכת כטב"ם קטן), התשפ"ד-2024, עם הפניה לתקנה הספציפית בכל סעיף.',
   },
   {
     id: 'CALC',
     slug: 'altitude-separation',
-    h1: 'גובה והפרדה — חישוב תקרת הטיסה לכטב"ם קטן',
-    title: 'חישוב גובה והפרדה לכטב"ם קטן — השיטה הרשמית | לעוף לשמיים',
+    h1: 'גובה והפרדה: חישוב תקרת הטיסה לכטב"ם קטן',
+    title: 'חישוב גובה והפרדה לכטב"ם קטן לפי השיטה הרשמית | לעוף לשמיים',
     lede: 'ארבעת שלבי החישוב הרשמי, הערכים שמותר ושאסור להשתמש בהם, הדוגמה של רת"א, ' +
-          'וארבע המלכודות שמפילות בחישוב תקרת הטיסה.',
+          'וארבע הטעויות הנפוצות בחישוב תקרת הטיסה.',
   },
   {
     id: 'OPS',
     slug: 'safety-emergency',
-    h1: 'בטיחות וחירום — אחריות המטיס-המפקד, תדריך ותרחישי תקלה',
-    title: 'בטיחות וחירום בהפעלת כטב"ם קטן — אחריות, תדריך ותקלות | לעוף לשמיים',
-    lede: 'אחריות המטיס-המפקד לפי תקנה 22, מה חייב להיכלל בתדריך ולמה הוא משנה משפטית, ' +
-          'הבדיקות שלפני כל הפעלה, ושלושת תרחישי התקלה המרכזיים.',
+    h1: 'בטיחות וחירום: אחריות המטיס-המפקד, תדריך ותרחישי תקלה',
+    title: 'בטיחות וחירום בהפעלת כטב"ם קטן: אחריות, תדריך ותקלות | לעוף לשמיים',
+    lede: 'אחריות המטיס-המפקד לפי תקנה 22, מה חייב להיכלל בתדריך ומה המשמעות המשפטית שלו, ' +
+          'הבדיקות שלפני כל הפעלה ושלושת תרחישי התקלה המרכזיים.',
   },
   {
     id: 'TECH',
     slug: 'technical-loading',
-    h1: 'ידע טכני והעמסה — מערכות, ביצועים ובדיקת כשירות',
-    title: 'ידע טכני והעמסה לכטב"ם קטן — מערכות, העמסה וכשירות | לעוף לשמיים',
-    lede: 'מה נכלל בהעמסה ומה היא עושה לביצועים, ארבעת תחומי בדיקת הכשירות לפי תקנה 19(א), ' +
-          'אופן הפעולה של רב-להב ושל כנף קבועה, והמכשירים והמונחים.',
+    h1: 'ידע טכני והעמסה: מערכות, ביצועים ובדיקת כשירות',
+    title: 'ידע טכני והעמסה לכטב"ם קטן: מערכות, העמסה וכשירות | לעוף לשמיים',
+    lede: 'מה נכלל בהעמסה ואיך היא משפיעה על הביצועים, ארבעת תחומי בדיקת הכשירות לפי תקנה 19(א), ' +
+          'אופן הפעולה של רב-להב ושל כנף קבועה, והמכשירים והמונחים שצריך להכיר.',
   },
   {
     id: 'MET',
     slug: 'meteorology',
-    h1: 'מטאורולוגיה — עננים, זרמים אנכיים ותנאי הפעלה',
-    title: 'מטאורולוגיה למטיס כטב"ם קטן — עננים, רוח וזרמים | לעוף לשמיים',
-    lede: 'חמשת סוגי העננים שצריך לזהות ומה כל אחד מהם אומר, שני מנגנוני ההיווצרות, ' +
+    h1: 'מטאורולוגיה: עננים, זרמים אנכיים ותנאי הפעלה',
+    title: 'מטאורולוגיה למטיס כטב"ם קטן: עננים, רוח וזרמים | לעוף לשמיים',
+    lede: 'חמשת סוגי העננים שצריך לזהות ומה כל אחד מהם מלמד, שני מנגנוני ההיווצרות, ' +
           'תרמיקות ועילוי מדרון, והשפעת הרוח והצפיפות על ההפעלה.',
   },
   {
     id: 'ENG',
     slug: 'aviation-english',
-    h1: 'אנגלית טכנית — מונחים וקיצורים תעופתיים',
-    title: 'אנגלית טכנית לבחינת כטב"ם — מונחים וקיצורים תעופתיים | לעוף לשמיים',
-    lede: 'המונחים באנגלית שהתקנות עצמן משבצות, והקיצורים התעופתיים שנדרשים לבחינה — ' +
+    h1: 'אנגלית טכנית: מונחים וקיצורים תעופתיים',
+    title: 'אנגלית טכנית לבחינת כטב"ם: מונחים וקיצורים תעופתיים | לעוף לשמיים',
+    lede: 'המונחים באנגלית שמופיעים בתקנות עצמן והקיצורים התעופתיים שנדרשים לבחינה, ' +
           'עם התרגום והמשמעות של כל אחד.',
   },
 ];
+
+/* ---------- מדגם השאלות ---------- */
+const SAMPLE_N = 5;
+
+/* התשובה הנכונה בקובץ הנתונים תמיד ראשונה (האפליקציה מערבבת בזמן ריצה).
+   בדף סטטי צריך סדר קבוע שאינו חושף אותה, ולכן ערבוב דטרמיניסטי לפי
+   אינדקס השאלה: אותו סדר בכל הרצה, בלי שינויים מיותרים ב-git. */
+function seededOrder(n, seed) {
+  const idx = [...Array(n).keys()];
+  let x = (seed * 2654435761) >>> 0;
+  for (let i = n - 1; i > 0; i--) {
+    x = (x * 1103515245 + 12345) >>> 0;
+    const j = x % (i + 1);
+    [idx[i], idx[j]] = [idx[j], idx[i]];
+  }
+  return idx;
+}
+
+/* שאלות פזורות לאורך הנושא (לא רק מתת-הנושא הראשון), בלי שאלות
+   "הנכונה ביותר", שההסבר שלהן נשען על השוואה בין המסיחים. */
+function pickSample(qs) {
+  const pool = qs.filter(q => !/הנכונה ביותר/.test(q.q));
+  const out = [];
+  for (let k = 0; k < SAMPLE_N && k < pool.length; k++)
+    out.push(pool[Math.floor(k * pool.length / SAMPLE_N)]);
+  return out;
+}
 
 /* ---------- עזרי טקסט ---------- */
 const stripTags = s => String(s).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -109,6 +137,13 @@ function splitTerm(front) {
   return parts.join(sep);
 }
 
+/* כפתור התצוגה הכהה, זהה לזה שבאפליקציה (index.html). */
+const THEME_BTN = `<button type="button" class="icon-btn" data-theme-toggle aria-pressed="false" title="מעבר לתצוגה כהה">
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <span class="sr-only">תצוגה כהה</span>
+      </button>`;
+
 function today() {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -124,6 +159,24 @@ function buildPage(cfg, data, all) {
   const nItems = sections.reduce((a, s) => a + (s.i || []).length, 0);
   const url = `${ORIGIN}/${cfg.slug}/`;
   const desc = attr(cfg.lede).slice(0, 300);
+
+  const LETTERS = ['א', 'ב', 'ג', 'ד'];
+  const sample = pickSample(Q.filter(q => q.s === cfg.id)).map((q, k) => {
+    const order = seededOrder(q.o.length, Q.indexOf(q) + 1);
+    const right = order.indexOf(0);
+    return `
+      <li class="sq">
+        <p class="sq-q">${html(q.q)}</p>
+        <ol class="sq-opts">
+${order.map(i => `          <li>${html(q.o[i])}</li>`).join('\n')}
+        </ol>
+        <details class="sq-ans">
+          <summary>הצגת התשובה</summary>
+          <div class="gl-body"><b>התשובה הנכונה: ${LETTERS[right]}.</b> ${html(q.e)}${q.ref
+            ? `<span class="gl-ref">${attr(q.ref)}</span>` : ''}</div>
+        </details>
+      </li>`;
+  }).join('');
 
   const toc = sections.map((s, i) =>
     `      <li><a href="#s-${i + 1}">${attr(s.t)}</a></li>`).join('\n');
@@ -162,6 +215,18 @@ ${(s.i || []).map(x => `      <li>${html(x)}</li>`).join('\n')}
         about: { '@type': 'Thing', name: stripTags(subj.name) },
         isPartOf: { '@id': ORIGIN + '/#website' },
         image: ORIGIN + '/assets/og/cover.jpg',
+        dateModified: today(),
+      },
+      {
+        '@type': 'DefinedTermSet',
+        '@id': url + '#glossary',
+        name: 'מילון מונחים: ' + stripTags(subj.name),
+        inLanguage: 'he-IL',
+        hasDefinedTerm: cards.map(c => ({
+          '@type': 'DefinedTerm',
+          name: stripTags(splitTerm(c.f)),
+          description: stripTags(c.b).slice(0, 500),
+        })),
       },
       {
         '@type': 'BreadcrumbList',
@@ -198,7 +263,8 @@ ${(s.i || []).map(x => `      <li>${html(x)}</li>`).join('\n')}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="${ORIGIN}/assets/og/cover.jpg">
 
-<meta name="theme-color" content="#B4326D">
+<meta name="theme-color" content="#F4F2EC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C1B19" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../assets/icons/icon.svg" type="image/svg+xml">
 <link rel="icon" href="../assets/icons/icon-32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="../assets/icons/icon-16.png" type="image/png" sizes="16x16">
@@ -214,16 +280,19 @@ ${(s.i || []).map(x => `      <li>${html(x)}</li>`).join('\n')}
      אם המשתמש בחר "בלי שמירה מקומית" אין מה לקרוא, ולכן אין מה להחיל. -->
 <script>
 try{
+  var _r=document.documentElement,_t=null;
   var _p=localStorage.getItem('privacy:v1');
   if(!_p||JSON.parse(_p).local!==false){
-    var _r=document.documentElement;
     var _fs=localStorage.getItem('altimeter:fs');
     if(_fs==='m'||_fs==='l')_r.setAttribute('data-fs',_fs);
+    _t=localStorage.getItem('altimeter:theme');
     var _a=localStorage.getItem('a11y:v1');
     if(_a){_a=JSON.parse(_a);
       if(_a.mode)_r.classList.add('a11y-'+_a.mode);
       ['links','readable','spacing','still','cursor','focus'].forEach(function(k){if(_a[k])_r.classList.add('a11y-'+k);});}
   }
+  if(_t!=='light'&&_t!=='dark')_t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+  _r.setAttribute('data-theme',_t);
 }catch(e){}
 </script>
 
@@ -237,8 +306,11 @@ ${JSON.stringify(ld, null, 2)}
 
 <header class="band">
   <div class="wrap">
-    <a class="ttl" href="../">לעוף לשמיים</a>
-    <span class="cs">CAAI · כטב"ם קטן &lt; 25kg · VLOS</span>
+    <a class="brand" href="../">
+      <img class="brand-mark" src="../assets/icons/icon.svg" alt="" width="34" height="34">
+      <span class="band-txt"><span class="ttl">לעוף לשמיים</span><span class="cs">מבחן רת"א למטיס כטב"ם קטן</span></span>
+    </a>
+    <div class="band-tools">${THEME_BTN}</div>
   </div>
 </header>
 
@@ -260,7 +332,7 @@ ${JSON.stringify(ld, null, 2)}
 
   <aside class="cta">
     <p>הדף הזה הוא חומר העיון. <b>${nQuestions} שאלות תרגול בנושא</b>, עם הסבר ומקור
-    לכל אחת, נמצאות באפליקציה — יחד עם &quot;מד כשירות&quot; שעוקב אחרי ההתקדמות שלך.</p>
+    לכל אחת, נמצאות באפליקציה, ושם גם &quot;מד כשירות&quot; שעוקב אחרי ההתקדמות שלך.</p>
     <a class="btn mag" href="../">פתח את התרגול</a>
   </aside>
 
@@ -268,10 +340,18 @@ ${JSON.stringify(ld, null, 2)}
     <h2>בדף הזה</h2>
     <ol>
 ${toc}
+      <li><a href="#sample">שאלות לדוגמה (${sample ? SAMPLE_N : 0})</a></li>
       <li><a href="#glossary">מילון מונחים (${cards.length})</a></li>
     </ol>
   </nav>
 ${body}
+
+  <section class="doc-sec">
+    <h2 id="sample">שאלות לדוגמה</h2>
+    <p class="sec-note">${SAMPLE_N} שאלות מתוך ${nQuestions} שבאפליקציה. התשובה וההסבר נפתחים בלחיצה.</p>
+    <ol class="sample">${sample}
+    </ol>
+  </section>
 
   <section class="doc-sec">
     <h2 id="glossary">מילון מונחים</h2>
@@ -284,7 +364,7 @@ ${body}
   </section>
 
   <aside class="cta">
-    <p>בוא נראה מה אתה זוכר.</p>
+    <p>אחרי הקריאה, בדוק את עצמך בשאלות התרגול.</p>
     <a class="btn mag" href="../">${nQuestions} שאלות תרגול בנושא ${attr(subj.name)}</a>
   </aside>
 
@@ -301,7 +381,7 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
   <div class="notice">
     <b>אינו מסמך רשמי.</b> הדף מבוסס על תקנות הטיס (הפעלת מערכת כטב"ם קטן) התשפ"ד-2024,
     על פמ"ת פרק ב-09 ועל חוק הטיס התשע"א-2011, אך אינו מחליף אותם ואינו מהווה ייעוץ
-    מקצועי או משפטי. ייתכנו טעויות. לפני כל הסתמכות — אמת מול המקור הרשמי
+    מקצועי או משפטי. ייתכנו טעויות, ולכן לפני כל הסתמכות יש לאמת מול המקור הרשמי
     ב<a href="https://www.gov.il/he/pages/knowledge-exam-uav" target="_blank" rel="noopener">אתר רת"א</a>.
   </div>
 
@@ -309,7 +389,7 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
 
 <footer class="site-foot">
   <div class="wrap">
-    <p><a href="../"><b>לעוף לשמיים</b></a> — כלי לימוד חופשי בעברית לקראת הבחינה העיונית
+    <p><a href="../"><b>לעוף לשמיים</b></a>: כלי לימוד חינמי בעברית לקראת הבחינה העיונית
     של רשות התעופה האזרחית (רת"א) לרישיון מטיס כטב"ם קטן.</p>
     <p>השאלות, ההסברים והמסיחים נוסחו על ידי Claude ואינם שאלות מבחן רשמיות.</p>
     <p class="foot-links"><a href="../privacy/">מדיניות פרטיות</a> · <a href="../accessibility/">הצהרת נגישות</a></p>
@@ -319,6 +399,7 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
 
 <script src="../assets/js/app/privacy.js"></script>
 <script src="../assets/js/app/fontsize.js"></script>
+<script src="../assets/js/app/theme.js"></script>
 <script src="../assets/js/app/a11y.js"></script>
 
 <script>

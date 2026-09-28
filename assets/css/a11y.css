@@ -32,6 +32,11 @@ html.a11y-contrast{
   --hair:#000000;
   --hair-2:#3A3A3A;
   --shadow:none;
+  --on-accent:#FFFFFF;
+  --tint-mag:#FFFFFF;--on-tint-mag:#000000;--tint-amber:#FFFFFF;--on-tint-amber:#000000;
+  --tint-blue:#FFFFFF;--on-tint-blue:#000000;--tint-green:#FFFFFF;--tint-red:#FFFFFF;--on-tint-red:#000000;
+  --s-LAW:#7A0037;--s-CALC:#00375F;--s-OPS:#6A1010;--s-TECH:#5A3300;--s-MET:#00432A;--s-ENG:#2E1F6E;
+  color-scheme:light;
 }
 html.a11y-contrast .card,
 html.a11y-contrast .strip,
@@ -61,6 +66,11 @@ html.a11y-invert{
   --hair:#555555;
   --hair-2:#3A3A3A;
   --shadow:none;
+  --on-accent:#000000;
+  --tint-mag:#1C0E14;--on-tint-mag:#FFE3EE;--tint-amber:#1C1710;--on-tint-amber:#EDE0CC;
+  --tint-blue:#12202B;--on-tint-blue:#DCE8F2;--tint-green:#0E2018;--tint-red:#241010;--on-tint-red:#F4DADA;
+  --s-LAW:#FF9CC4;--s-CALC:#8FC6F2;--s-OPS:#FF9A9A;--s-TECH:#F2C078;--s-MET:#7EDCAC;--s-ENG:#C4B8FF;
+  color-scheme:dark;
 }
 html.a11y-invert body{background:#000}
 html.a11y-invert .expl{background:#12202B;color:#DCE8F2}
@@ -69,14 +79,6 @@ html.a11y-invert .notice{background:#1C1710;color:#EDE0CC}
 html.a11y-invert .notice a{color:#F2C078}
 html.a11y-invert .opt.correct{background:#0E2018}
 html.a11y-invert .opt.wrong{background:#241010}
-/* .cs מקודד קשיח ל-#9FB0BE, שנבחר לפס הכהה. במצב הפוך הפס הופך ללבן
-   והכיתוב נופל ל-2.2:1 — לכן גוון כהה כאן. */
-html.a11y-invert .band .cs{color:#3F3F3F}
-html.a11y-invert .fs-bar{background:#1C1C1C;border-color:#555}
-html.a11y-invert .fs-bar button{color:#C4C4C4}
-html.a11y-invert .fs-bar button[aria-pressed="true"]{background:#FF9CC4;color:#000}
-/* המחוג מצויר ב-SVG עם צבעים קבועים; היפוך הבהירות מחזיר אותו לקריאוּת. */
-html.a11y-invert .gauge svg{filter:invert(1) hue-rotate(180deg)}
 
 /* ---- גווני אפור ----
    דריסת משתנים ולא filter, מאותה סיבה שתוארה למעלה.
@@ -87,6 +89,16 @@ html.a11y-mono{
   --amber:#5C5C5C;
   --green:#454545;
   --red:#333333;
+  --s-LAW:#3D3D3D;--s-CALC:#4A4A4A;--s-OPS:#333333;--s-TECH:#5C5C5C;--s-MET:#454545;--s-ENG:#3A3A3A;
+  --tint-mag:#F1F1F1;--on-tint-mag:#262626;--tint-amber:#F1F1F1;--on-tint-amber:#262626;
+  --tint-blue:#F1F1F1;--on-tint-blue:#262626;--tint-green:#F1F1F1;--tint-red:#F1F1F1;--on-tint-red:#262626;
+}
+/* גווני אפור במצב כהה: הגוונים שלמעלה כהים מדי על רקע כהה */
+html.a11y-mono[data-theme="dark"]{
+  --magenta:#D0D0D0;--blue:#C4C4C4;--amber:#BDBDBD;--green:#C8C8C8;--red:#D6D6D6;
+  --s-LAW:#D0D0D0;--s-CALC:#C4C4C4;--s-OPS:#D6D6D6;--s-TECH:#BDBDBD;--s-MET:#C8C8C8;--s-ENG:#CCCCCC;
+  --tint-mag:#2C2C2C;--on-tint-mag:#EDEDED;--tint-amber:#2C2C2C;--on-tint-amber:#EDEDED;
+  --tint-blue:#2C2C2C;--on-tint-blue:#EDEDED;--tint-green:#2C2C2C;--tint-red:#2C2C2C;--on-tint-red:#EDEDED;
 }
 html.a11y-mono img,
 html.a11y-mono svg{filter:grayscale(1)}
@@ -95,7 +107,7 @@ html.a11y-mono .subj-pick button,
 html.a11y-mono .fc-f,
 html.a11y-mono .fc-got,
 html.a11y-mono .deckbar .prog i,
-html.a11y-mono .strip .bar i{--sc:#4A4A4A}
+html.a11y-mono .strip .bar i{--sc:var(--s-CALC)}
 
 /* ---- הדגשת קישורים ---- */
 html.a11y-links a{
@@ -203,7 +215,7 @@ body:not(.doc){--dock:var(--tabbar-h)}
   width:48px;height:48px;border-radius:50%;
   background:var(--ink);color:var(--surface);
   border:2px solid var(--surface);
-  box-shadow:0 2px 10px rgba(20,32,43,.35);
+  box-shadow:0 2px 10px rgba(20,20,20,.3);
   display:flex;align-items:center;justify-content:center;
   padding:0;transition:bottom .2s ease;
 }
@@ -219,8 +231,8 @@ body:not(.doc){--dock:var(--tabbar-h)}
   max-height:min(38rem,calc(100vh - var(--dock) - var(--consent-h) - 96px));
   overflow-y:auto;overscroll-behavior:contain;
   background:var(--surface);color:var(--ink);
-  border:1px solid var(--hair);border-radius:6px;
-  box-shadow:0 6px 28px rgba(20,32,43,.28);
+  border:1px solid var(--hair);border-radius:var(--r);
+  box-shadow:0 8px 30px rgba(20,20,20,.22);
   padding:14px 15px 16px;
 }
 .a11y-panel[hidden]{display:none}
@@ -231,7 +243,7 @@ body:not(.doc){--dock:var(--tabbar-h)}
 }
 .a11y-hd h2{font-size:1rem;line-height:1.3}
 .a11y-x{
-  background:none;border:1px solid var(--hair);border-radius:3px;
+  background:none;border:1px solid var(--hair);border-radius:8px;
   width:30px;height:30px;line-height:1;font-size:1.125rem;color:var(--ink-2);
   display:flex;align-items:center;justify-content:center;flex:0 0 auto;
 }
@@ -239,15 +251,14 @@ body:not(.doc){--dock:var(--tabbar-h)}
 
 .a11y-grp{margin-bottom:14px}
 .a11y-grp>h3{
-  font-family:'IBM Plex Mono',monospace;font-size:.65625rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ink-3);font-weight:400;margin-bottom:7px;
+  font-size:.8125rem;color:var(--ink-3);font-weight:600;margin-bottom:7px;
 }
 
 /* שורת שלושה כפתורים (גודל טקסט / מצב תצוגה) */
 .a11y-seg{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}
 .a11y-seg.three{grid-template-columns:repeat(3,1fr)}
 .a11y-seg button{
-  background:var(--surface-2);border:1px solid var(--hair);border-radius:3px;
+  background:var(--surface-2);border:1px solid var(--hair);border-radius:8px;
   padding:9px 4px;font-size:.78125rem;font-weight:500;color:var(--ink-2);
   min-height:44px;line-height:1.25;
 }
@@ -288,7 +299,7 @@ body:not(.doc){--dock:var(--tabbar-h)}
 .a11y-foot{border-top:1px solid var(--hair-2);padding-top:11px;margin-top:4px}
 .a11y-reset{
   width:100%;background:transparent;border:1.5px solid var(--ink);
-  border-radius:3px;padding:10px;font-size:.8125rem;font-weight:700;
+  border-radius:var(--r-sm);padding:10px;font-size:.8125rem;font-weight:700;
   color:var(--ink);min-height:44px;
 }
 .a11y-reset:hover{background:var(--ink);color:var(--surface)}
@@ -308,25 +319,25 @@ body:not(.doc){--dock:var(--tabbar-h)}
 
 .consent{
   position:fixed;z-index:79;inset-inline:0;bottom:var(--dock);
-  background:var(--ink);color:var(--surface);
-  border-top:3px solid var(--magenta);
-  padding:14px 0;
-  box-shadow:0 -3px 18px rgba(20,32,43,.3);
+  background:var(--surface);color:var(--ink);
+  border-top:1px solid var(--hair);border-radius:18px 18px 0 0;
+  padding:16px 0 14px;
+  box-shadow:0 -6px 24px rgba(20,20,20,.14);
 }
 .consent[hidden]{display:none}
 .consent .wrap{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
 .consent-txt{flex:1 1 15rem;min-width:0}
 .consent-txt b{display:block;font-size:.875rem;margin-bottom:4px}
-.consent-txt p{margin:0;font-size:.78125rem;line-height:1.65;color:#C6D0D9}
-.consent-txt a{color:#FFB4D4;text-decoration:underline;text-underline-offset:2px}
+.consent-txt p{margin:0;font-size:.8125rem;line-height:1.65;color:var(--ink-2)}
+.consent-txt a{color:var(--magenta);text-decoration:underline;text-underline-offset:2px}
 .consent-act{display:flex;gap:8px;flex:0 0 auto;flex-wrap:wrap;align-items:center}
 .consent-act button{
-  border-radius:3px;padding:10px 16px;font-size:.8125rem;font-weight:700;
-  min-height:44px;border:1.5px solid;
+  border-radius:var(--r-sm);padding:10px 16px;font-size:.8125rem;font-weight:700;
+  min-height:44px;border:1px solid;
 }
-.consent-ok{background:var(--magenta);border-color:var(--magenta);color:#fff}
-.consent-no{background:transparent;border-color:#6E7C88;color:#C6D0D9}
-.consent-no:hover{border-color:var(--surface);color:var(--surface)}
+.consent-ok{background:var(--magenta);border-color:var(--magenta);color:var(--on-accent)}
+.consent-no{background:var(--surface);border-color:var(--ink-3);color:var(--ink)}
+.consent-no:hover{border-color:var(--ink)}
 @media(max-width:520px){
   .consent-act{width:100%}
   .consent-act button{flex:1 1 auto}

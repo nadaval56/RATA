@@ -35,7 +35,7 @@ function renderDrillMenu(){
 /* מה ידוע על המבחן עצמו — לא פרסום רשמי, אלא דיווח ממי שניגש */
 function examFormatCard(){
   return `<div class="card"><h3>מה מחכה לך במבחן</h3>
-    <p class="tiny" style="margin:0 0 10px">לפי דיווח ממי שניגש לבחינה. <b>לא פרסום רשמי של רת"א</b> — הפרטים עשויים להשתנות.</p>
+    <p class="tiny" style="margin:0 0 10px">לפי דיווח ממי שניגש לבחינה. <b>זה לא פרסום רשמי של רת"א</b>, והפרטים עשויים להשתנות.</p>
     <div class="brk">
       <div class="brk-row"><span>אופן העריכה</span><span>מול מחשב</span></div>
       <div class="brk-row"><span>קבלת הציון</span><span>מיידית</span></div>
@@ -43,7 +43,7 @@ function examFormatCard(){
       <div class="brk-row"><span>מספר שאלות</span><span>כ-${EXAM.n}</span></div>
       <div class="brk-row"><span>ניקוד</span><span>חלקן 2 נק׳</span></div>
     </div>
-    <div class="notice mag" style="margin-bottom:0"><b>"בחר בתשובה הנכונה ביותר"</b> — בחלק לא קטן מהשאלות זה הניסוח, ואז יותר ממסיח אחד נכון כשלעצמו. אל תבחר בתשובה הראשונה שנראית נכונה: קרא את כל הארבע, ובחר את זו שהיא <b>השלמה ביותר</b> או <b>המדויקת ביותר</b> — זו שמכילה את האחרות, או זו שאינה משמיטה רכיב מההגדרה.</div>
+    <div class="notice mag" style="margin-bottom:0"><b>"בחר בתשובה הנכונה ביותר"</b>: זה הניסוח בחלק לא קטן מהשאלות, ובשאלות כאלה יותר ממסיח אחד נכון כשלעצמו. אל תסמן את התשובה הראשונה שנראית נכונה. קרא את ארבע התשובות ובחר את השלמה או המדויקת מביניהן, כלומר את זו שמכילה את האחרות או שלא משמיטה רכיב מההגדרה.</div>
   </div>`;
 }
 
@@ -71,7 +71,7 @@ function drawQ(){
   const L=['א','ב','ג','ד'];
   const modeLbl=sess.mode==='exam'?'סימולציית מבחן':sess.mode==='weak'?'חזרה על חולשות':'תרגול';
   document.getElementById('drill-body').innerHTML=
-   `<h2 class="sr-only" id="q-head" tabindex="-1">${modeLbl} — שאלה ${sess.i+1} מתוך ${sess.qs.length}</h2>
+   `<h2 class="sr-only" id="q-head" tabindex="-1">${modeLbl}, שאלה ${sess.i+1} מתוך ${sess.qs.length}</h2>
     <div class="qmeta"><span>${modeLbl}</span><span class="mono">${sess.i+1} / ${sess.qs.length}</span></div>
     <div class="card">
       <span class="qtag" style="font-size:.6875rem">${q.t}</span>
@@ -96,10 +96,10 @@ function pick(i){
     /* הצבע והסמל הם לעין; לקורא מסך מוסיפים את אותו מידע כטקסט. */
     if(j===q._a){
       b.classList.add('correct');
-      b.insertAdjacentHTML('beforeend','<span class="sr-only"> — זו התשובה הנכונה</span>');
+      b.insertAdjacentHTML('beforeend','<span class="sr-only">. זו התשובה הנכונה</span>');
     } else if(j===i){
       b.classList.add('wrong');
-      b.insertAdjacentHTML('beforeend','<span class="sr-only"> — התשובה שבחרת, שגויה</span>');
+      b.insertAdjacentHTML('beforeend','<span class="sr-only">. זו התשובה שבחרת, והיא שגויה</span>');
     }
   });
   let fb='';
@@ -165,8 +165,8 @@ async function finish(){
       <div class="score ${pass?'pass':'fail'}"><div class="big mono" aria-hidden="true">${pct}%</div><div class="lbl" aria-hidden="true">${c} מתוך ${n}</div></div>
       ${brk}
       <div class="notice">${sess.mode==='exam'
-        ? `סף המעבר כאן הוא <b>${EXAM.pass}</b>, לפי דיווח ממי שניגש לבחינה — לא פרסום רשמי. שים לב: במבחן האמיתי חלק מהשאלות שוות <b>2 נקודות</b>, ולכן הציון שם משוקלל והאחוז כאן הוא קירוב בלבד. אל תתייחס ל-${EXAM.pass}—${EXAM.pass+5} כאל מקום בטוח.`
-        : `סף המעבר במבחן הוא <b>${EXAM.pass}</b>, לפי דיווח ממי שניגש — לא פרסום רשמי. בתרגול נושא בודד כדאי לכוון גבוה יותר.`}</div>
+        ? `סף המעבר כאן הוא <b>${EXAM.pass}</b>, לפי דיווח ממי שניגש לבחינה (לא פרסום רשמי). במבחן האמיתי חלק מהשאלות שוות <b>2 נקודות</b>, כך שהציון שם משוקלל והאחוז כאן הוא קירוב בלבד. ציון של ${EXAM.pass} עד ${EXAM.pass+5} עדיין לא נותן מרווח ביטחון.`
+        : `סף המעבר במבחן הוא <b>${EXAM.pass}</b>, לפי דיווח ממי שניגש (לא פרסום רשמי). בתרגול של נושא בודד כוון גבוה יותר.`}</div>
       <div class="btn-row">
         ${S.wrong.length?`<button class="btn mag" onclick="startWeakDrill()">חזרה על ${S.wrong.length} החולשות</button>`:''}
         <button class="btn alt" onclick="go('home')">חזרה למצב</button>

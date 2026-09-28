@@ -3,7 +3,9 @@
 let studySub='LAW', studyMode='cards';
 let deck=null;
 
-function subjColor(id){return (SUBJ.find(s=>s.id===id)||{}).c||'#B4326D';}
+/* צבע הנושא כמשתנה CSS (--s-LAW וכו', מוגדר ב-style.css), ולא כגוון קבוע:
+   כך הוא מתחלף במצב כהה ובמצבי הנגישות. */
+function subjColor(id){return SUBJ.some(s=>s.id===id)?`var(--s-${id})`:'var(--magenta)';}
 
 /* כל ששת הנושאים מכוסים בכרטיסיות ובסיכום. הבדיקות נשארות כרשת ביטחון:
    נושא שיתווסף בעתיד בלי חומר לימוד יופנה לתרגול במקום להציג מסך ריק. */
@@ -13,7 +15,7 @@ function hasSummaryFor(id){return typeof STUDY!=='undefined' && !!STUDY[id];}
 function renderStudy(){
   const c=subjColor(studySub);
   const picker=`<div class="subj-pick">`+
-    SUBJ.map(s=>`<button class="${s.id===studySub?'on':''}" style="--sc:${s.c}" onclick="pickSubj('${s.id}')">${s.name}</button>`).join('')+
+    SUBJ.map(s=>`<button class="${s.id===studySub?'on':''}" style="--sc:${subjColor(s.id)}" onclick="pickSubj('${s.id}')">${s.name}</button>`).join('')+
     `</div>`;
   const nav=document.getElementById('study-nav');
   const cards=hasCardsFor(studySub), summary=hasSummaryFor(studySub);
@@ -80,7 +82,7 @@ function drawCard(){
     el.innerHTML=`<div class="card" style="text-align:center;padding:34px 20px">
       <div class="eyebrow">החפיסה הושלמה</div>
       <h3 style="color:${c};margin:6px 0 10px">${deck.total} כרטיסיות, ${deck.round} ${deck.round===1?'סבב':'סבבים'}</h3>
-      <p class="tiny" style="margin:0 0 18px">עברת על כל הנושא. עכשיו זה הזמן לבדוק אם זה באמת נכנס.</p>
+      <p class="tiny" style="margin:0 0 18px">עברת על כל הנושא. עכשיו כדאי לבדוק בתרגול כמה נשאר לך.</p>
       <div class="btn-row" style="justify-content:center">
         <button class="btn" style="background:${c}" onclick="startDrill('${studySub}')">תרגול בנושא</button>
         <button class="btn alt" onclick="buildDeck()">שוב מההתחלה</button>
