@@ -558,4 +558,4 @@ hr.rule{border:none;border-top:1px solid var(--hair);margin:22px 0}
 .site-foot .foot-legal .tlh{margin:0}
 @media print{.foot-more > *{display:block}}
 /* כפתור הנגישות הצף יושב בפינה התחתונה; מרווח כדי שלא יכסה את שורת המסמכים */
-body:not(.doc) .site-foot{padding-bottom:68px}
+.site-foot{padding-bottom:68px}

@@ -257,3 +257,14 @@ body.doc{padding-bottom:0}                    /* אין סרגל ניווט קב
 }
 .sq-ans[open] summary{margin-bottom:6px}
 .sq-ans .gl-body{margin-inline-start:0;padding-bottom:4px}
+
+/* קישורי הרשימה "שאר הנושאים" / "מסמכים נוספים" הם שורות ניווט ולא קישור
+   בתוך טקסט, ולכן בצבע הטקסט ובלי קו תחתון. הכלל הכללי של .doc-main a
+   ספציפי יותר מ-.siblings a, ולכן כאן בחזרה. */
+.doc-main .siblings a{color:var(--ink);text-decoration:none}
+.doc-main .siblings a:hover{color:var(--magenta)}
+.doc-main .siblings li{position:relative;padding-inline-end:28px}
+.doc-main .siblings li::after{
+  content:'';position:absolute;inset-inline-end:16px;top:50%;width:7px;height:7px;
+  border:solid var(--ink-3);border-width:0 0 1.5px 1.5px;transform:translateY(-50%) rotate(45deg);
+}
