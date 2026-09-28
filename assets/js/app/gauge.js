@@ -12,7 +12,7 @@ function gaugeSVG(pct){
     ticks+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" class="${maj?'g-maj':'g-min'}" stroke-width="${maj?1.6:1}" stroke-linecap="round"/>`;
   }
   const a=(-210+(pct/100)*240)*Math.PI/180;
-  const nx=cx+Math.cos(a)*(r-15), ny=cy+Math.sin(a)*(r-15);
+  const nx=cx+Math.cos(a)*(r-18), ny=cy+Math.sin(a)*(r-18);
   const bx=cx-Math.cos(a)*6, by=cy-Math.sin(a)*6;   // זנב קצר, כדי שלא ייגע בקריאה שבתחתית
   const arcEnd=(-210+(pct/100)*240)*Math.PI/180;
   const sx=cx+Math.cos(-210*Math.PI/180)*(r+4), sy=cy+Math.sin(-210*Math.PI/180)*(r+4);
@@ -45,7 +45,7 @@ function overallPct(){
 function render(){
   const p=overallPct();
   const g=document.getElementById('gauge');
-  g.innerHTML=gaugeSVG(p)+`<div class="rdg"><b>${Math.round(p)}</b><span>% מוכנות</span></div>`;
+  g.innerHTML=gaugeSVG(p)+`<div class="rdg"><b>${Math.round(p)}<small>%</small></b><span>מוכנות</span></div>`;
   const note=document.getElementById('gauge-note');
   if(!S.seen) note.textContent='עדיין לא התחלת. המחוג עולה לפי אחוז התשובות הנכונות בניסיון האחרון בכל נושא. הקו המקווקו מסמן את סף המעבר, '+EXAM.pass+'.';
   else if(p>=EXAM.pass+15) note.textContent='אתה מעל סף המעבר עם מרווח טוב. עבור על החולשות שנשארו ועשה עוד סימולציה אחת לפני המבחן.';
