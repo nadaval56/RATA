@@ -290,7 +290,9 @@ html[data-theme="dark"] .icon-btn .i-moon{display:none}
   align-items:center;justify-content:flex-end;padding-bottom:6%;pointer-events:none;
 }
 .gauge .rdg b{font-family:'IBM Plex Mono',monospace;font-size:1.25rem;font-weight:600;letter-spacing:-.02em;line-height:1}
-.gauge .rdg span{font-family:'IBM Plex Mono',monospace;font-size:.53125rem;letter-spacing:.13em;color:var(--ink-3);margin-top:3px}
+.gauge .rdg b{direction:ltr;unicode-bidi:isolate}
+.gauge .rdg b small{font-size:.6em;font-weight:600;margin-inline-start:1px}
+.gauge .rdg span{font-size:.625rem;font-weight:500;color:var(--ink-3);margin-top:2px}
 /* המחוג מצויר ב-SVG; הצבעים שלו מגיעים מהמשתנים דרך המחלקות האלה */
 .gauge .g-face{fill:var(--surface-2);stroke:var(--ink)}
 .gauge .g-ring{stroke:var(--hair)}
