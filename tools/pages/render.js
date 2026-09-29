@@ -402,7 +402,7 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
       <div class="sister-view">
         <div class="sister-track">
         <div class="sister-set">
-          <span class="sister-item"><span aria-hidden="true">🛠️</span> <a href="https://making-il.co.il/" rel="noopener">מייקינג</a> · יצירה טכנולוגית</span>
+          <a href="https://making-il.co.il/" rel="noopener"><span aria-hidden="true">🛠️</span> מייקינג · יצירה טכנולוגית</a>
           <a href="https://banknote.co.il/" rel="noopener"><span aria-hidden="true">💶</span> Banknote · שטרות ומטבעות</a>
           <a href="https://www.geniza.co.il/" rel="noopener"><span aria-hidden="true">📜</span> הגניזה הקהירית</a>
           <a href="https://holisticcenter.co.il/" rel="noopener"><span aria-hidden="true">🌱</span> מעט צרי · רפואה משלימה</a>
@@ -410,7 +410,7 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
           <a href="https://heb-cal.co.il/" rel="noopener"><span aria-hidden="true">📅</span> לוח עברי</a>
         </div>
         <div class="sister-set sister-clone" aria-hidden="true">
-          <span class="sister-item"><span aria-hidden="true">🛠️</span> <a href="https://making-il.co.il/" rel="noopener" tabindex="-1">מייקינג</a> · יצירה טכנולוגית</span>
+          <a href="https://making-il.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">🛠️</span> מייקינג · יצירה טכנולוגית</a>
           <a href="https://banknote.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">💶</span> Banknote · שטרות ומטבעות</a>
           <a href="https://www.geniza.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">📜</span> הגניזה הקהירית</a>
           <a href="https://holisticcenter.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">🌱</span> מעט צרי · רפואה משלימה</a>

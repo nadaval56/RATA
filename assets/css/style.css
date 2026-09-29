@@ -580,17 +580,6 @@ hr.rule{border:none;border-top:1px solid var(--hair);margin:22px 0}
   border:1px solid var(--hair);border-radius:999px;padding:3px 10px;
 }
 .site-foot .sister a:hover{color:var(--ink);border-color:var(--ink-3)}
-/* פריט שרק חלק ממנו קישור (מייקינג · יצירה טכנולוגית): השבב הוא ה-span,
-   והקישור בתוכו הוא מילה עם קו תחתון */
-.site-foot .sister .sister-item{
-  flex:none;white-space:nowrap;font-size:.6875rem;color:var(--ink-3);
-  border:1px solid var(--hair);border-radius:999px;padding:3px 10px;
-}
-.site-foot .sister .sister-item a{
-  border:0;padding:0;border-radius:0;font-size:inherit;color:inherit;
-  text-decoration:underline;text-underline-offset:2px;
-}
-.site-foot .sister .sister-item a:hover{color:var(--ink)}
 @media (prefers-reduced-motion:reduce){.sister-clone{display:none}}
 html.a11y-still .sister-clone{display:none}
 @media print{.sister{display:none}}
