@@ -580,6 +580,8 @@ hr.rule{border:none;border-top:1px solid var(--hair);margin:22px 0}
   border:1px solid var(--hair);border-radius:999px;padding:3px 10px;
 }
 .site-foot .sister a:hover{color:var(--ink);border-color:var(--ink-3)}
+/* ההזמנה לקבוצת הווטסאפ מודגשת בצבע ההדגשה, כמו בשאר האתרים */
+.site-foot .sister a.sister-invite{color:var(--blue);border-color:var(--blue)}
 @media (prefers-reduced-motion:reduce){.sister-clone{display:none}}
 html.a11y-still .sister-clone{display:none}
 @media print{.sister{display:none}}
