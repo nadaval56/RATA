@@ -403,6 +403,7 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
         <div class="sister-track">
         <div class="sister-set">
           <a href="https://making-il.co.il/" rel="noopener"><span aria-hidden="true">🛠️</span> מייקינג · יצירה טכנולוגית</a>
+          <a href="https://roentgen.co.il/" rel="noopener"><span aria-hidden="true">🩻</span> רנטגן · לראות מבפנים</a>
           <a href="https://banknote.co.il/" rel="noopener"><span aria-hidden="true">💶</span> Banknote · שטרות ומטבעות</a>
           <a href="https://www.geniza.co.il/" rel="noopener"><span aria-hidden="true">📜</span> הגניזה הקהירית</a>
           <a href="https://holisticcenter.co.il/" rel="noopener"><span aria-hidden="true">🌱</span> מעט צרי · רפואה משלימה</a>
@@ -411,6 +412,7 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
         </div>
         <div class="sister-set sister-clone" aria-hidden="true">
           <a href="https://making-il.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">🛠️</span> מייקינג · יצירה טכנולוגית</a>
+          <a href="https://roentgen.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">🩻</span> רנטגן · לראות מבפנים</a>
           <a href="https://banknote.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">💶</span> Banknote · שטרות ומטבעות</a>
           <a href="https://www.geniza.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">📜</span> הגניזה הקהירית</a>
           <a href="https://holisticcenter.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">🌱</span> מעט צרי · רפואה משלימה</a>
