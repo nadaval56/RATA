@@ -412,6 +412,7 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
           <a href="https://pursue.co.il/" rel="noopener"><span aria-hidden="true">🛸</span> PURSUE · ארכיון עב"מים</a>
           <a href="https://quake.co.il/" rel="noopener"><span aria-hidden="true">🌍</span> רעידת אדמה · רעידות היסטוריות</a>
           <a href="https://heb-cal.co.il/" rel="noopener"><span aria-hidden="true">📅</span> לוח עברי</a>
+          <a href="https://cranialnerves.co.il/" rel="noopener"><span aria-hidden="true">🧠</span> עצבי הגולגולת · 12 זוגות העצבים</a>
         </div>
         <div class="sister-set sister-clone" aria-hidden="true">
           <a href="https://chat.whatsapp.com/JPkp1hyk4J938apVTFu6J1" rel="noopener" class="sister-invite" tabindex="-1"><span aria-hidden="true">🔭</span> קבוצת ווטסאפ · עדכוני אסטרונומיה יומיים (קבוצה שקטה)</a>
@@ -424,6 +425,7 @@ ${all.filter(o => o.id !== cfg.id).map(o => {
           <a href="https://pursue.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">🛸</span> PURSUE · ארכיון עב"מים</a>
           <a href="https://quake.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">🌍</span> רעידת אדמה · רעידות היסטוריות</a>
           <a href="https://heb-cal.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">📅</span> לוח עברי</a>
+          <a href="https://cranialnerves.co.il/" rel="noopener" tabindex="-1"><span aria-hidden="true">🧠</span> עצבי הגולגולת · 12 זוגות העצבים</a>
         </div>
         </div>
       </div>
